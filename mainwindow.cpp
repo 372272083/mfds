@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     //menuBar()->setFont(font);
 
     m_uDisk = nullptr;
-    uDisk_enable = true;
+    uDisk_enable = false;
     uDisk_flag = false;
 
     this->setWindowIcon(QIcon(":/images/icon"));

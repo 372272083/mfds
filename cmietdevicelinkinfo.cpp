@@ -155,8 +155,7 @@ void CMIETDeviceLinkInfo::handlerReceiveMsg()
                 memcpy(&valuedata,measure_buffer,2);
 
                 float measure_v = (valuedata - 500)/10;
-
-                if (i < 8 && MainWindow::modbus_server_enable)
+                if(i<8 && MainWindow::modbus_server_enable)
                 {
                     QByteArray arr = DeviceLinkInfo::floatToBuffer(measure_v,HH_HL_LH_LL);
                     MainWindow::modbus_buffer[(32+i)*byteStep*2] = arr[0];

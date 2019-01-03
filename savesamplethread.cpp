@@ -63,7 +63,7 @@ void SaveSampleThread::run()
                             sqls.enqueue(sql);
                         }
 
-                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<10)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = cinfo->toString() + ";";
                             //qDebug() << cinfo_str;
@@ -191,7 +191,7 @@ void SaveSampleThread::run()
                             }
                         }
 
-                        if(MainWindow::server_enable)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = finfo->toString() + ";";
                             dataBuffer.append(cinfo_str.toUtf8());
@@ -263,7 +263,7 @@ void SaveSampleThread::run()
                             model->submitAll();
                         }
 
-                        if(MainWindow::server_enable)
+                        if(MainWindow::server_enable && MainWindow::trans_queue_pri.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = winfo->toString();
                             dataBuffer.append(cinfo_str.toUtf8());
@@ -329,7 +329,7 @@ void SaveSampleThread::run()
                             sqls.enqueue(sql);
                         }
 
-                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<10)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = vinfo->toString() + ";";
                             dataBuffer.append(cinfo_str.toUtf8());
@@ -458,7 +458,7 @@ void SaveSampleThread::run()
                             }
                         }
 
-                        if(MainWindow::server_enable)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = finfo->toString() + ";";
                             dataBuffer.append(cinfo_str.toUtf8());
@@ -529,7 +529,7 @@ void SaveSampleThread::run()
                             model->submitAll();
                         }
 
-                        if(MainWindow::server_enable)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = winfo->toString();
                             dataBuffer.append(cinfo_str.toUtf8());
@@ -594,7 +594,7 @@ void SaveSampleThread::run()
                         }
                         //qDebug() << sql;
 
-                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<10)
+                        if(MainWindow::server_enable && MainWindow::trans_queue.size()<MAX_QUEUE_NUM)
                         {
                             QString cinfo_str = tinfo->toString() + ";";
                             dataBuffer.append(cinfo_str.toUtf8());

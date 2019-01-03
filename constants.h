@@ -7,7 +7,7 @@ const int WINDOW_LEFT_WIDTH = 250;
 const int WINDOW_RIGHT_WIDTH = 250;
 const int WINDOW_HEADER_HEIGHT = 60;
 
-const int MAX_QUEUE_NUM = 10;
+const int MAX_QUEUE_NUM = 15;
 const float PC_RATIO = 0.01;
 
 enum MSGAddr {

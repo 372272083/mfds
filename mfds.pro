@@ -53,7 +53,22 @@ SOURCES += main.cpp\
     modbustcpserver.cpp \
     modbustcpclient.cpp \
     comsetting.cpp \
-    udisk.cpp
+    udisk.cpp \
+    FaultFeatureLib/AccFreqaAnsys.cpp \
+    FaultFeatureLib/DataMining.cpp \
+    FaultFeatureLib/DataPreProcess.cpp \
+    FaultFeatureLib/DFT_ANSYS.cpp \
+    FaultFeatureLib/Diagnosis.cpp \
+    FaultFeatureLib/FFT_ANSYS.cpp \
+    FaultFeatureLib/FreqDmnAnsys.cpp \
+    FaultFeatureLib/globals.cpp \
+    FaultFeatureLib/HilbertTransform.cpp \
+    FaultFeatureLib/mfdspanel.cpp \
+    FaultFeatureLib/MotorFaultDiagnosis.cpp \
+    FaultFeatureLib/RotaCoordinatAnsys.cpp \
+    FaultFeatureLib/RotateFreqAnsys.cpp \
+    FaultFeatureLib/stdafx.cpp \
+    FaultFeatureLib/TimeDmnAnsys.cpp
 
 HEADERS  += mainwindow.h \
     sqlitedb.h \
@@ -96,7 +111,27 @@ HEADERS  += mainwindow.h \
     modbustcpserver.h \
     modbustcpclient.h \
     comsetting.h \
-    udisk.h
+    udisk.h \
+    FaultFeatureLib/AccFreqAnsys.h \
+    FaultFeatureLib/Basic.hpp \
+    FaultFeatureLib/DataMining.h \
+    FaultFeatureLib/DataPreProcess.h \
+    FaultFeatureLib/DFT_ANSYS.h \
+    FaultFeatureLib/Diagnosis.h \
+    FaultFeatureLib/FaultFeatureLib.h \
+    FaultFeatureLib/FFT_ANSYS.h \
+    FaultFeatureLib/FreqDmnAnsys.h \
+    FaultFeatureLib/globals.h \
+    FaultFeatureLib/HilbertTransform.h \
+    FaultFeatureLib/IO_Param.h \
+    FaultFeatureLib/mfdspanel.h \
+    FaultFeatureLib/MotorFaultDiagnosis.h \
+    FaultFeatureLib/RotaCoordinatAnsys.h \
+    FaultFeatureLib/RotateFreqAnsys.h \
+    FaultFeatureLib/stdafx.h \
+    FaultFeatureLib/targetver.h \
+    FaultFeatureLib/TimeDmnAnsys.h \
+    FaultFeatureLib/UserCtrlParm.h
 
 RESOURCES += \
     res.qrc

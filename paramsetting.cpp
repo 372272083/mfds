@@ -89,6 +89,7 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
     items->addWidget(modbus_server,index,1,1,1);
 
     index++;
+    //items->setRowMinimumHeight(index,3);
 
     QLabel *pmodelLabel = new QLabel(this);
     pmodelLabel->setText(tr("Measure Sample Interval:"));
