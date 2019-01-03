@@ -1,0 +1,7 @@
+data_mf.db
+chargeinfo.obj
+debug/
+release/
+/Makefile
+/Makefile.Debug
+/Makefile.Release
