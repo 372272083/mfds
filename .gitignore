@@ -1,5 +1,6 @@
 data_mf.db
 chargeinfo.obj
+mfds.pro.user
 debug/
 release/
 /Makefile
