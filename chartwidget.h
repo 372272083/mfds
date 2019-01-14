@@ -27,6 +27,8 @@ public:
     void setupXRange(double min,double max);
     void setupYRange(double min,double max);
 
+    void setMode(int mode);
+
     void setupWindowsLabel(QString xlabel,QString ylabel);
     void clearGraph(QString graph);
     void setMaxPoint(int maxPoint);
@@ -45,6 +47,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent* event);
 private:
+    int mode;
     int max_point;
     int point_size;
     int xAutoRange,yAutoRange;
@@ -61,11 +64,14 @@ private:
     QMap<QString,QVector<double>> yAxise;
 
 signals:
-
+    void openWaveForm();
 public slots:
     void contextMenuRequest(const QPoint &pos);
 
     void resetZoomGraph();
+    void openWaveAnalyseForm();
+
+    void my_mouseMove(QMouseEvent* event);
 };
 
 #endif // CHARTWIDGET_H

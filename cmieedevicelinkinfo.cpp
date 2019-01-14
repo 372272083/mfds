@@ -322,7 +322,25 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
         if (unit == TIME_SYNC_W) //time sync ok
         {
             qDebug() << "time sync!";
+            struct ModbusTCPMapInfo cmd_save;
+            cmd_save.Unit = SAVE_W;
+            cmd_save.Addr = 32;
+            cmd_save.Command = 0x10;
+            cmd_save.Length = 2;
+            cmd_save.data = new char[2];
+            cmd_save.data[0] = 0x0;
+            cmd_save.data[0] = 0x1;
+            cmd_save.ExpectLen = 15;
+            msgPriSendQueue.enqueue(cmd_save);
             syncTomerOk = true;
+        }
+        else if(unit == SAVE_W)
+        {
+            qDebug() << "time sync save!";
+        }
+        else if(unit == COM_W)
+        {
+            qDebug() << "com sync save!";
         }
         else if(unit == COM_R) //read setting param ok
         {

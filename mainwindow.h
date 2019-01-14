@@ -125,6 +125,8 @@ public slots:
     void deviceComSetting();
 
     void uDiskCopyFile();
+
+    void openWaveWindow(QString mcode,QString dcode,QString pipe,QString deviceType);
 };
 
 #endif // MAINWINDOW_H

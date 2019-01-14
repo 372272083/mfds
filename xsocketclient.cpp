@@ -16,6 +16,7 @@ XSocketClient::~XSocketClient()
 void XSocketClient::SetAcceptSocket(QTcpSocket *pSocket)
 {
     m_pClientSocket = pSocket;
+    m_pClientSocket->setSocketOption(QAbstractSocket::ReceiveBufferSizeSocketOption,1024*1024*2);
     InitClientSocket(m_pClientSocket);
 }
 
@@ -25,6 +26,7 @@ void XSocketClient::ConnectTo(QString ip, quint16 port)
     {
         m_pClientSocket = new QTcpSocket(this);
     }
+    m_pClientSocket->setSocketOption(QAbstractSocket::ReceiveBufferSizeSocketOption,1024*1024*2);
     InitClientSocket(m_pClientSocket);
     m_pClientSocket->connectToHost(QHostAddress(ip), port);
 }

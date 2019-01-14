@@ -68,7 +68,8 @@ SOURCES += main.cpp\
     FaultFeatureLib/RotaCoordinatAnsys.cpp \
     FaultFeatureLib/RotateFreqAnsys.cpp \
     FaultFeatureLib/stdafx.cpp \
-    FaultFeatureLib/TimeDmnAnsys.cpp
+    FaultFeatureLib/TimeDmnAnsys.cpp \
+    waveform.cpp
 
 HEADERS  += mainwindow.h \
     sqlitedb.h \
@@ -131,7 +132,8 @@ HEADERS  += mainwindow.h \
     FaultFeatureLib/stdafx.h \
     FaultFeatureLib/targetver.h \
     FaultFeatureLib/TimeDmnAnsys.h \
-    FaultFeatureLib/UserCtrlParm.h
+    FaultFeatureLib/UserCtrlParm.h \
+    waveform.h
 
 RESOURCES += \
     res.qrc

@@ -206,16 +206,57 @@ void ComSetting::ok()
 
             QString keyName = item->deviceName+"-ip";
             QString ip = "";
+
+            char h_h = 0;
+            char h_l = 0;
+            char l_h = 0;
+            char l_l = 0;
+
             if (controls.contains(keyName))
             {
                 QIPLineEdit *ipEdit = static_cast<QIPLineEdit*>(controls[keyName]);
                 ip = ipEdit->text();
+
+                if(ip.length() > 0)
+                {
+                    QStringList qls = ip.split('.');
+                    if(qls.length() == 4)
+                    {
+                        bool tok;
+                        QString item = qls[0];
+                        int tmp = item.toInt(&tok);
+                        h_h = tmp;
+
+                        item = qls[1];
+                        tmp = item.toInt(&tok);
+                        h_l = tmp;
+
+                        item = qls[2];
+                        tmp = item.toInt(&tok);
+                        l_h = tmp;
+
+                        item = qls[3];
+                        tmp = item.toInt(&tok);
+                        l_l = tmp;
+                    }
+                }
             }
             if(item->deviceModel.compare("CMIE-E") == 0)
             {
                 if(ip.compare(item->deviceIpAddress) != 0)
                 {
                     //write ip address
+                    struct ModbusTCPMapInfo msg;
+                    msg.Unit = COM_W;
+                    msg.Addr = 0;
+                    msg.Command = 0x10;
+                    msg.Length = 4;
+                    msg.data = new char[4];
+                    msg.data[0] = h_h;
+                    msg.data[1] = h_l;
+                    msg.data[2] = l_h;
+                    msg.data[3] = l_l;
+                    item->addSendMsg(msg);
                 }
             }
             else if(item->deviceModel.compare("CMIE-V") == 0)
@@ -223,6 +264,17 @@ void ComSetting::ok()
                 if(ip.compare(item->deviceIpAddress) != 0)
                 {
                     //write ip address
+                    struct ModbusTCPMapInfo msg;
+                    msg.Unit = COM_W;
+                    msg.Addr = 0;
+                    msg.Command = 0x10;
+                    msg.Length = 4;
+                    msg.data = new char[4];
+                    msg.data[0] = h_h;
+                    msg.data[1] = h_l;
+                    msg.data[2] = l_h;
+                    msg.data[3] = l_l;
+                    item->addSendMsg(msg);
                 }
             }
             else if(item->deviceModel.compare("CMIE-T") == 0)
@@ -230,16 +282,28 @@ void ComSetting::ok()
                 if(ip.compare(item->deviceIpAddress) != 0)
                 {
                     //write ip address
+                    struct ModbusTCPMapInfo msg;
+                    msg.Unit = COM_W;
+                    msg.Addr = 0;
+                    msg.Command = 0x10;
+                    msg.Length = 4;
+                    msg.data = new char[4];
+                    msg.data[0] = h_h;
+                    msg.data[1] = h_l;
+                    msg.data[2] = l_h;
+                    msg.data[3] = l_l;
+                    item->addSendMsg(msg);
                 }
             }
             else
             {
+
             }
 
             break;
         }
     }
-    this->close();
+    //this->close();
 }
 
 void ComSetting::cancel()

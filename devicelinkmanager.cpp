@@ -179,6 +179,9 @@ DeviceLinkManager::DeviceLinkManager(SqliteDB *db, QObject *parent) : QObject(pa
 void DeviceLinkManager::timeUpdate()
 {
     static int count = 0;
+    static int countDisconnect = 0;
+
+    countDisconnect++;
     if(!MainWindow::com_enable)
     {
         return;
@@ -189,16 +192,29 @@ void DeviceLinkManager::timeUpdate()
         DeviceLinkInfo* deviceInfo = it.value();
         if (deviceInfo->linkState)
         {
+            if(countDisconnect > 3600)
+            {
+                countDisconnect = 0;
+                if(m_sockes.contains(devicecode))
+                {
+                    XSocketClient* client = m_sockes[devicecode];
+                    client->disConnect();
+                    continue;
+                }
+            }
             deviceInfo->handleSendMsg();
             QByteArray msg = deviceInfo->getSendMsg();
 
             if (msg.size() > 0)
             {
-                XSocketClient* client = m_sockes[devicecode];
-
-                if (nullptr != client)
+                if(m_sockes.contains(devicecode))
                 {
-                    client->SendData(msg);
+                    XSocketClient* client = m_sockes[devicecode];
+
+                    if (nullptr != client)
+                    {
+                        client->SendData(msg);
+                    }
                 }
             }
             else
@@ -218,8 +234,8 @@ void DeviceLinkManager::timeUpdate()
             {
                 XSocketClient* client = m_sockes[devicecode];
                 client->disConnect();
-                delete client;
                 m_sockes.remove(devicecode);
+                delete client;
             }
             deviceInfo->reConnectCount++;
             if (deviceInfo->reConnectCount > MainWindow::sample_waiting)
@@ -235,6 +251,13 @@ void DeviceLinkManager::timeUpdate()
                 connect(client,SIGNAL(signalOnDisconnected(QString)),this,SLOT(signalOnDisconnected(QString)));
 
                 client->ConnectTo(ipAddress,port);
+                if(m_sockes.contains(devicecode))
+                {
+                    XSocketClient* client_tmp = m_sockes[devicecode];
+                    client_tmp->disConnect();
+                    m_sockes.remove(devicecode);
+                    delete client_tmp;
+                }
                 m_sockes.insert(devicecode,client);
                 deviceInfo->reConnectCount = 1;
             }

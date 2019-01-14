@@ -13,12 +13,14 @@
 
 ChartWidget::ChartWidget(QWidget *parent) : QWidget(parent)
 {
+    mode = 0;
     xMin = 0;
     xMax = 200;
     yMin = 0;
     yMax = 5;
 
     myPlot = new QCustomPlot(this);
+    connect(myPlot, SIGNAL(mouseMove(QMouseEvent*)), this, SLOT(my_mouseMove(QMouseEvent*)));
     myPlot->legend->setVisible(true);
     myPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                             QCP::iSelectLegend | QCP::iSelectPlottables);
@@ -36,6 +38,11 @@ ChartWidget::ChartWidget(QWidget *parent) : QWidget(parent)
     //myPlot->axisRect()->setupFullAxesBox();
     point_size = 0;
     myPlot->replot();
+}
+
+void ChartWidget::setMode(int mode)
+{
+    this->mode = mode;
 }
 
 void ChartWidget::addGraph(QString title,QPen pen)
@@ -256,6 +263,11 @@ void ChartWidget::contextMenuRequest(const QPoint &pos)
     } else  // general context menu on graphs requested
     {
         menu->addAction(tr("reset zoom"), this, SLOT(resetZoomGraph()));
+        if(mode == 0)
+        {
+            menu->addAction(tr("check wave"), this, SLOT(openWaveAnalyseForm()));
+        }
+
         //if (myPlot->selectedGraphs().size() > 0)
         //    menu->addAction(tr("Remove selected graph"), this, SLOT(removeSelectedGraph()));
         //if (myPlot->graphCount() > 0)
@@ -269,4 +281,24 @@ void ChartWidget::resetZoomGraph()
 {
     myPlot->rescaleAxes();
     myPlot->replot();
+}
+
+void ChartWidget::openWaveAnalyseForm()
+{
+    emit openWaveForm();
+}
+
+void ChartWidget::my_mouseMove(QMouseEvent* event)
+{
+ //获取鼠标坐标点
+    int x_pos = event->pos().x();
+    int y_pos = event->pos().y();
+
+// 把鼠标坐标点 转换为 QCustomPlot 内部坐标值 （pixelToCoord 函数）
+// coordToPixel 函数与之相反 是把内部坐标值 转换为外部坐标点
+    float x_val = myPlot->xAxis->pixelToCoord(x_pos);
+    float y_val = myPlot->yAxis->pixelToCoord(y_pos);
+
+// 然后打印在界面上
+    //ui->label->setText(tr("(%1  %2  ||  %3  %4)").arg(x_pos).arg(y_pos).arg(x_val).arg(y_val));
 }

@@ -55,6 +55,11 @@ void DeviceLinkInfo::addPipe(QString name,QString mcode,QString dcode,QString dn
     pipes.append(dpi);
 }
 
+void DeviceLinkInfo::addSendMsg(struct ModbusTCPMapInfo msg)
+{
+    msgPriSendQueue.append(msg);
+}
+
 void DeviceLinkInfo::addrevdata(QByteArray recv)
 {
     int slen = recv.size();

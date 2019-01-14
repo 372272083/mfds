@@ -9,7 +9,7 @@
 #include <QMessageBox>
 
 #include <QList>
-
+#include <QTabWidget>
 #include <QDebug>
 #include <QCheckBox>
 
@@ -28,11 +28,15 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
 
     this->setWindowIcon(QIcon(":/images/icon"));
 
+    QTabWidget *mainWidget = new QTabWidget(this);
+
     QVBoxLayout *playout = new QVBoxLayout;
 
     int index = 0;
 
-    QGridLayout *items = new QGridLayout;
+    QDialog *board = new QDialog(this);
+    QGridLayout *items = new QGridLayout(board);
+    items->setAlignment(Qt::AlignTop);
 
     QLabel *pnameLabel = new QLabel(this);
     pnameLabel->setText(tr("Deployment name:"));
@@ -139,36 +143,6 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
     items->addWidget(sampleWaitingEdit,index,1,1,1);
     items->addWidget(psWaitingMetricLabel,index,2,1,1);
 
-    QLabel *pserverELabel = new QLabel(this);
-    pserverELabel->setText(tr("Is Server Enable:"));
-    server_enable = new QCheckBox(this);
-    server_enable->setChecked(MainWindow::server_enable);
-
-    index++;
-    items->addWidget(pserverELabel,index,0,1,1,Qt::AlignRight);
-    items->addWidget(server_enable,index,1,1,1);
-
-    QLabel *pserverLabel = new QLabel(this);
-    pserverLabel->setText(tr("Server Ip Address:"));
-    serverIpEdit = new QIPLineEdit(this);
-    serverIpEdit->setText(MainWindow::server_ip);
-
-    index++;
-    items->addWidget(pserverLabel,index,0,1,1,Qt::AlignRight);
-    items->addWidget(serverIpEdit,index,1,1,1);
-
-    QLabel *pangleLabel = new QLabel(this);
-    pangleLabel->setText(tr("Server Waiting Time:"));
-    QLabel *pangleMetricLabel = new QLabel(this);
-    pangleMetricLabel->setText(tr("(s)"));
-    serverWaitingEdit = new QLineEdit(this);
-    serverWaitingEdit->setText(QString::number(MainWindow::server_waiting));
-
-    index++;
-    items->addWidget(pangleLabel,index,0,1,1,Qt::AlignRight);
-    items->addWidget(serverWaitingEdit,index,1,1,1);
-    items->addWidget(pangleMetricLabel,index,2,1,1);
-
     QLabel *pdaysLabel = new QLabel(this);
     pdaysLabel->setText(tr("Data save days:"));
     savedaysEdit = new QLineEdit(this);
@@ -178,7 +152,48 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
     items->addWidget(pdaysLabel,index,0,1,1,Qt::AlignRight);
     items->addWidget(savedaysEdit,index,1,1,1);
 
-    playout->addLayout(items);
+    mainWidget->addTab(board,tr("basic setting"));
+
+
+    QDialog *board_server = new QDialog(this);
+    QGridLayout *items_server = new QGridLayout(board_server);
+
+    items_server->setAlignment(Qt::AlignTop);
+
+    index = 0;
+    QLabel *pserverELabel = new QLabel(this);
+    pserverELabel->setText(tr("Is Server Enable:"));
+    server_enable = new QCheckBox(this);
+    server_enable->setChecked(MainWindow::server_enable);
+
+    index++;
+    items_server->addWidget(pserverELabel,index,0,1,1,Qt::AlignRight);
+    items_server->addWidget(server_enable,index,1,1,1);
+
+    QLabel *pserverLabel = new QLabel(this);
+    pserverLabel->setText(tr("Server Ip Address:"));
+    serverIpEdit = new QIPLineEdit(this);
+    serverIpEdit->setText(MainWindow::server_ip);
+
+    index++;
+    items_server->addWidget(pserverLabel,index,0,1,1,Qt::AlignRight);
+    items_server->addWidget(serverIpEdit,index,1,1,1);
+
+    QLabel *pangleLabel = new QLabel(this);
+    pangleLabel->setText(tr("Server Waiting Time:"));
+    QLabel *pangleMetricLabel = new QLabel(this);
+    pangleMetricLabel->setText(tr("(s)"));
+    serverWaitingEdit = new QLineEdit(this);
+    serverWaitingEdit->setText(QString::number(MainWindow::server_waiting));
+
+    index++;
+    items_server->addWidget(pangleLabel,index,0,1,1,Qt::AlignRight);
+    items_server->addWidget(serverWaitingEdit,index,1,1,1);
+    items_server->addWidget(pangleMetricLabel,index,2,1,1);
+
+    mainWidget->addTab(board_server,tr("server setting"));
+
+    playout->addWidget(mainWidget);
     playout->setContentsMargins(10,10,10,10);
 
     QHBoxLayout *btn = new QHBoxLayout;

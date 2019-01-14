@@ -64,6 +64,7 @@ MotorManage::MotorManage(SqliteDB *db,QWidget *parent) : QDialog(parent),m_db(db
 void MotorManage::addmotor()
 {
     MotorEdit *motoredit = new MotorEdit(motormodel,m_db);
+    motoredit->setmode(-1);
     motoredit->setAttribute(Qt::WA_DeleteOnClose);
     motoredit->exec();
 }

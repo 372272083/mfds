@@ -42,14 +42,17 @@ ChartInfoController::ChartInfoController(SqliteDB* db,QWidget *parent) : QWidget
     QHBoxLayout *layout = new QHBoxLayout();
     chartLayout = new QVBoxLayout();
     chart = new ChartWidget();
+    chart->setMode(0);
     chart->setMaxPoint(200);
     chart->setupWindowsLabel(tr("time(s)"),tr("U/I(V/A)"));
     chart->setupXRange(0,200);
     chart->setupYRange(0,5);
     chart->setTitle(tr("Real-Time Data"));
     chart->setAutoRange(true,true);
+    connect(chart, SIGNAL(openWaveForm()),this, SLOT(openWaveForm()));
 
     chartFreq = new ChartWidget();
+    chartFreq->setMode(1);
     chartFreq->setMaxPoint(1024);
     chartFreq->setupWindowsLabel(tr("F(Hz)"),tr("F"));
     chartFreq->setupXRange(0,1024);
@@ -65,6 +68,7 @@ ChartInfoController::ChartInfoController(SqliteDB* db,QWidget *parent) : QWidget
     QVBoxLayout *rightcontroller = new QVBoxLayout();
     right->setFixedWidth(WINDOW_RIGHT_WIDTH);
     rightgrid = new QGridLayout();
+    rightgrid->setAlignment(Qt::AlignTop);
     right->setLayout(rightcontroller);
 
     QLabel *eLabel = new QLabel();
@@ -99,255 +103,262 @@ void ChartInfoController::timeUpdate()
     {
         return;
     }
-    if (e_table_name.length()>0)
+    try
     {
-        if (e_table_name.compare("electriccharge") == 0)
+        if (e_table_name.length()>0)
         {
-            if(MainWindow::charges.contains(this->pipe))
+            if (e_table_name.compare("electriccharge") == 0)
             {
-                if(MainWindow::charges[this->pipe].size()> 0)
+                if(MainWindow::charges.contains(this->pipe))
                 {
-                    ChargeInfo* info = MainWindow::charges[this->pipe].head();
-                    QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
-                    int x = initTime.secsTo(dt);
-                    if (x > 0)
+                    if(MainWindow::charges[this->pipe].size()> 0)
                     {
-                        if(chart->containsGraph(graph_u_title))
+                        ChargeInfo* info = MainWindow::charges[this->pipe].head();
+                        QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
+                        int x = initTime.secsTo(dt);
+                        if (x > 0)
                         {
-                            chart->addData(graph_u_title,x,info->u);
-                        }
+                            if(chart->containsGraph(graph_u_title))
+                            {
+                                chart->addData(graph_u_title,x,info->u);
+                            }
 
-                        if(chart->containsGraph(graph_i_title))
-                        {
-                            chart->addData(graph_i_title,x,info->i);
-                        }
+                            if(chart->containsGraph(graph_i_title))
+                            {
+                                chart->addData(graph_i_title,x,info->i);
+                            }
 
-                        if(valueAttributeLabels.contains("u"))
-                        {
-                            valueAttributeLabels["u"]->setText(QString::number(info->u));
+                            if(valueAttributeLabels.contains("u"))
+                            {
+                                valueAttributeLabels["u"]->setText(QString::number(info->u));
+                            }
+                            if(valueAttributeLabels.contains("i"))
+                            {
+                                valueAttributeLabels["i"]->setText(QString::number(info->i));
+                            }
+                            if(valueAttributeLabels.contains("f"))
+                            {
+                                valueAttributeLabels["f"]->setText(QString::number(info->f));
+                            }
+                            if(valueAttributeLabels.contains("factor"))
+                            {
+                                valueAttributeLabels["factor"]->setText(QString::number(info->factor));
+                            }
+                            if(valueAttributeLabels.contains("p"))
+                            {
+                                valueAttributeLabels["p"]->setText(QString::number(info->p));
+                            }
+                            if(valueAttributeLabels.contains("q"))
+                            {
+                                valueAttributeLabels["q"]->setText(QString::number(info->q));
+                            }
+                            if(valueAttributeLabels.contains("s"))
+                            {
+                                valueAttributeLabels["s"]->setText(QString::number(info->s));
+                            }
                         }
-                        if(valueAttributeLabels.contains("i"))
+                    }
+                }
+            }
+            else if(e_table_name.compare("vibrate") == 0)
+            {
+                if(MainWindow::vibrates.contains(this->pipe))
+                {
+                    if (MainWindow::vibrates[this->pipe].size() > 0)
+                    {
+                        VibrateInfo* info = MainWindow::vibrates[this->pipe].head();
+                        QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
+                        int x = initTime.secsTo(dt);
+                        if (x > 0)
                         {
-                            valueAttributeLabels["i"]->setText(QString::number(info->i));
+                            if(chart->containsGraph(graph_add_title))
+                            {
+                                chart->addData(graph_add_title,x,info->vibrate_e);
+                            }
+
+                            if(chart->containsGraph(graph_speed_title))
+                            {
+                                chart->addData(graph_speed_title,x,info->speed_e);
+                            }
+
+                            if(valueAttributeLabels.contains("add"))
+                            {
+                                valueAttributeLabels["add"]->setText(QString::number(info->vibrate_e));
+                            }
+                            if(valueAttributeLabels.contains("speed"))
+                            {
+                                valueAttributeLabels["speed"]->setText(QString::number(info->speed_e));
+                            }
                         }
-                        if(valueAttributeLabels.contains("f"))
+                    }
+                }
+            }
+            else if(e_table_name.compare("temperature") == 0)
+            {
+                if(MainWindow::temperatures.contains(this->pipe))
+                {
+                    if (MainWindow::temperatures[this->pipe].size()>0)
+                    {
+                        TemperatureInfo* info = MainWindow::temperatures[this->pipe].head();
+                        QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
+                        int x = initTime.secsTo(dt);
+                        if (x > 0)
                         {
-                            valueAttributeLabels["f"]->setText(QString::number(info->f));
-                        }
-                        if(valueAttributeLabels.contains("factor"))
-                        {
-                            valueAttributeLabels["factor"]->setText(QString::number(info->factor));
-                        }
-                        if(valueAttributeLabels.contains("p"))
-                        {
-                            valueAttributeLabels["p"]->setText(QString::number(info->p));
-                        }
-                        if(valueAttributeLabels.contains("q"))
-                        {
-                            valueAttributeLabels["q"]->setText(QString::number(info->q));
-                        }
-                        if(valueAttributeLabels.contains("s"))
-                        {
-                            valueAttributeLabels["s"]->setText(QString::number(info->s));
+                            if(chart->containsGraph(graph_temperature_title))
+                            {
+                                chart->addData(graph_temperature_title,x,info->temp);
+                            }
+
+                            if(valueAttributeLabels.contains("temp"))
+                            {
+                                valueAttributeLabels["temp"]->setText(QString::number(info->temp));
+                            }
                         }
                     }
                 }
             }
         }
-        else if(e_table_name.compare("vibrate") == 0)
+
+        if (freq_table_name.length()>0)
         {
-            if(MainWindow::vibrates.contains(this->pipe))
+            if (freq_table_name.compare("electricchargewavefreq") == 0)
             {
-                if (MainWindow::vibrates[this->pipe].size() > 0)
+                if(MainWindow::freqs.contains(this->pipe))
                 {
-                    VibrateInfo* info = MainWindow::vibrates[this->pipe].head();
-                    QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
-                    int x = initTime.secsTo(dt);
-                    if (x > 0)
+                    if(MainWindow::freqs[this->pipe].size() > 0)
                     {
-                        if(chart->containsGraph(graph_add_title))
+                        //FreqInfo* info = MainWindow::freqs[this->pipe].head();
+                        QQueue<FreqInfo*>::const_iterator it;
+                        for(it=MainWindow::freqs[this->pipe].constBegin();it != MainWindow::freqs[this->pipe].constEnd();it++)
                         {
-                            chart->addData(graph_add_title,x,info->vibrate_e);
-                        }
+                            FreqInfo* tmp = *it;
+                            if(chartFreq->containsGraph(graph_u_freq_title))
+                            {
+                                if (tmp->stype == 0)
+                                {
+                                    QString buffer = tmp->sample_freq;
+                                    QStringList freqs = buffer.split(",");
+                                    int index = 0;
+                                    QStringList::const_iterator constIterator;
+                                    //chartFreq->clearGraph(0);
+                                    QVector<double> x_value, y_value;
+                                    for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
+                                    {
+                                        QString item = *constIterator;
+                                        if (item.length() > 0)
+                                        {
+                                            bool tok;
+                                            float hz;
 
-                        if(chart->containsGraph(graph_speed_title))
-                        {
-                            chart->addData(graph_speed_title,x,info->speed_e);
-                        }
+                                            hz = item.toFloat(&tok);
+                                            if (tok)
+                                            {
+                                                x_value.push_back(index);
+                                                y_value.push_back(hz);
+                                            }
+                                            else
+                                            {
+                                                x_value.push_back(index);
+                                                y_value.push_back(0);
+                                            }
+                                            index++;
+                                        }
+                                    }
+                                    chartFreq->setData(graph_u_freq_title,x_value,y_value);
+                                    //break;
+                                }
+                            }
 
-                        if(valueAttributeLabels.contains("add"))
-                        {
-                            valueAttributeLabels["add"]->setText(QString::number(info->vibrate_e));
-                        }
-                        if(valueAttributeLabels.contains("speed"))
-                        {
-                            valueAttributeLabels["speed"]->setText(QString::number(info->speed_e));
+                            if(chartFreq->containsGraph(graph_i_freq_title))
+                            {
+                                if (tmp->stype == 1)
+                                {
+                                    QString buffer = tmp->sample_freq;
+                                    QStringList freqs = buffer.split(",");
+                                    int index = 0;
+                                    QStringList::const_iterator constIterator;
+                                    //chartFreq->clearGraph(0);
+                                    QVector<double> x_value, y_value;
+                                    for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
+                                    {
+                                        QString item = *constIterator;
+                                        if (item.length() > 0)
+                                        {
+                                            bool tok;
+                                            float hz;
+
+                                            hz = item.toFloat(&tok);
+                                            if (tok)
+                                            {
+                                                x_value.push_back(index);
+                                                y_value.push_back(hz);
+                                            }
+                                            else
+                                            {
+                                                x_value.push_back(index);
+                                                y_value.push_back(0);
+                                            }
+                                            index++;
+                                        }
+                                    }
+                                    chartFreq->setData(graph_i_freq_title,x_value,y_value);
+                                    //break;
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
-        else if(e_table_name.compare("temperature") == 0)
-        {
-            if(MainWindow::temperatures.contains(this->pipe))
+            else if(freq_table_name.compare("vibratewavefreq") == 0)
             {
-                if (MainWindow::temperatures[this->pipe].size()>0)
+                if(MainWindow::freqs_v.contains(this->pipe))
                 {
-                    TemperatureInfo* info = MainWindow::temperatures[this->pipe].head();
-                    QDateTime dt = QDateTime::fromString(info->rksj,"yyyy-MM-dd hh:mm:ss");
-                    int x = initTime.secsTo(dt);
-                    if (x > 0)
+                    if(MainWindow::freqs_v[this->pipe].size()>0)
                     {
-                        if(chart->containsGraph(graph_temperature_title))
+                        FreqInfo* info = MainWindow::freqs_v[this->pipe].head();
+                        if(chartFreq->containsGraph(graph_add_freq_title))
                         {
-                            chart->addData(graph_temperature_title,x,info->temp);
-                        }
+                            if(info->stype == 0)
+                            {
+                                QString buffer = info->sample_freq;
+                                QStringList freqs = buffer.split(",");
+                                int index = 0;
+                                QStringList::const_iterator constIterator;
+                                //chartFreq->clearGraph(0);
+                                QVector<double> x_value, y_value;
+                                for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
+                                {
+                                    QString item = *constIterator;
+                                    if (item.length() > 0)
+                                    {
+                                        bool tok;
+                                        float hz;
 
-                        if(valueAttributeLabels.contains("temp"))
-                        {
-                            valueAttributeLabels["temp"]->setText(QString::number(info->temp));
+                                        hz = item.toFloat(&tok);
+                                        if (tok)
+                                        {
+                                            x_value.push_back(index);
+                                            y_value.push_back(hz);
+                                        }
+                                        else
+                                        {
+                                            x_value.push_back(index);
+                                            y_value.push_back(0);
+                                        }
+                                        index++;
+                                    }
+                                }
+                                chartFreq->setData(graph_add_freq_title,x_value,y_value);
+                            }
                         }
                     }
                 }
             }
         }
     }
-
-    if (freq_table_name.length()>0)
+    catch(QException e)
     {
-        if (freq_table_name.compare("electricchargewavefreq") == 0)
-        {
-            if(MainWindow::freqs.contains(this->pipe))
-            {
-                if(MainWindow::freqs[this->pipe].size() > 0)
-                {
-                    //FreqInfo* info = MainWindow::freqs[this->pipe].head();
-                    QQueue<FreqInfo*>::const_iterator it;
-                    for(it=MainWindow::freqs[this->pipe].constBegin();it != MainWindow::freqs[this->pipe].constEnd();it++)
-                    {
-                        FreqInfo* tmp = *it;
-                        if(chartFreq->containsGraph(graph_u_freq_title))
-                        {
-                            if (tmp->stype == 0)
-                            {
-                                QString buffer = tmp->sample_freq;
-                                QStringList freqs = buffer.split(",");
-                                int index = 0;
-                                QStringList::const_iterator constIterator;
-                                //chartFreq->clearGraph(0);
-                                QVector<double> x_value, y_value;
-                                for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
-                                {
-                                    QString item = *constIterator;
-                                    if (item.length() > 0)
-                                    {
-                                        bool tok;
-                                        float hz;
-
-                                        hz = item.toFloat(&tok);
-                                        if (tok)
-                                        {
-                                            x_value.push_back(index);
-                                            y_value.push_back(hz);
-                                        }
-                                        else
-                                        {
-                                            x_value.push_back(index);
-                                            y_value.push_back(0);
-                                        }
-                                        index++;
-                                    }
-                                }
-                                chartFreq->setData(graph_u_freq_title,x_value,y_value);
-                                //break;
-                            }
-                        }
-
-                        if(chartFreq->containsGraph(graph_i_freq_title))
-                        {
-                            if (tmp->stype == 1)
-                            {
-                                QString buffer = tmp->sample_freq;
-                                QStringList freqs = buffer.split(",");
-                                int index = 0;
-                                QStringList::const_iterator constIterator;
-                                //chartFreq->clearGraph(0);
-                                QVector<double> x_value, y_value;
-                                for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
-                                {
-                                    QString item = *constIterator;
-                                    if (item.length() > 0)
-                                    {
-                                        bool tok;
-                                        float hz;
-
-                                        hz = item.toFloat(&tok);
-                                        if (tok)
-                                        {
-                                            x_value.push_back(index);
-                                            y_value.push_back(hz);
-                                        }
-                                        else
-                                        {
-                                            x_value.push_back(index);
-                                            y_value.push_back(0);
-                                        }
-                                        index++;
-                                    }
-                                }
-                                chartFreq->setData(graph_i_freq_title,x_value,y_value);
-                                //break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else if(freq_table_name.compare("vibratewavefreq") == 0)
-        {
-            if(MainWindow::freqs_v.contains(this->pipe))
-            {
-                if(MainWindow::freqs_v[this->pipe].size()>0)
-                {
-                    FreqInfo* info = MainWindow::freqs_v[this->pipe].head();
-                    if(chartFreq->containsGraph(graph_add_freq_title))
-                    {
-                        if(info->stype == 0)
-                        {
-                            QString buffer = info->sample_freq;
-                            QStringList freqs = buffer.split(",");
-                            int index = 0;
-                            QStringList::const_iterator constIterator;
-                            //chartFreq->clearGraph(0);
-                            QVector<double> x_value, y_value;
-                            for (constIterator = freqs.constBegin(); constIterator != freqs.constEnd();++constIterator)
-                            {
-                                QString item = *constIterator;
-                                if (item.length() > 0)
-                                {
-                                    bool tok;
-                                    float hz;
-
-                                    hz = item.toFloat(&tok);
-                                    if (tok)
-                                    {
-                                        x_value.push_back(index);
-                                        y_value.push_back(hz);
-                                    }
-                                    else
-                                    {
-                                        x_value.push_back(index);
-                                        y_value.push_back(0);
-                                    }
-                                    index++;
-                                }
-                            }
-                            chartFreq->setData(graph_add_freq_title,x_value,y_value);
-                        }
-                    }
-                }
-            }
-        }
+        qDebug()<< e.what();
     }
 }
 
@@ -578,4 +589,9 @@ void ChartInfoController::setCurDevicePipe(QString motor,QString device,QString 
 
         chart->addGraph(graph_temperature_title,QPen(Qt::red));
     }
+}
+
+void ChartInfoController::openWaveForm()
+{
+    emit openWaveWindow(this->motor,this->device,this->pipe,this->deviceType);
 }

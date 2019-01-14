@@ -52,6 +52,7 @@
 
 #include "modbustcpserver.h"
 #include "udisk.h"
+#include "waveform.h"
 
 bool MainWindow::com_enable = true;
 bool MainWindow::show_enable = true;
@@ -181,6 +182,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(pipeSelectHeader,SIGNAL(pipeChanged(QString,QString,QString,QString)),this,SLOT(selectedPipeChanged(QString,QString,QString,QString)));
 
     chartInfo = new ChartInfoController(db);
+    connect(chartInfo,SIGNAL(openWaveWindow(QString,QString,QString,QString)),this,SLOT(openWaveWindow(QString,QString,QString,QString)));
 
     pRightSpliter->addWidget(pipeSelectHeader);
     chartInfo->setMinimumSize(800,600);
@@ -1134,4 +1136,12 @@ MainWindow::~MainWindow()
         delete m_uDisk;
         m_uDisk = Q_NULLPTR;
     }
+}
+
+void MainWindow::openWaveWindow(QString mcode,QString dcode,QString pipe,QString deviceType)
+{
+    qDebug() << "open wave window";
+    WaveForm* wf = new WaveForm(db);
+    wf->setAttribute(Qt::WA_DeleteOnClose);
+    wf->exec();
 }

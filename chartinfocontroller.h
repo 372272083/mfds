@@ -55,9 +55,10 @@ private:
     QString graph_temperature_title;
 
 signals:
-
+    void openWaveWindow(QString,QString,QString,QString);
 public slots:
     void timeUpdate();
+    void openWaveForm();
 };
 
 #endif // CHARTINFOCONTROLLER_H

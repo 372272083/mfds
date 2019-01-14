@@ -41,6 +41,8 @@ public:
     void addrevdata(QByteArray recv);
     bool isExpLen();
 
+    void addSendMsg(struct ModbusTCPMapInfo msg);
+
     void init();
 
     static float bufferTofloat(QByteArray value,BYTEORDER4 bo=LL_LH_HL_HH);
