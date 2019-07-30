@@ -539,6 +539,7 @@ void ChartInfoController::setCurDevicePipe(QString motor,QString device,QString 
         rightgrid->addWidget(speed_label,2,0,1,1);
         rightgrid->addWidget(speed_value_label,2,1,1,1);
 
+        chart->setupWindowsLabel(tr("time(s)"),tr("m/ss"));
         if (nullptr == chartFreq)
         {
             chartFreq = new ChartWidget();
@@ -587,6 +588,7 @@ void ChartInfoController::setCurDevicePipe(QString motor,QString device,QString 
         e_table_name = "temperature";
         freq_table_name = "";
 
+        chart->setupWindowsLabel(tr("time(s)"),tr("°C"));
         chart->addGraph(graph_temperature_title,QPen(Qt::red));
     }
 }

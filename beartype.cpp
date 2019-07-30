@@ -20,7 +20,7 @@ BearType::BearType(SqliteDB *db,QWidget *parent) : QDialog(parent),m_db(db)
 {
     this->setWindowTitle(tr("Bear Manage"));
     //this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    this->setMinimumSize(550,400);
+    this->setMinimumSize(1200,300);
     //this->setMaximumSize(550,400);
 
     this->setWindowIcon(QIcon(":/images/icon"));
@@ -28,7 +28,7 @@ BearType::BearType(SqliteDB *db,QWidget *parent) : QDialog(parent),m_db(db)
     view = new QTableView(this);
 
     QList<QString> beartypelist;
-    beartypelist << tr("model") << tr("bear type") << tr("rin(mm)") << tr("rout(mm)") << tr("contact angles(°c)");
+    beartypelist << tr("model") << tr("bear type") << tr("rin(mm)") << tr("rout(mm)") << tr("contact angles(°c)") << tr("bear pitch(mm)") << tr("roller diameter(mm)") << tr("Number of balls(units)");
     beartypemodel = m_db->model("bearingtype",beartypelist);
 
     qDebug() << "data rows: " << beartypemodel->rowCount();
@@ -85,7 +85,7 @@ void BearType::editbeartype()
 
         QList<QString> values;
         QSqlRecord record = beartypemodel->record(index.row());
-        values << record.value("model").toString()<<record.value("btype").toString()<<record.value("rin").toString()<<record.value("rout").toString()<<record.value("contact_angle").toString();
+        values << record.value("model").toString()<<record.value("btype").toString()<<record.value("rin").toString()<<record.value("rout").toString()<<record.value("contact_angle").toString()<<record.value("bearpitch").toString()<<record.value("rotated").toString()<<record.value("rotaten").toString();
         BeartypeEdit *typeEdit = new BeartypeEdit(beartypemodel);
         typeEdit->setmode(index.row());
         typeEdit->setmodel(values);

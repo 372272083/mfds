@@ -1,10 +1,10 @@
 #include "devicelinkmanager.h"
 
-#include "cmieedevicelinkinfo.h"
-#include "cmievdevicelinkinfo.h"
-#include "cmietdevicelinkinfo.h"
+#include "cmieedeviceinfo.h"
+#include "cmievdeviceinfo.h"
+#include "cmietdeviceinfo.h"
 
-#include "sqlitedb.h"
+//#include "sqlitedb.h"
 #include "constants.h"
 
 #include <QSqlTableModel>
@@ -14,166 +14,11 @@
 
 #include <QDebug>
 
-#include "mainwindow.h"
+#include "globalvariable.h"
 
-DeviceLinkManager::DeviceLinkManager(SqliteDB *db, QObject *parent) : QObject(parent),m_db(db),baseInterval(BASE_INTERVAL)
+DeviceLinkManager::DeviceLinkManager(/*SqliteDB *db, */QObject *parent) : QObject(parent),/*m_db(db),*/baseInterval(BASE_INTERVAL)
 {
-    QSqlTableModel *model = m_db->modelNoHeader("device");
-    QSqlTableModel *pipemodel = m_db->modelNoHeader("devicepipes");
-
-    int rows = model->rowCount();
-    QString deviceModel_l;
-    QString deviceCode_l;
-    QString deviceName_l;
-    QString attachMotor_l;
-    QString deviceIpAddress_l;
-    int ipPort_l;
-    QString deviceType_l;
-    int isactive_l;
-    int pipeisactive_l;
-    for(int i=0;i<rows;i++)
-    {
-        QSqlRecord record = model->record(i);
-        deviceModel_l = record.value("dmodel").toString();
-        deviceCode_l = record.value("code").toString();
-        deviceName_l = record.value("name").toString();
-        //attachMotor_l = record.value("motor").toString();
-        deviceType_l = record.value("dtype").toString();
-        deviceIpAddress_l = record.value("ipaddress").toString();
-        ipPort_l = record.value("port").toInt();
-        isactive_l = record.value("isactive").toInt();
-
-        pipemodel->setFilter("dcode='"+deviceCode_l+"'");
-        pipemodel->select();
-
-        int tempRows = pipemodel->rowCount();
-        if (0 == isactive_l)
-        {
-            continue;
-        }
-        if (deviceModel_l.compare("CMIE-E") == 0) //e7 electirc sample device
-        {
-            CMIEEDeviceLinkInfo *eInfo = new CMIEEDeviceLinkInfo();
-            eInfo->init();
-            eInfo->deviceCode = deviceCode_l;
-            eInfo->deviceName = deviceName_l;
-            //eInfo->attachMotor = attachMotor_l;
-            eInfo->deviceIpAddress = deviceIpAddress_l;
-            eInfo->ipPort = ipPort_l;
-            eInfo->deviceType = deviceType_l;
-            eInfo->deviceModel = deviceModel_l;
-
-            for(int n=0;n<tempRows;n++)
-            {
-                QSqlRecord recordpipe = pipemodel->record(n);
-                QString pipedcode = recordpipe.value("dcode").toString();
-                QString pipemcode = recordpipe.value("motor").toString();
-                QString pipename = recordpipe.value("name").toString();
-                QString pipecode = recordpipe.value("pipeCode").toString();
-                pipeisactive_l = recordpipe.value("isactive").toInt();
-
-                if (1 == pipeisactive_l)
-                {
-                    eInfo->addPipe(pipename,pipemcode,pipedcode,eInfo->deviceName,eInfo->deviceType,pipecode);
-                }
-            }
-
-            m_deviceInfo.insert(deviceCode_l,eInfo);
-        }
-        else if (deviceModel_l.compare("CMIE-V") == 0) //e7 vibrate sample device
-        {
-            CMIEVDeviceLinkInfo *vInfo = new CMIEVDeviceLinkInfo();
-            vInfo->init();
-            vInfo->deviceCode = deviceCode_l;
-            vInfo->deviceName = deviceName_l;
-            //vInfo->attachMotor = attachMotor_l;
-            vInfo->deviceIpAddress = deviceIpAddress_l;
-            vInfo->ipPort = ipPort_l;
-            vInfo->deviceType = deviceType_l;
-            vInfo->deviceModel = deviceModel_l;
-
-            for(int n=0;n<tempRows;n++)
-            {
-                QSqlRecord recordpipe = pipemodel->record(n);
-                QString pipedcode = recordpipe.value("dcode").toString();
-                QString pipemcode = recordpipe.value("motor").toString();
-                QString pipename = recordpipe.value("name").toString();
-                QString pipecode = recordpipe.value("pipeCode").toString();
-
-                pipeisactive_l = recordpipe.value("isactive").toInt();
-
-                if (1 == pipeisactive_l)
-                {
-                    vInfo->addPipe(pipename,pipemcode, pipedcode,vInfo->deviceName,vInfo->deviceType,pipecode);
-                }
-            }
-
-            m_deviceInfo.insert(deviceCode_l,vInfo);
-        }
-        else if (deviceModel_l.compare("CMIE-T") == 0) //e7 vibrate sample device
-        {
-            CMIETDeviceLinkInfo *tInfo = new CMIETDeviceLinkInfo();
-            tInfo->init();
-            tInfo->deviceCode = deviceCode_l;
-            tInfo->deviceName = deviceName_l;
-            //tInfo->attachMotor = attachMotor_l;
-            tInfo->deviceIpAddress = deviceIpAddress_l;
-            tInfo->ipPort = ipPort_l;
-            tInfo->deviceType = deviceType_l;
-            tInfo->deviceModel = deviceModel_l;
-
-            for(int n=0;n<tempRows;n++)
-            {
-                QSqlRecord recordpipe = pipemodel->record(n);
-                QString pipedcode = recordpipe.value("dcode").toString();
-                QString pipemcode = recordpipe.value("motor").toString();
-                QString pipename = recordpipe.value("name").toString();
-                QString pipecode = recordpipe.value("pipeCode").toString();
-
-                pipeisactive_l = recordpipe.value("isactive").toInt();
-
-                if (1 == pipeisactive_l)
-                {
-                    tInfo->addPipe(pipename,pipemcode,pipedcode,tInfo->deviceName,tInfo->deviceType,pipecode);
-                }
-            }
-
-            m_deviceInfo.insert(deviceCode_l,tInfo);
-        }
-        else
-        {
-            DeviceLinkInfo *info = new DeviceLinkInfo();
-            info->init();
-            info->deviceCode = deviceCode_l;
-            info->deviceName = deviceName_l;
-            //info->attachMotor = attachMotor_l;
-            info->deviceIpAddress = deviceIpAddress_l;
-            info->ipPort = ipPort_l;
-            info->deviceType = deviceType_l;
-            info->deviceModel = deviceModel_l;
-
-            for(int n=0;n<tempRows;n++)
-            {
-                QSqlRecord recordpipe = pipemodel->record(n);
-                QString pipedcode = recordpipe.value("dcode").toString();
-                QString pipemcode = recordpipe.value("motor").toString();
-                QString pipename = recordpipe.value("name").toString();
-                QString pipecode = recordpipe.value("pipeCode").toString();
-
-                pipeisactive_l = recordpipe.value("isactive").toInt();
-
-                if (1 == pipeisactive_l)
-                {
-                    info->addPipe(pipename,pipemcode,pipedcode,info->deviceName,info->deviceType,pipecode);
-                }
-            }
-
-            m_deviceInfo.insert(deviceCode_l,info);
-        }
-    }
-
-    delete model;
-    delete pipemodel;
+    state_s = true;
 }
 
 void DeviceLinkManager::timeUpdate()
@@ -182,17 +27,23 @@ void DeviceLinkManager::timeUpdate()
     static int countDisconnect = 0;
 
     countDisconnect++;
-    if(!MainWindow::com_enable)
+    if(!GlobalVariable::isOnline || !state_s)
     {
         return;
     }
-    QMap<QString,DeviceLinkInfo*>::const_iterator it;
-    for ( it = m_deviceInfo.constBegin(); it != m_deviceInfo.constEnd(); ++it ) {
-        QString devicecode = it.key();
-        DeviceLinkInfo* deviceInfo = it.value();
+    //QMap<QString,DeviceInfo*>::const_iterator it;
+    //for ( it = m_deviceInfo.constBegin(); it != m_deviceInfo.constEnd(); ++it ) {
+    QVector<DeviceInfo*>::ConstIterator cIt;
+    for(cIt=GlobalVariable::deviceInfos.constBegin();cIt != GlobalVariable::deviceInfos.constEnd();cIt++)
+    {
+        //QString devicecode = it.key();
+        DeviceInfo* deviceInfo = *cIt;
+        QString devicecode = deviceInfo->deviceCode;
+        //qDebug() << "cycle msg: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat) << " : " << devicecode;
         if (deviceInfo->linkState)
         {
-            if(countDisconnect > 3600)
+            //qDebug() << "cycle msg: " << "1";
+            if(countDisconnect > 7200)
             {
                 countDisconnect = 0;
                 if(m_sockes.contains(devicecode))
@@ -207,6 +58,7 @@ void DeviceLinkManager::timeUpdate()
 
             if (msg.size() > 0)
             {
+                qDebug() << "cycle msg: " << "11";
                 if(m_sockes.contains(devicecode))
                 {
                     XSocketClient* client = m_sockes[devicecode];
@@ -219,28 +71,36 @@ void DeviceLinkManager::timeUpdate()
             }
             else
             {
+                qDebug() << "cycle msg: " << "12";
                 deviceInfo->waitingCount++;
-                if(deviceInfo->waitingCount > MainWindow::sample_waiting)
+                if((deviceInfo->waitingCount/2) > GlobalVariable::sample_waiting)
                 {
                     XSocketClient* client = m_sockes[devicecode];
-                    client->disConnect();
-                    deviceInfo->waitingCount = 0;
+                    if(client != nullptr)
+                    {
+                        client->disConnect();
+                        deviceInfo->waitingCount = 0;
+                    }
                 }
             }
         }
         else
         {
+            //qDebug() << "cycle msg: " << "2";
             if (0 == deviceInfo->reConnectCount)
             {
                 XSocketClient* client = m_sockes[devicecode];
-                client->disConnect();
-                m_sockes.remove(devicecode);
-                delete client;
+                if(client != nullptr)
+                {
+                    client->disConnect();
+                    m_sockes.remove(devicecode);
+                    delete client;
+                }
             }
             deviceInfo->reConnectCount++;
-            if (deviceInfo->reConnectCount > MainWindow::sample_waiting)
+            if ((deviceInfo->reConnectCount/2) > GlobalVariable::sample_waiting)
             {
-                QString ipAddress = deviceInfo->deviceIpAddress;
+                QString ipAddress = deviceInfo->ipAddress;
                 deviceInfo->init();
                 int port = deviceInfo->ipPort;
                 //qDebug() << devicecode << it.value()->deviceIpAddress;
@@ -254,9 +114,12 @@ void DeviceLinkManager::timeUpdate()
                 if(m_sockes.contains(devicecode))
                 {
                     XSocketClient* client_tmp = m_sockes[devicecode];
-                    client_tmp->disConnect();
-                    m_sockes.remove(devicecode);
-                    delete client_tmp;
+                    if(client_tmp != nullptr)
+                    {
+                        client_tmp->disConnect();
+                        m_sockes.remove(devicecode);
+                        delete client_tmp;
+                    }
                 }
                 m_sockes.insert(devicecode,client);
                 deviceInfo->reConnectCount = 1;
@@ -264,78 +127,81 @@ void DeviceLinkManager::timeUpdate()
         }
     }
 
-    if (0 == MainWindow::data_save_days)
+    count++;
+}
+
+void DeviceLinkManager::close()
+{
+    state_s = false;
+
+    QVector<DeviceInfo*>::ConstIterator cIt;
+    for(cIt=GlobalVariable::deviceInfos.constBegin();cIt != GlobalVariable::deviceInfos.constEnd();cIt++)
     {
-        if (count % 3600 == 0)
+        //QString devicecode = it.key();
+        DeviceInfo* deviceInfo = *cIt;
+        QString devicecode = deviceInfo->deviceCode;
+        if (deviceInfo->linkState)
         {
-            QQueue<QString> sqls;
-            QString sql = "delete from electriccharge";
-            sqls.enqueue(sql);
+            deviceInfo->close();
+            if(deviceInfo->deviceType.compare("V",Qt::CaseInsensitive) == 0)
+            {
+                struct ModbusTCPMapInfo cmd_mode;
+                cmd_mode.Unit = MODE_V_W;
+                cmd_mode.Addr = 36;
+                cmd_mode.Command = 0x10;
+                cmd_mode.Length = 2;
+                cmd_mode.data = new unsigned char[2];
+                cmd_mode.data[0] = 0x0;
+                cmd_mode.data[1] = 0x0;
+                cmd_mode.ExpectLen = 15;
 
-            sql = "delete from electricchargewave";
-            sqls.enqueue(sql);
+                deviceInfo->addSendMsg(cmd_mode);
+                QByteArray msg = deviceInfo->getSendMsg();
 
-            sql = "delete from electricchargewavefreq";
-            sqls.enqueue(sql);
+                if (msg.size() > 0)
+                {
+                    if(m_sockes.contains(devicecode))
+                    {
+                        XSocketClient* client = m_sockes[devicecode];
 
-            sql = "delete from vibrate";
-            sqls.enqueue(sql);
-
-            sql = "delete from vibratewave";
-            sqls.enqueue(sql);
-
-            sql = "delete from vibratewavefreq";
-            sqls.enqueue(sql);
-
-            sql = "delete from temperature";
-            sqls.enqueue(sql);
-
-            m_db->execSql(sqls);
-
-            count = 0;
+                        if (nullptr != client)
+                        {
+                            client->SendData(msg);
+                            int tmp = 0;
+                            while(tmp>100)
+                            {
+                                tmp++;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-    else if((count % (3600*24*MainWindow::data_save_days)) == 0)
-    {
-        int tmpDay = 0 - MainWindow::data_save_days;
-        QDateTime current_time = QDateTime::currentDateTime();
-        current_time = current_time.addDays(tmpDay);
-        //current_time = current_time.addSecs(-10);
-        QString StrCurrentTime = current_time.toString("yyyy-MM-dd hh:mm:ss");
+}
 
-        QString sql = "delete from electriccharge where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from electricchargewave where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from electricchargewavefreq where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from vibrate where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from vibratewave where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from vibratewavefreq where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        sql = "delete from temperature where rksj <'" + StrCurrentTime + "'";
-        m_db->updatasql(sql);
-
-        count = 0;
+void DeviceLinkManager::disConnectDevice()
+{
+    QMap<QString,XSocketClient*>::const_iterator its;
+    for ( its = m_sockes.constBegin(); its != m_sockes.constEnd(); ++its ) {
+        XSocketClient* xsc = its.value();
+        xsc->disConnect();
+        delete xsc;
     }
-    count++;
+    m_sockes.clear();
 }
 
 void DeviceLinkManager::connectDevice()
 {
-    QMap<QString,DeviceLinkInfo*>::const_iterator it;
-    for ( it = m_deviceInfo.constBegin(); it != m_deviceInfo.constEnd(); ++it ) {
-        QString devicecode = it.key();
-        QString ipAddress = it.value()->deviceIpAddress;
-        int port = it.value()->ipPort;
+    //QMap<QString,DeviceInfo*>::const_iterator it;
+    //for ( it = m_deviceInfo.constBegin(); it != m_deviceInfo.constEnd(); ++it )
+    QVector<DeviceInfo*>::ConstIterator cIt;
+    for(cIt=GlobalVariable::deviceInfos.constBegin();cIt != GlobalVariable::deviceInfos.constEnd();cIt++)
+    {
+        DeviceInfo* info = *cIt;
+        QString devicecode = info->deviceCode;
+        QString ipAddress = info->ipAddress;
+        int port = info->ipPort;
         //qDebug() << devicecode << it.value()->deviceIpAddress;
         XSocketClient *client = new XSocketClient(devicecode);
         //connect(pcancelbtn, SIGNAL(clicked()),this, SLOT(cancel()));
@@ -349,18 +215,18 @@ void DeviceLinkManager::connectDevice()
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
-    timer->start(baseInterval);
+    timer->start(baseInterval/2);
 }
 
-QMap<QString,DeviceLinkInfo*> DeviceLinkManager::getDevicesInfo()
+QMap<QString,DeviceInfo*> DeviceLinkManager::getDevicesInfo()
 {
     return m_deviceInfo;
 }
 
 void DeviceLinkManager::signalOnReceiveData(QByteArray by,QString guid)
 {
-    qDebug()<< "received data: " << guid;
-    DeviceLinkInfo* deviceInfo = m_deviceInfo[guid];
+    //qDebug()<< "received data: " << guid;
+    DeviceInfo* deviceInfo = GlobalVariable::findDeviceByCode(guid);// m_deviceInfo[guid];
     if (nullptr != deviceInfo)
     {
         deviceInfo->addrevdata(by);
@@ -374,15 +240,28 @@ void DeviceLinkManager::signalOnReceiveData(QByteArray by,QString guid)
 void DeviceLinkManager::signalOnConnected(QString guid)
 {
     qDebug()<< "onConnected: " <<guid;
-    m_deviceInfo[guid]->linkState = true;
-    m_deviceInfo[guid]->reConnectCount = 0;
+    DeviceInfo* deviceInfo = GlobalVariable::findDeviceByCode(guid);
+
+    if(deviceInfo != nullptr)
+    {
+        deviceInfo->init();
+        deviceInfo->linkState = true;
+        deviceInfo->reConnectCount = 0;
+        emit linkStateChanged(deviceInfo->tree_id,true);
+    }
 }
 
 void DeviceLinkManager::signalOnDisconnected(QString guid)
 {
     qDebug()<< "onDisconnected: " <<guid;
-    m_deviceInfo[guid]->linkState = false;
-    m_deviceInfo[guid]->reConnectCount = 0;
+    DeviceInfo* deviceInfo = GlobalVariable::findDeviceByCode(guid);
+
+    if(deviceInfo != nullptr)
+    {
+        deviceInfo->linkState = false;
+        deviceInfo->reConnectCount = 0;
+        emit linkStateChanged(deviceInfo->tree_id,false);
+    }
 }
 
 DeviceLinkManager::~DeviceLinkManager()
@@ -395,10 +274,12 @@ DeviceLinkManager::~DeviceLinkManager()
     }
     m_sockes.clear();
 
-    QMap<QString,DeviceLinkInfo*>::const_iterator it;
+    /*
+    QMap<QString,DeviceInfo*>::const_iterator it;
     for ( it = m_deviceInfo.constBegin(); it != m_deviceInfo.constEnd(); ++it ) {
-        DeviceLinkInfo* dli = it.value();
+        DeviceInfo* dli = it.value();
         delete dli;
     }
     m_deviceInfo.clear();
+    */
 }

@@ -1,8 +1,10 @@
 data_mf.db
 chargeinfo.obj
+mfds.pro
 mfds.pro.user
 debug/
 release/
+mfdslib/
 /Makefile
 /Makefile.Debug
 /Makefile.Release

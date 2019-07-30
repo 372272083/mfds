@@ -8,6 +8,8 @@ class TemperatureInfo : public QueryInfo
     Q_OBJECT
 public:
     explicit TemperatureInfo(QObject *parent = 0);
+    TemperatureInfo(const TemperatureInfo&);
+    TemperatureInfo& operator=(const TemperatureInfo &c);
 
     float temp;
 

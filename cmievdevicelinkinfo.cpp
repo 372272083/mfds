@@ -91,7 +91,9 @@ void CMIEVDeviceLinkInfo::handlerReceiveMsg()
 
                     ushort valuedata;
                     memcpy(&valuedata,value_buffer,2);
-                    buffer += QString::number(valuedata) + ",";
+                    float value_d_f = (float)valuedata;
+                    value_d_f *= 0.01;
+                    buffer += QString::number(value_d_f,10,4) + ",";
                 }
 
                 int blen = buffer.length();
@@ -643,7 +645,7 @@ void CMIEVDeviceLinkInfo::handleSendMsg()
         cmd_wave.data[1] = 0x1;
         cmd_wave.ExpectLen = 15;
         msgPriSendQueue.enqueue(cmd_wave);
-        return;
+        //return;
     }
 
     int freqwindow = count % MainWindow::freq_sample_interval;
@@ -659,11 +661,11 @@ void CMIEVDeviceLinkInfo::handleSendMsg()
         cmd_freq.data[1] = 0x2;
         cmd_freq.ExpectLen = 15;
         msgPriSendQueue.enqueue(cmd_freq);
-        return;
+        //return;
     }
 
     int subwindow = count % MainWindow::measure_sample_interval;
-    if (0 != subwindow)
+    if (0 == subwindow)
     {
         struct ModbusTCPMapInfo cmd;
         cmd.Unit = MEASURE_R;

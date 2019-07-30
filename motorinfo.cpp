@@ -1,6 +1,6 @@
 #include "motorinfo.h"
 
-MotorInfo::MotorInfo() : QObject()
+MotorInfo::MotorInfo() : TreeNodeInfo()
 {
 
 }

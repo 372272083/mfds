@@ -3,31 +3,34 @@
 
 #include <QObject>
 
-#include "devicelinkinfo.h"
+#include "deviceinfo.h"
 #include <QMap>
 #include "xsocketclient.h"
 
 class QTcpSocket;
-class SqliteDB;
+//class SqliteDB;
 
 class DeviceLinkManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit DeviceLinkManager(SqliteDB *db, QObject *parent = 0);
+    explicit DeviceLinkManager(/*SqliteDB *db, */QObject *parent = 0);
     ~DeviceLinkManager();
 
     void connectDevice();
-    QMap<QString,DeviceLinkInfo*> getDevicesInfo();
+    void disConnectDevice();
+    void close();
+    QMap<QString,DeviceInfo*> getDevicesInfo();
 
 private:
-    SqliteDB *m_db;
+    //SqliteDB *m_db;
     int baseInterval;
+    bool state_s;
     QMap<QString,XSocketClient*> m_sockes;
-    QMap<QString,DeviceLinkInfo*> m_deviceInfo;
+    QMap<QString,DeviceInfo*> m_deviceInfo;
 
 signals:
-
+    void linkStateChanged(int treeId,bool state);
 public slots:
     void signalOnReceiveData(QByteArray by,QString guid);
     void signalOnConnected(QString guid);

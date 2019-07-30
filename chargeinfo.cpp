@@ -1,9 +1,54 @@
 #include "chargeinfo.h"
 
-ChargeInfo::ChargeInfo(QObject *parent) : QueryInfo(parent)
+ChargeInfo::ChargeInfo(QueryInfo *parent) : QueryInfo(parent)
 {
 
 }
+
+ChargeInfo::ChargeInfo(const ChargeInfo& c)
+{
+    id = c.id;
+    dcode = c.dcode;
+    mcode = c.mcode;
+    pipe = c.pipe;
+    rksj = c.rksj;
+
+    info_type = c.info_type;
+
+    u = c.u;
+    i = c.i;
+    f = c.f;
+    factor = c.factor;
+    p = c.p;
+    q = c.q;
+    s = c.s;
+    others = c.others;
+    pqs = c.pqs;
+}
+
+ChargeInfo& ChargeInfo::operator=(const ChargeInfo &c)
+{
+    id = c.id;
+    dcode = c.dcode;
+    mcode = c.mcode;
+    pipe = c.pipe;
+    rksj = c.rksj;
+
+    info_type = c.info_type;
+
+    u = c.u;
+    i = c.i;
+    f = c.f;
+    factor = c.factor;
+    p = c.p;
+    q = c.q;
+    s = c.s;
+    others = c.others;
+    pqs = c.pqs;
+
+    return *this;
+}
+
 
 QString ChargeInfo::toString()
 {

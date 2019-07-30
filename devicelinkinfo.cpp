@@ -193,7 +193,8 @@ QByteArray DeviceLinkInfo::floatToBuffer(float value,BYTEORDER4 bo)
 
 QByteArray DeviceLinkInfo::ushortToBuffer(ushort value,BYTEORDER2 bo)
 {
-
+	QByteArray ba;
+	return ba;
 }
 
 QByteArray DeviceLinkInfo::modbusEncomposeMsg(ModbusTCPMapInfo mtInfo)

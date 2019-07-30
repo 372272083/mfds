@@ -5,6 +5,32 @@ TemperatureInfo::TemperatureInfo(QObject *parent) : QueryInfo(parent)
 
 }
 
+TemperatureInfo::TemperatureInfo(const TemperatureInfo& c)
+{
+    id = c.id;
+    dcode = c.dcode;
+    mcode = c.mcode;
+    pipe = c.pipe;
+    rksj = c.rksj;
+
+    info_type = c.info_type;
+
+    temp = c.temp;
+}
+
+TemperatureInfo& TemperatureInfo::operator=(const TemperatureInfo &c)
+{
+    id = c.id;
+    dcode = c.dcode;
+    mcode = c.mcode;
+    pipe = c.pipe;
+    rksj = c.rksj;
+
+    info_type = c.info_type;
+
+    temp = c.temp;
+}
+
 QString TemperatureInfo::toString()
 {
     QString result;

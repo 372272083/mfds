@@ -1,5 +1,4 @@
 #include "motorinfowidget.h"
-
 #include <QLabel>
 #include <QLineEdit>
 #include <QComboBox>

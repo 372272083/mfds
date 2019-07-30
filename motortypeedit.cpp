@@ -20,8 +20,8 @@ MotortypeEdit::MotortypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pa
     this->setWindowTitle(tr("Motor-type Edit"));
 
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    this->setMinimumSize(250,350);
-    this->setMaximumSize(250,350);
+    this->setMinimumSize(400,400);
+    this->setMaximumSize(400,400);
 
     this->setWindowIcon(QIcon(":/images/icon"));
 

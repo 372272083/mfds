@@ -2,7 +2,7 @@
 
 XSocketClient::XSocketClient(QString guid) : guid(guid)
 {
-
+	m_pClientSocket = nullptr;
 }
 
 XSocketClient::~XSocketClient()
@@ -75,7 +75,7 @@ void XSocketClient::OnDataReady()
         QByteArray by = pSocket->readAll();
 
         int datalen = by.size();
-        qDebug() << "receive data lenght: " << datalen;
+        //qDebug() << "receive data lenght: " << datalen;
 
         emit signalOnReceiveData(by,guid);
         OnData(by);

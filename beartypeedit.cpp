@@ -20,21 +20,22 @@ BeartypeEdit::BeartypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pare
     this->setWindowTitle(tr("Bear-type Edit"));
 
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    this->setMinimumSize(250,220);
-    this->setMaximumSize(250,220);
+    this->setMinimumSize(400,350);
+    this->setMaximumSize(400,350);
 
     this->setWindowIcon(QIcon(":/images/icon"));
 
     QVBoxLayout *playout = new QVBoxLayout;
 
+    int index = 0;
     QGridLayout *items = new QGridLayout;
     QLabel *pmodelLabel = new QLabel(this);
     pmodelLabel->setText(tr("model:"));
     pmodelEdit = new QLineEdit(this);
     pmodelEdit->setPlaceholderText(tr("please enter model"));
 
-    items->addWidget(pmodelLabel,0,0,1,1,Qt::AlignRight);
-    items->addWidget(pmodelEdit,0,1,1,1);
+    items->addWidget(pmodelLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(pmodelEdit,index,1,1,1);
 
     QLabel *ptypeLabel = new QLabel(this);
     ptypeLabel->setText(tr("type:"));
@@ -42,8 +43,9 @@ BeartypeEdit::BeartypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pare
     typeCombo->addItem(tr("antifriction bearing"));
     typeCombo->addItem(tr("sliding bearing"));
 
-    items->addWidget(ptypeLabel,1,0,1,1,Qt::AlignRight);
-    items->addWidget(typeCombo,1,1,1,1);
+    index++;
+    items->addWidget(ptypeLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(typeCombo,index,1,1,1);
 
     QLabel *prinLabel = new QLabel(this);
     prinLabel->setText(tr("rin:"));
@@ -52,9 +54,10 @@ BeartypeEdit::BeartypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pare
     prinEdit = new QLineEdit(this);
     prinEdit->setPlaceholderText(tr("Internal diameter"));
 
-    items->addWidget(prinLabel,2,0,1,1,Qt::AlignRight);
-    items->addWidget(prinEdit,2,1,1,1);
-    items->addWidget(prinMetricLabel,2,2,1,1);
+    index++;
+    items->addWidget(prinLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(prinEdit,index,1,1,1);
+    items->addWidget(prinMetricLabel,index,2,1,1);
 
     QLabel *proutLabel = new QLabel(this);
     proutLabel->setText(tr("rout:"));
@@ -63,9 +66,46 @@ BeartypeEdit::BeartypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pare
     proutEdit = new QLineEdit(this);
     proutEdit->setPlaceholderText(tr("External diameter"));
 
-    items->addWidget(proutLabel,3,0,1,1,Qt::AlignRight);
-    items->addWidget(proutEdit,3,1,1,1);
-    items->addWidget(proutMetricLabel,3,2,1,1);
+    index++;
+    items->addWidget(proutLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(proutEdit,index,1,1,1);
+    items->addWidget(proutMetricLabel,index,2,1,1);
+
+    QLabel *ppitchLabel = new QLabel(this);
+    ppitchLabel->setText(tr("Bear Pitch:"));
+    QLabel *ppitchMetricLabel = new QLabel(this);
+    ppitchMetricLabel->setText(tr("mm"));
+    ppitchEdit = new QLineEdit(this);
+    ppitchEdit->setPlaceholderText(tr("bear pitch diameter"));
+
+    index++;
+    items->addWidget(ppitchLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(ppitchEdit,index,1,1,1);
+    items->addWidget(ppitchMetricLabel,index,2,1,1);
+
+    QLabel *prdLabel = new QLabel(this);
+    prdLabel->setText(tr("Roller diameter:"));
+    QLabel *prdMetricLabel = new QLabel(this);
+    prdMetricLabel->setText(tr("mm"));
+    protatedEdit = new QLineEdit(this);
+    protatedEdit->setPlaceholderText(tr("roller diameter"));
+
+    index++;
+    items->addWidget(prdLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(protatedEdit,index,1,1,1);
+    items->addWidget(prdMetricLabel,index,2,1,1);
+
+    QLabel *prnLabel = new QLabel(this);
+    prnLabel->setText(tr("Roller diameter:"));
+    QLabel *prnMetricLabel = new QLabel(this);
+    prnMetricLabel->setText(tr("units"));
+    protatenEdit = new QLineEdit(this);
+    protatenEdit->setPlaceholderText(tr("roller diameter"));
+
+    index++;
+    items->addWidget(prnLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(protatenEdit,index,1,1,1);
+    items->addWidget(prnMetricLabel,index,2,1,1);
 
     QLabel *pangleLabel = new QLabel(this);
     pangleLabel->setText(tr("contact angles:"));
@@ -74,9 +114,10 @@ BeartypeEdit::BeartypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(pare
     pangleEdit = new QLineEdit(this);
     pangleEdit->setPlaceholderText(tr("Contact angles"));
 
-    items->addWidget(pangleLabel,4,0,1,1,Qt::AlignRight);
-    items->addWidget(pangleEdit,4,1,1,1);
-    items->addWidget(pangleMetricLabel,4,2,1,1);
+    index++;
+    items->addWidget(pangleLabel,index,0,1,1,Qt::AlignRight);
+    items->addWidget(pangleEdit,index,1,1,1);
+    items->addWidget(pangleMetricLabel,index,2,1,1);
 
     playout->addLayout(items);
     playout->setContentsMargins(10,10,10,10);
@@ -125,11 +166,19 @@ void BeartypeEdit::setmodel(QList<QString> values)
     QString rout;
     QString angle;
 
+    QString pitch;
+    QString rotated;
+    QString rotaten;
+
     modelstr = values.at(0);
     type = values.at(1);
     rin = values.at(2);
     rout = values.at(3);
     angle = values.at(4);
+
+    pitch = values.at(5);
+    rotated = values.at(6);
+    rotaten = values.at(7);
 
     qDebug() << type << rin << rout << angle;
 
@@ -137,6 +186,10 @@ void BeartypeEdit::setmodel(QList<QString> values)
     prinEdit->setText(rin);
     proutEdit->setText(rout);
     pangleEdit->setText(angle);
+
+    protatedEdit->setText(rotated);
+    protatenEdit->setText(rotaten);
+    ppitchEdit->setText(pitch);
 
     QString type_s = typeCombo->currentText();
     if (type_s.compare(type) != 0)
@@ -153,35 +206,99 @@ bool BeartypeEdit::editbear()
     QString rout = proutEdit->text().trimmed();
     QString angle = pangleEdit->text().trimmed();
 
-    if (modelstr.length()==0 || rin.length()==0 || rout.length()==0 || angle.length()==0 || typeCombo->currentIndex() < 0)
+    QString pitch = ppitchEdit->text().trimmed();
+    QString roller_d = protatedEdit->text().trimmed();
+    QString roller_n = protatenEdit->text().trimmed();
+
+    if (modelstr.length()==0 || angle.length()==0 || typeCombo->currentIndex() < 0 || roller_n.length() == 0)
     {
         QMessageBox::information(this, tr("Infomation"), tr("Please enter data!"));
         return false;
     }
     bool tok;
-    rin.toFloat(&tok);
+    if(rin.length() <= 0)
+    {
+        rin = "-1";
+    }
+    else
+    {
+        rin.toFloat(&tok);
+        if (!tok)
+        {
+            QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
+            prinEdit->setFocus();
+            return false;
+        }
+    }
+
+    if(rout.length() <= 0)
+    {
+        rout = "-1";
+    }
+    else
+    {
+        rout.toFloat(&tok);
+        if (!tok)
+        {
+            QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
+            proutEdit->setFocus();
+            return false;
+        }
+    }
+
+    if(angle.length() <= 0)
+    {
+        angle = "-1";
+    }
+    else
+    {
+        angle.toFloat(&tok);
+        if (!tok)
+        {
+            QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
+            pangleEdit->setFocus();
+            return false;
+        }
+    }
+
+    if(pitch.length() <= 0)
+    {
+        pitch = "-1";
+    }
+    else
+    {
+        pitch.toFloat(&tok);
+        if (!tok)
+        {
+            QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
+            ppitchEdit->setFocus();
+            return false;
+        }
+    }
+
+    if(roller_d.length() <= 0)
+    {
+        roller_d = "-1";
+    }
+    else
+    {
+        roller_d.toFloat(&tok);
+        if (!tok)
+        {
+            QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
+            protatedEdit->setFocus();
+            return false;
+        }
+    }
+
+    roller_n.toInt(&tok);
     if (!tok)
     {
         QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
-        prinEdit->setFocus();
+        protatenEdit->setFocus();
         return false;
     }
 
-    rout.toFloat(&tok);
-    if (!tok)
-    {
-        QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
-        proutEdit->setFocus();
-        return false;
-    }
-
-    angle.toFloat(&tok);
-    if (!tok)
-    {
-        QMessageBox::information(this, tr("Infomation"), tr("Please enter number!"));
-        pangleEdit->setFocus();
-        return false;
-    }
     if (0 > mode)
     {
         QString filter = "model='" + modelstr + "'";
@@ -207,6 +324,9 @@ bool BeartypeEdit::editbear()
         model->setData(model->index(row,3),rin);
         model->setData(model->index(row,4),rout);
         model->setData(model->index(row,5),angle);
+        model->setData(model->index(row,6),pitch);
+        model->setData(model->index(row,7),roller_d);
+        model->setData(model->index(row,8),roller_n);
         model->submitAll();
     }
     else
@@ -221,6 +341,9 @@ bool BeartypeEdit::editbear()
                 record.setValue("rin", rin);
                 record.setValue("rout", rout);
                 record.setValue("contact_angle", angle);
+                record.setValue("bearpitch", pitch);
+                record.setValue("rotated", roller_d);
+                record.setValue("rotaten", roller_n);
                 model->setRecord(0, record);
                 model->submitAll();
             }

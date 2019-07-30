@@ -7,7 +7,9 @@ class FreqInfo : public QueryInfo
 {
     Q_OBJECT
 public:
-    explicit FreqInfo(QObject *parent = 0);
+    explicit FreqInfo(QueryInfo *parent = 0);
+    FreqInfo(const FreqInfo&);
+    FreqInfo& operator=(const FreqInfo &c);
 
     QString sample_freq;
     int stype;

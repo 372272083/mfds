@@ -5,6 +5,7 @@ QQ:1245178753
 */
 /************************************************************************/
 #include "qiplineedit.h"
+
 #include <QRegExpValidator>
 #include <QPainter>
 #include <QHBoxLayout>

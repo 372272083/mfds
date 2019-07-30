@@ -2,31 +2,31 @@
 #define MOTOREDIT_H
 
 #include <QDialog>
+
 class SqliteDB;
 class QLineEdit;
 class QComboBox;
-class QSqlTableModel;
+class QCheckBox;
 
 class MotorEdit : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MotorEdit(QSqlTableModel *model,SqliteDB *db,QWidget *parent = 0);
+    explicit MotorEdit(SqliteDB *db,QWidget *parent = 0);
     ~MotorEdit();
     void setmode(int value);
-    void setmodel(QList<QString> values);
 private:
     SqliteDB *m_db;
     int mode;
-
-    QSqlTableModel* motormodel;
 
     QLineEdit *pcodeEdit;
     QLineEdit *pnameEdit;
     QComboBox *typeCombo;
     QComboBox *beartypeCombo;
 
-    QPushButton *papplybtn;
+    QComboBox *rotateDeviceCombo;
+    QCheckBox *isManualCB;
+    QLineEdit *manualRotateEdit;
 
     QStringList motortypeclass;
     QStringList beartypeclass;
@@ -34,11 +34,12 @@ private:
     bool editmotor();
 
 signals:
-
+    void motorEditStateChange(int,QString);
 public slots:
-    void apply();
     void ok();
     void cancel();
+
+    void stateChangedSlot(int state);
 };
 
 #endif // MOTOREDIT_H

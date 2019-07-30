@@ -99,7 +99,33 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
 
                     ushort valuedata;
                     memcpy(&valuedata,value_buffer,2);
-                    buffer += QString::number(valuedata) + ",";
+                    float uiar = 1.0;
+                    switch(i)
+                    {
+                    case 0:
+                        uiar = comSettingParams.uar * PC_RATIO * 0.01;
+                        break;
+                    case 1:
+                        uiar = comSettingParams.ubr * PC_RATIO * 0.01;
+                        break;
+                    case 2:
+                        uiar = comSettingParams.ucr * PC_RATIO * 0.01;
+                        break;
+                    case 3:
+                        uiar = comSettingParams.iar * PC_RATIO * 0.001;
+                        break;
+                    case 4:
+                        uiar = comSettingParams.ibr * PC_RATIO * 0.001;
+                        break;
+                    case 5:
+                        uiar = comSettingParams.icr * PC_RATIO * 0.001;
+                        break;
+                    }
+
+                    float value_d_f = (float)valuedata;
+                    value_d_f *= uiar;
+
+                    buffer += QString::number(value_d_f,10,4) + ",";
                 }
                 int blen = buffer.length();
                 if (blen > 0)
@@ -183,35 +209,42 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
                     ushort valuedata;
                     memcpy(&valuedata,value_buffer,2);
 
-                    float fzero = 0.0,fratio = 1.0;
+                    float fzero = 0.0,fratio = 1.0,uiar = 1.0;
                     switch(i)
                     {
                     case 0:
                         fzero = transFactor.zero_va;
                         fratio = transFactor.ratio_va;
+                        uiar = comSettingParams.uar * PC_RATIO;
                         break;
                     case 1:
                         fzero = transFactor.zero_vb;
                         fratio = transFactor.ratio_vb;
+                        uiar = comSettingParams.ubr * PC_RATIO;
                         break;
                     case 2:
                         fzero = transFactor.zero_vc;
                         fratio = transFactor.ratio_vc;
+                        uiar = comSettingParams.ucr * PC_RATIO;
                         break;
                     case 3:
                         fzero = transFactor.zero_ca;
                         fratio = transFactor.ratio_ca;
+                        uiar = comSettingParams.iar * PC_RATIO;
                         break;
                     case 4:
                         fzero = transFactor.zero_cb;
                         fratio = transFactor.ratio_cb;
+                        uiar = comSettingParams.ibr * PC_RATIO;
                         break;
                     case 5:
                         fzero = transFactor.zero_cc;
                         fratio = transFactor.ratio_cc;
+                        uiar = comSettingParams.icr * PC_RATIO;
                         break;
                     }
                     float valuedata_f = (valuedata - fzero)/fratio;
+                    valuedata_f *= uiar;
 
                     buffer += QString::number(valuedata_f,10,4) + ",";
                 }
@@ -547,6 +580,7 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
             {
                 measure_buffer = rec_buffer.mid(MODBUS_HEAD_LEHGHT + i*byteStep,4);
                 float measure_u = DeviceLinkInfo::bufferTofloat(measure_buffer,HH_HL_LH_LL);
+                /*
                 switch (i) {
                 case 0:
                     measure_u *= comSettingParams.uar * PC_RATIO;
@@ -560,6 +594,7 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
                 default:
                     break;
                 }
+                */
 
                 if(MainWindow::modbus_server_enable)
                 {
@@ -574,6 +609,7 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
                 measure_buffer = rec_buffer.mid(MODBUS_HEAD_LEHGHT + (i+3)*byteStep,4);
                 float measure_i = DeviceLinkInfo::bufferTofloat(measure_buffer,HH_HL_LH_LL);
 
+                /*
                 switch (i) {
                 case 0:
                     measure_i *= comSettingParams.iar * PC_RATIO;
@@ -587,6 +623,7 @@ void CMIEEDeviceLinkInfo::handlerReceiveMsg()
                 default:
                     break;
                 }
+                */
 
                 if(MainWindow::modbus_server_enable)
                 {
@@ -808,7 +845,7 @@ void CMIEEDeviceLinkInfo::handleSendMsg()
         cmd_wave.data[1] = 0x1;
         cmd_wave.ExpectLen = 15;
         msgPriSendQueue.enqueue(cmd_wave);
-        return;
+        //return;
     }
 
     int freqwindow = count % MainWindow::freq_sample_interval;
@@ -824,11 +861,11 @@ void CMIEEDeviceLinkInfo::handleSendMsg()
         cmd_freq.data[1] = 0x2;
         cmd_freq.ExpectLen = 15;
         msgPriSendQueue.enqueue(cmd_freq);
-        return;
+        //return;
     }
 
     int subwindow = count % MainWindow::measure_sample_interval;
-    if (0 != subwindow)
+    if (0 == subwindow)
     {
         struct ModbusTCPMapInfo cmd;
         cmd.Unit = MEASURE_R;

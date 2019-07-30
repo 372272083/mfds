@@ -41,7 +41,7 @@ private:
 
 private:
     QString guid;
-    QTcpSocket *m_pClientSocket = nullptr;
+    QTcpSocket *m_pClientSocket;
 
 };
 

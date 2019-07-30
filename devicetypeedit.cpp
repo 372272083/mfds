@@ -40,8 +40,11 @@ DevicetypeEdit::DevicetypeEdit(QSqlTableModel *model,QWidget *parent) : QDialog(
     QLabel *ptypeLabel = new QLabel(this);
     ptypeLabel->setText(tr("type:"));
     typeCombo = new QComboBox();
-    typeclass << tr("E") << tr("V") << tr("T");
-    typeCombo->addItems(typeclass);
+    typeCombo->addItem(tr("Electric"),"E");
+    typeCombo->addItem(tr("Vibrate"),"V");
+    typeCombo->addItem(tr("Temperature"),"T");
+    //typeclass << tr("E") << tr("V") << tr("T");
+    //typeCombo->addItems(typeclass);
 
     items->addWidget(ptypeLabel,1,0,1,1,Qt::AlignRight);
     items->addWidget(typeCombo,1,1,1,1);
@@ -129,7 +132,7 @@ void DevicetypeEdit::setmodel(QList<QString> values)
 bool DevicetypeEdit::editdevicetype()
 {
     QString modelstr = pmodelEdit->text().trimmed();
-    QString type = typeCombo->currentText();
+    QString type = typeCombo->itemData(typeCombo->currentIndex()).toString();
     QString pipenum = ppipesEdit->text().trimmed();
     QString description = pdescriptionEdit->toPlainText();
 

@@ -8,9 +8,12 @@ class VibrateInfo : public QueryInfo
     Q_OBJECT
 public:
     explicit VibrateInfo(QObject *parent = 0);
+    VibrateInfo(const VibrateInfo& c);
+    VibrateInfo& operator=(const VibrateInfo &other);
 
     float vibrate_e;
     float speed_e;
+    float position_e;
 
     virtual QString toString();
 

@@ -7,7 +7,9 @@ class ChargeInfo : public QueryInfo
 {
     Q_OBJECT
 public:
-    explicit ChargeInfo(QObject *parent = 0);
+    explicit ChargeInfo(QueryInfo *parent = 0);
+    ChargeInfo(const ChargeInfo&);
+    ChargeInfo& operator=(const ChargeInfo &other);
 
     float u;
     float i;

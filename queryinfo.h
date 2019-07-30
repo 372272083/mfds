@@ -8,6 +8,8 @@ class QueryInfo : public QObject
     Q_OBJECT
 public:
     explicit QueryInfo(QObject *parent = 0);
+    QueryInfo(const QueryInfo& c);
+    QueryInfo& operator=(const QueryInfo &other);
 
     int id;
     QString dcode;

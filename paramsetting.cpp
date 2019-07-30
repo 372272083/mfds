@@ -143,15 +143,6 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
     items->addWidget(sampleWaitingEdit,index,1,1,1);
     items->addWidget(psWaitingMetricLabel,index,2,1,1);
 
-    QLabel *pdaysLabel = new QLabel(this);
-    pdaysLabel->setText(tr("Data save days:"));
-    savedaysEdit = new QLineEdit(this);
-    savedaysEdit->setText(QString::number(MainWindow::data_save_days));
-
-    index++;
-    items->addWidget(pdaysLabel,index,0,1,1,Qt::AlignRight);
-    items->addWidget(savedaysEdit,index,1,1,1);
-
     mainWidget->addTab(board,tr("basic setting"));
 
 
@@ -199,6 +190,11 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
     QHBoxLayout *btn = new QHBoxLayout;
     btn->addStretch();
 
+    QPushButton *psyncbtn = new QPushButton(this);
+    connect(psyncbtn, SIGNAL(clicked()),this, SLOT(syncSlot()));
+    psyncbtn->setText(tr("Sync Data"));
+    btn->addWidget(psyncbtn);
+
     QPushButton *pokbtn = new QPushButton(this);
     connect(pokbtn, SIGNAL(clicked()),this, SLOT(ok()));
     pokbtn->setText(tr("ok"));
@@ -211,6 +207,19 @@ ParamSetting::ParamSetting(SqliteDB *db,QWidget *parent) : QDialog(parent),mdb(d
 
     playout->addLayout(btn);
     this->setLayout(playout);
+}
+
+void ParamSetting::syncSlot()
+{
+    QString name = nameEdit->text().trimmed();
+    if(name.length()>0)
+    {
+        emit syncProjectData();
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Infomation"), tr("Please Input Project Name!"));
+    }
 }
 
 void ParamSetting::ok()

@@ -292,7 +292,7 @@ void CMIETDeviceLinkInfo::handleSendMsg()
     }
 
     int subwindow = count % MainWindow::measure_sample_interval;
-    if (0 != subwindow)
+    if (0 == subwindow)
     {
         struct ModbusTCPMapInfo cmd;
         cmd.Unit = MEASURE_R;

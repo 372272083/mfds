@@ -37,10 +37,12 @@ private:
     SqliteDB* mdb;
 
 signals:
-
+    void syncProjectData();
 public slots:
     void ok();
     void cancel();
+
+    void syncSlot();
 };
 
 #endif // PARAMSETTING_H

@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/save.png</file>
+        <file>images/online.png</file>
+        <file>images/devices.png</file>
+        <file>images/motor.png</file>
+        <file>images/channel.png</file>
+        <file>images/outline.png</file>
+        <file>images/channel-e.png</file>
+        <file>images/tile.png</file>
+        <file>images/casacade.png</file>
+        <file>images/closeAllWindow.png</file>
+        <file>images/newd.png</file>
+        <file>images/newm.png</file>
+        <file alias="icon">images/favicon.ico</file>
+        <file>images/export.png</file>
+        <file>images/import.png</file>
+        <file>images/wave_i.png</file>
+        <file>images/channel-t.jpg</file>
+        <file>images/itemicon.png</file>
+    </qresource>
+</RCC>

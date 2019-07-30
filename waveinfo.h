@@ -7,7 +7,9 @@ class WaveInfo : public QueryInfo
 {
     Q_OBJECT
 public:
-    explicit WaveInfo(QObject *parent = 0);
+    explicit WaveInfo(QueryInfo *parent = 0);
+    WaveInfo(const WaveInfo& c);
+    WaveInfo& operator=(const WaveInfo &other);
 
     QString sample_data;
     int stype;

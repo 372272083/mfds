@@ -21,6 +21,9 @@ private:
     QComboBox *typeCombo;
     QLineEdit *prinEdit;
     QLineEdit *proutEdit;
+    QLineEdit *ppitchEdit;
+    QLineEdit *protatedEdit;
+    QLineEdit *protatenEdit;
     QLineEdit *pangleEdit;
 
     QSqlTableModel* model;
