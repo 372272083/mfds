@@ -191,18 +191,6 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             int len = (datalen-8)/6;
 
             //DOUBLE_VCT vAccWave[6];
-            QByteArray time_buffer;
-            time_buffer.resize(4);
-            time_buffer[3] = rec_buffer[3];
-            time_buffer[2] = rec_buffer[2];
-            time_buffer[1] = rec_buffer[5];
-            time_buffer[0] = rec_buffer[4];
-
-            int time_index = 0;
-            memcpy(&time_index,time_buffer,4);
-
-            qDebug() << "receive wave seqence: " << QString::number(time_index);
-
             QMap<int,std::vector<double>> vAccWave;
             QDateTime current_time = QDateTime::currentDateTime();
             QString StrCurrentTime = current_time.toString(GlobalVariable::dtFormat);
@@ -359,10 +347,10 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
 
             CMIEVWaveInfo* wi = new CMIEVWaveInfo(vAccWave);
             wi->dcode = deviceCode;
-            wi->sample_interval = 1;//intervals[0];
-            wi->sample_num = 16384;//samples[0];
+            wi->sample_interval = intervals[0];
+            wi->sample_num = samples[0];
             wi->sample_time = StrCurrentTime;
-            wi->run_mode = 1;//run_mode;
+            wi->run_mode = run_mode;
 
             if(wi->sample_num > 0)
             {
@@ -912,28 +900,6 @@ void CMIEVDeviceInfo::handleSendMsg()
         return;
     }
 
-    if (!syncTomerOk)
-    {
-        struct ModbusTCPMapInfo cmd_wave;
-        cmd_wave.Unit = NONE;
-        cmd_wave.Addr = 0;
-        cmd_wave.Command = 0x0;
-        cmd_wave.Length = 5;
-        cmd_wave.ExpectLen = GlobalVariable::cmie_v_wave_len;
-        cmd_wave.data = new unsigned char[5];
-
-        cmd_wave.data[0] = 87;
-        cmd_wave.data[1] = 97;
-        cmd_wave.data[2] = 118;
-        cmd_wave.data[3] = 101;
-        cmd_wave.data[4] = 49;
-        msgPriSendQueue.enqueue(cmd_wave);
-        syncTomerOk = true;
-        //return;
-    }
-
-    return;
-
     if (isReceiving)
     {
         if(GlobalVariable::s_t == 10 && !isHaveSomeState(1,NONE))
@@ -1180,7 +1146,7 @@ void CMIEVDeviceInfo::handleSendMsg()
 
         int subwindow = count % 2;
 
-        if(/*subwindow == 0 && */!isHaveSomeState(1,ROTATE_R))
+        if(subwindow == 0 && !isHaveSomeState(1,ROTATE_R))
         {
             struct ModbusTCPMapInfo cmd_com;
             cmd_com.Unit = ROTATE_R;

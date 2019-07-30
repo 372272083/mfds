@@ -422,168 +422,166 @@
         <translation>采样间隔：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="203"/>
         <source>Device run mode:</source>
-        <translation>设备运行模式：</translation>
+        <translation type="vanished">设备运行模式：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="205"/>
         <source>Wave mode</source>
-        <translation>连续波形</translation>
+        <translation type="vanished">连续波形</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="211"/>
+        <location filename="deviceeditdialog.cpp" line="213"/>
         <source>sample setting</source>
         <translation>采样设置</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="223"/>
-        <location filename="deviceeditdialog.cpp" line="930"/>
+        <location filename="deviceeditdialog.cpp" line="226"/>
+        <location filename="deviceeditdialog.cpp" line="945"/>
         <source>Channel1:</source>
         <translation>通道1：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="231"/>
-        <location filename="deviceeditdialog.cpp" line="931"/>
+        <location filename="deviceeditdialog.cpp" line="234"/>
+        <location filename="deviceeditdialog.cpp" line="946"/>
         <source>Channel2:</source>
         <translation>通道2：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="239"/>
-        <location filename="deviceeditdialog.cpp" line="932"/>
+        <location filename="deviceeditdialog.cpp" line="242"/>
+        <location filename="deviceeditdialog.cpp" line="947"/>
         <source>Channel3:</source>
         <translation>通道3：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="247"/>
-        <location filename="deviceeditdialog.cpp" line="933"/>
+        <location filename="deviceeditdialog.cpp" line="250"/>
+        <location filename="deviceeditdialog.cpp" line="948"/>
         <source>Channel4:</source>
         <translation>通道4：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="255"/>
-        <location filename="deviceeditdialog.cpp" line="934"/>
+        <location filename="deviceeditdialog.cpp" line="258"/>
+        <location filename="deviceeditdialog.cpp" line="949"/>
         <source>Channel5:</source>
         <translation>通道5：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="263"/>
-        <location filename="deviceeditdialog.cpp" line="935"/>
+        <location filename="deviceeditdialog.cpp" line="266"/>
+        <location filename="deviceeditdialog.cpp" line="950"/>
         <source>Channel6:</source>
         <translation>通道6：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="270"/>
+        <location filename="deviceeditdialog.cpp" line="273"/>
         <source>channel ratio</source>
         <translation>比例系数</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="281"/>
+        <location filename="deviceeditdialog.cpp" line="284"/>
         <source>ok</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="286"/>
+        <location filename="deviceeditdialog.cpp" line="289"/>
         <source>cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="409"/>
+        <location filename="deviceeditdialog.cpp" line="416"/>
         <source>Device Edit</source>
         <translation>编辑设备</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="439"/>
+        <location filename="deviceeditdialog.cpp" line="446"/>
         <source>Device Add</source>
         <translation>添加设备</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="481"/>
-        <location filename="deviceeditdialog.cpp" line="494"/>
-        <location filename="deviceeditdialog.cpp" line="501"/>
+        <location filename="deviceeditdialog.cpp" line="489"/>
+        <location filename="deviceeditdialog.cpp" line="502"/>
         <location filename="deviceeditdialog.cpp" line="509"/>
-        <location filename="deviceeditdialog.cpp" line="530"/>
+        <location filename="deviceeditdialog.cpp" line="517"/>
         <location filename="deviceeditdialog.cpp" line="538"/>
         <location filename="deviceeditdialog.cpp" line="546"/>
         <location filename="deviceeditdialog.cpp" line="554"/>
-        <location filename="deviceeditdialog.cpp" line="563"/>
-        <location filename="deviceeditdialog.cpp" line="572"/>
-        <location filename="deviceeditdialog.cpp" line="581"/>
-        <location filename="deviceeditdialog.cpp" line="590"/>
-        <location filename="deviceeditdialog.cpp" line="599"/>
-        <location filename="deviceeditdialog.cpp" line="738"/>
-        <location filename="deviceeditdialog.cpp" line="747"/>
-        <location filename="deviceeditdialog.cpp" line="888"/>
+        <location filename="deviceeditdialog.cpp" line="567"/>
+        <location filename="deviceeditdialog.cpp" line="576"/>
+        <location filename="deviceeditdialog.cpp" line="585"/>
+        <location filename="deviceeditdialog.cpp" line="594"/>
+        <location filename="deviceeditdialog.cpp" line="603"/>
+        <location filename="deviceeditdialog.cpp" line="612"/>
+        <location filename="deviceeditdialog.cpp" line="753"/>
+        <location filename="deviceeditdialog.cpp" line="762"/>
+        <location filename="deviceeditdialog.cpp" line="903"/>
         <source>Infomation</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="481"/>
+        <location filename="deviceeditdialog.cpp" line="489"/>
         <source>Please enter data!</source>
         <translation>请输入数据！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="494"/>
-        <location filename="deviceeditdialog.cpp" line="509"/>
-        <location filename="deviceeditdialog.cpp" line="530"/>
+        <location filename="deviceeditdialog.cpp" line="502"/>
+        <location filename="deviceeditdialog.cpp" line="517"/>
         <location filename="deviceeditdialog.cpp" line="538"/>
         <location filename="deviceeditdialog.cpp" line="546"/>
         <location filename="deviceeditdialog.cpp" line="554"/>
-        <location filename="deviceeditdialog.cpp" line="563"/>
-        <location filename="deviceeditdialog.cpp" line="572"/>
-        <location filename="deviceeditdialog.cpp" line="581"/>
-        <location filename="deviceeditdialog.cpp" line="590"/>
-        <location filename="deviceeditdialog.cpp" line="599"/>
+        <location filename="deviceeditdialog.cpp" line="567"/>
+        <location filename="deviceeditdialog.cpp" line="576"/>
+        <location filename="deviceeditdialog.cpp" line="585"/>
+        <location filename="deviceeditdialog.cpp" line="594"/>
+        <location filename="deviceeditdialog.cpp" line="603"/>
+        <location filename="deviceeditdialog.cpp" line="612"/>
         <source>Please enter number!</source>
         <translation>请输入数字！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="501"/>
+        <location filename="deviceeditdialog.cpp" line="509"/>
         <source>Please enter valid ip address!</source>
         <translation>请输入一个合法的IP地址！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="738"/>
+        <location filename="deviceeditdialog.cpp" line="753"/>
         <source>update data failed!</source>
         <translation>更新数据失败！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="747"/>
+        <location filename="deviceeditdialog.cpp" line="762"/>
         <source>The device code has existed!</source>
         <translation>该设备编码已存在，请从新输入！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="888"/>
+        <location filename="deviceeditdialog.cpp" line="903"/>
         <source>Insert data failed!</source>
         <translation>插入数据失败！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="916"/>
+        <location filename="deviceeditdialog.cpp" line="931"/>
         <source>Uab:</source>
         <translation>通道1电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="917"/>
+        <location filename="deviceeditdialog.cpp" line="932"/>
         <source>Ubc:</source>
         <translation>通道2电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="918"/>
+        <location filename="deviceeditdialog.cpp" line="933"/>
         <source>Uca:</source>
         <translation>通道3电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="920"/>
+        <location filename="deviceeditdialog.cpp" line="935"/>
         <source>Ia:</source>
         <translation>通道1电流变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="921"/>
+        <location filename="deviceeditdialog.cpp" line="936"/>
         <source>Ib:</source>
         <translation>通道2电流变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="922"/>
+        <location filename="deviceeditdialog.cpp" line="937"/>
         <source>Ic:</source>
         <translation>通道3电流变比：</translation>
     </message>
@@ -1220,7 +1218,7 @@
     <message>
         <location filename="fearturechartwidget.cpp" line="197"/>
         <source>Mouse Position: (%3  %4)</source>
-        <translation>鼠标位置：</translation>
+        <translation type="unfinished">鼠标位置:(%3  %4)</translation>
     </message>
     <message>
         <location filename="fearturechartwidget.cpp" line="212"/>
@@ -1232,18 +1230,18 @@
         <location filename="fearturechartwidget.cpp" line="476"/>
         <location filename="fearturechartwidget.cpp" line="670"/>
         <location filename="fearturechartwidget.cpp" line="678"/>
-        <location filename="fearturechartwidget.cpp" line="1436"/>
-        <location filename="fearturechartwidget.cpp" line="1533"/>
-        <location filename="fearturechartwidget.cpp" line="1955"/>
-        <location filename="fearturechartwidget.cpp" line="2089"/>
+        <location filename="fearturechartwidget.cpp" line="1463"/>
+        <location filename="fearturechartwidget.cpp" line="1562"/>
+        <location filename="fearturechartwidget.cpp" line="2012"/>
+        <location filename="fearturechartwidget.cpp" line="2146"/>
         <source>RMS: </source>
         <translation>有效值：</translation>
     </message>
     <message>
         <location filename="fearturechartwidget.cpp" line="440"/>
         <location filename="fearturechartwidget.cpp" line="441"/>
-        <location filename="fearturechartwidget.cpp" line="1533"/>
-        <location filename="fearturechartwidget.cpp" line="1534"/>
+        <location filename="fearturechartwidget.cpp" line="1562"/>
+        <location filename="fearturechartwidget.cpp" line="1563"/>
         <source> mm/s</source>
         <translation></translation>
     </message>
@@ -1252,34 +1250,34 @@
         <location filename="fearturechartwidget.cpp" line="477"/>
         <location filename="fearturechartwidget.cpp" line="671"/>
         <location filename="fearturechartwidget.cpp" line="679"/>
-        <location filename="fearturechartwidget.cpp" line="1437"/>
-        <location filename="fearturechartwidget.cpp" line="1534"/>
-        <location filename="fearturechartwidget.cpp" line="1956"/>
-        <location filename="fearturechartwidget.cpp" line="2090"/>
+        <location filename="fearturechartwidget.cpp" line="1464"/>
+        <location filename="fearturechartwidget.cpp" line="1563"/>
+        <location filename="fearturechartwidget.cpp" line="2013"/>
+        <location filename="fearturechartwidget.cpp" line="2147"/>
         <source>PKPK: </source>
         <translation>峰峰值：</translation>
     </message>
     <message>
         <location filename="fearturechartwidget.cpp" line="476"/>
         <location filename="fearturechartwidget.cpp" line="477"/>
-        <location filename="fearturechartwidget.cpp" line="1436"/>
-        <location filename="fearturechartwidget.cpp" line="1437"/>
+        <location filename="fearturechartwidget.cpp" line="1463"/>
+        <location filename="fearturechartwidget.cpp" line="1464"/>
         <source> m/ss</source>
         <translation></translation>
     </message>
     <message>
         <location filename="fearturechartwidget.cpp" line="670"/>
         <location filename="fearturechartwidget.cpp" line="671"/>
-        <location filename="fearturechartwidget.cpp" line="1955"/>
-        <location filename="fearturechartwidget.cpp" line="1956"/>
+        <location filename="fearturechartwidget.cpp" line="2012"/>
+        <location filename="fearturechartwidget.cpp" line="2013"/>
         <source> V</source>
         <translation></translation>
     </message>
     <message>
         <location filename="fearturechartwidget.cpp" line="678"/>
         <location filename="fearturechartwidget.cpp" line="679"/>
-        <location filename="fearturechartwidget.cpp" line="2089"/>
-        <location filename="fearturechartwidget.cpp" line="2090"/>
+        <location filename="fearturechartwidget.cpp" line="2146"/>
+        <location filename="fearturechartwidget.cpp" line="2147"/>
         <source> A</source>
         <translation></translation>
     </message>
@@ -1424,452 +1422,452 @@
         <translation type="vanished">电机</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="1030"/>
+        <location filename="lefttreeview.cpp" line="1040"/>
         <source>Devices</source>
         <translation>设备</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="116"/>
-        <location filename="lefttreeview.cpp" line="303"/>
+        <location filename="lefttreeview.cpp" line="118"/>
+        <location filename="lefttreeview.cpp" line="305"/>
         <source>Device List</source>
         <translation>设备列表</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="133"/>
+        <location filename="lefttreeview.cpp" line="135"/>
         <source>&amp;New Monitor Device</source>
         <oldsource>&amp;New Motor</oldsource>
         <translation>新建监测设备(&amp;N)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="136"/>
+        <location filename="lefttreeview.cpp" line="138"/>
         <source>&amp;New Device</source>
         <translation>新建设备(&amp;N)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="139"/>
+        <location filename="lefttreeview.cpp" line="141"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="141"/>
+        <location filename="lefttreeview.cpp" line="143"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="144"/>
+        <location filename="lefttreeview.cpp" line="146"/>
         <source>&amp;Physical Channel</source>
         <translation>物理通道(&amp;P)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="146"/>
+        <location filename="lefttreeview.cpp" line="148"/>
         <source>&amp;Compose Channel</source>
         <translation>组合通道(&amp;C)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="147"/>
+        <location filename="lefttreeview.cpp" line="149"/>
         <source>&amp;Compare Channel</source>
         <translation>对比通道(&amp;C)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="149"/>
+        <location filename="lefttreeview.cpp" line="151"/>
         <source>&amp;Accelerate RMS Trend</source>
         <translation>加速度有效值趋势(&amp;A)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="151"/>
+        <location filename="lefttreeview.cpp" line="153"/>
         <source>&amp;Speed RMS Trend</source>
         <translation>速度有效值趋势(&amp;S)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="153"/>
+        <location filename="lefttreeview.cpp" line="155"/>
         <source>&amp;Accelerate Frequency</source>
         <translation>加速度频谱(&amp;A)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="155"/>
+        <location filename="lefttreeview.cpp" line="157"/>
         <source>&amp;Accelerate Wave</source>
         <translation>加速度波形(&amp;A)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="158"/>
+        <location filename="lefttreeview.cpp" line="160"/>
         <source>&amp;Speed Wave</source>
         <translation>速度波形(&amp;S)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="160"/>
+        <location filename="lefttreeview.cpp" line="162"/>
         <source>&amp;Speed Frequency</source>
         <translation>速度频谱(&amp;S)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="162"/>
+        <location filename="lefttreeview.cpp" line="164"/>
         <source>&amp;Accelerate Envelope</source>
         <translation>加速度包络(&amp;A)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="165"/>
+        <location filename="lefttreeview.cpp" line="167"/>
         <source>&amp;Accelerate Power Spectrum</source>
         <translation>加速度功率谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="167"/>
+        <location filename="lefttreeview.cpp" line="169"/>
         <source>&amp;Speed Power Spectrum</source>
         <translation>速度功率谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="169"/>
+        <location filename="lefttreeview.cpp" line="171"/>
         <source>&amp;Accelerate Cepstrum</source>
         <translation>加速度倒谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="171"/>
+        <location filename="lefttreeview.cpp" line="173"/>
         <source>&amp;Speed Cepstrum</source>
         <translation>速度倒谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="174"/>
+        <location filename="lefttreeview.cpp" line="176"/>
         <source>&amp;Position RMS Trend</source>
         <translation>位移有效值趋势(&amp;P)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="176"/>
+        <location filename="lefttreeview.cpp" line="178"/>
         <source>&amp;Position Wave</source>
         <translation>位移波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="179"/>
+        <location filename="lefttreeview.cpp" line="181"/>
         <source>&amp;U RMS Trend</source>
         <translation>电压有效值趋势(&amp;U)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="181"/>
+        <location filename="lefttreeview.cpp" line="183"/>
         <source>&amp;I RMS Trend</source>
         <translation>电流有效值趋势(&amp;I)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="183"/>
+        <location filename="lefttreeview.cpp" line="185"/>
         <source>&amp;U Wave</source>
         <translation>电压波形(&amp;U)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="185"/>
+        <location filename="lefttreeview.cpp" line="187"/>
         <source>&amp;I Wave</source>
         <translation>电流波形(&amp;I)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="187"/>
+        <location filename="lefttreeview.cpp" line="189"/>
         <source>&amp;U Freqency</source>
         <translation>电压频谱(&amp;U)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="189"/>
+        <location filename="lefttreeview.cpp" line="191"/>
         <source>&amp;I Freqency</source>
         <translation>电流频谱(&amp;I)</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="192"/>
-        <location filename="lefttreeview.cpp" line="2149"/>
+        <location filename="lefttreeview.cpp" line="194"/>
+        <location filename="lefttreeview.cpp" line="2192"/>
         <source>Act Power</source>
         <translation>有功功率</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="194"/>
-        <location filename="lefttreeview.cpp" line="2154"/>
+        <location filename="lefttreeview.cpp" line="196"/>
+        <location filename="lefttreeview.cpp" line="2197"/>
         <source>React Power</source>
         <translation>无功功率</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="196"/>
-        <location filename="lefttreeview.cpp" line="2159"/>
+        <location filename="lefttreeview.cpp" line="198"/>
+        <location filename="lefttreeview.cpp" line="2202"/>
         <source>App Power</source>
         <translation>视在功率</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="198"/>
-        <location filename="lefttreeview.cpp" line="2164"/>
+        <location filename="lefttreeview.cpp" line="200"/>
+        <location filename="lefttreeview.cpp" line="2207"/>
         <source>CosF</source>
         <translation>功率因数</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="201"/>
+        <location filename="lefttreeview.cpp" line="203"/>
         <source>Voltage Positive Power</source>
         <translation>电压正序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="203"/>
+        <location filename="lefttreeview.cpp" line="205"/>
         <source>Voltage Negative Power</source>
         <translation>电压负序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="205"/>
+        <location filename="lefttreeview.cpp" line="207"/>
         <source>Voltage Zero Power</source>
         <translation>电压零序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="208"/>
+        <location filename="lefttreeview.cpp" line="210"/>
         <source>Current Positive Power</source>
         <translation>电流正序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="210"/>
+        <location filename="lefttreeview.cpp" line="212"/>
         <source>Current Negative Power</source>
         <translation>电流负序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="212"/>
+        <location filename="lefttreeview.cpp" line="214"/>
         <source>Current Zero Power</source>
         <translation>电流零序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="215"/>
+        <location filename="lefttreeview.cpp" line="217"/>
         <source>&amp;X Freqency Trend</source>
         <translation>nX频谱趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="218"/>
+        <location filename="lefttreeview.cpp" line="220"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="220"/>
+        <location filename="lefttreeview.cpp" line="222"/>
         <source>Export Data</source>
         <translation>导出数据</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="223"/>
-        <location filename="lefttreeview.cpp" line="2222"/>
+        <location filename="lefttreeview.cpp" line="225"/>
+        <location filename="lefttreeview.cpp" line="2265"/>
         <source>Acc Water Fall Plot</source>
         <translation>加速度频谱瀑布图</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="226"/>
-        <location filename="lefttreeview.cpp" line="2227"/>
+        <location filename="lefttreeview.cpp" line="228"/>
+        <location filename="lefttreeview.cpp" line="2270"/>
         <source>Speed Water Fall Plot</source>
         <translation>速度频谱瀑布图</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="229"/>
-        <location filename="lefttreeview.cpp" line="2232"/>
+        <location filename="lefttreeview.cpp" line="231"/>
+        <location filename="lefttreeview.cpp" line="2275"/>
         <source>Voltage Water Fall Plot</source>
         <translation>电压频谱瀑布图</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="232"/>
-        <location filename="lefttreeview.cpp" line="2237"/>
+        <location filename="lefttreeview.cpp" line="234"/>
+        <location filename="lefttreeview.cpp" line="2280"/>
         <source>Current Water Fall Plot</source>
         <translation>电流频谱瀑布图</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="235"/>
-        <location filename="lefttreeview.cpp" line="2204"/>
+        <location filename="lefttreeview.cpp" line="237"/>
+        <location filename="lefttreeview.cpp" line="2247"/>
         <source>Path tracking</source>
         <translation>路径轨迹</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="237"/>
-        <location filename="lefttreeview.cpp" line="2284"/>
+        <location filename="lefttreeview.cpp" line="239"/>
+        <location filename="lefttreeview.cpp" line="2334"/>
         <source>Diagnose Result</source>
         <translation>诊断结论</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="239"/>
-        <location filename="lefttreeview.cpp" line="2252"/>
+        <location filename="lefttreeview.cpp" line="241"/>
+        <location filename="lefttreeview.cpp" line="2295"/>
         <source>Park Transformation</source>
         <translation>帕克变换</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="242"/>
-        <location filename="lefttreeview.cpp" line="2257"/>
+        <location filename="lefttreeview.cpp" line="244"/>
+        <location filename="lefttreeview.cpp" line="2300"/>
         <source>Measure</source>
         <translation>测量值</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="245"/>
+        <location filename="lefttreeview.cpp" line="247"/>
         <source>Sync Motor Data</source>
         <translation>同步电机数据</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="256"/>
-        <location filename="lefttreeview.cpp" line="300"/>
-        <location filename="lefttreeview.cpp" line="307"/>
+        <location filename="lefttreeview.cpp" line="258"/>
+        <location filename="lefttreeview.cpp" line="302"/>
+        <location filename="lefttreeview.cpp" line="309"/>
         <source>Data List</source>
         <translation>数据列表</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="527"/>
+        <location filename="lefttreeview.cpp" line="537"/>
         <source>New Channel</source>
         <translation>新建通道</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="566"/>
-        <location filename="lefttreeview.cpp" line="602"/>
-        <location filename="lefttreeview.cpp" line="639"/>
+        <location filename="lefttreeview.cpp" line="576"/>
+        <location filename="lefttreeview.cpp" line="612"/>
+        <location filename="lefttreeview.cpp" line="649"/>
         <source>New Chart</source>
         <translation>新项目</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="794"/>
+        <location filename="lefttreeview.cpp" line="804"/>
         <source>Must select a data segment to show!</source>
         <translation>请先选择一个需要展示的录波数据!</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="1316"/>
+        <location filename="lefttreeview.cpp" line="1358"/>
         <source>Monitor Device</source>
         <translation>监测设备</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="1707"/>
-        <location filename="lefttreeview.cpp" line="2410"/>
+        <location filename="lefttreeview.cpp" line="1750"/>
+        <location filename="lefttreeview.cpp" line="2462"/>
         <source>Question</source>
         <translation>问题</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="1707"/>
-        <location filename="lefttreeview.cpp" line="2410"/>
+        <location filename="lefttreeview.cpp" line="1750"/>
+        <location filename="lefttreeview.cpp" line="2462"/>
         <source>Are you sure delete this item?</source>
         <translation>你确定要删除该条目吗？</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2054"/>
+        <location filename="lefttreeview.cpp" line="2097"/>
         <source>Postion RMS Trend</source>
         <translation>位移有效值趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2059"/>
+        <location filename="lefttreeview.cpp" line="2102"/>
         <source>Postion Wave</source>
         <translation>位移波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2064"/>
+        <location filename="lefttreeview.cpp" line="2107"/>
         <source>Accelerate RMS Trend</source>
         <translation>加速度有效值趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2069"/>
+        <location filename="lefttreeview.cpp" line="2112"/>
         <source>Speed RMS Trend</source>
         <translation>速度有效值趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2074"/>
+        <location filename="lefttreeview.cpp" line="2117"/>
         <source>Accelerate Frequency</source>
         <translation>加速度频谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2079"/>
+        <location filename="lefttreeview.cpp" line="2122"/>
         <source>Accelerate Wave</source>
         <translation>加速度波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2084"/>
+        <location filename="lefttreeview.cpp" line="2127"/>
         <source>Speed Wave</source>
         <translation>速度波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2089"/>
+        <location filename="lefttreeview.cpp" line="2132"/>
         <source>Speed Frequency</source>
         <translation>速度频谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2094"/>
+        <location filename="lefttreeview.cpp" line="2137"/>
         <source>Accelerate Power Spectrum</source>
         <translation>加速度功率谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2099"/>
+        <location filename="lefttreeview.cpp" line="2142"/>
         <source>Speed Power Spectrum</source>
         <translation>速度功率谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2104"/>
+        <location filename="lefttreeview.cpp" line="2147"/>
         <source>Accelerate Cepstrum</source>
         <translation>加速度倒谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2109"/>
+        <location filename="lefttreeview.cpp" line="2152"/>
         <source>Speed Cepstrum</source>
         <translation>速度倒谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2114"/>
+        <location filename="lefttreeview.cpp" line="2157"/>
         <source>Accelerate Envelop</source>
         <translation>加速度包络</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2119"/>
+        <location filename="lefttreeview.cpp" line="2162"/>
         <source>U RMS Trend</source>
         <translation>电压有效值趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2124"/>
+        <location filename="lefttreeview.cpp" line="2167"/>
         <source>I RMS Trend</source>
         <translation>电流有效值趋势</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2129"/>
+        <location filename="lefttreeview.cpp" line="2172"/>
         <source>U Wave</source>
         <translation>电压波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2134"/>
+        <location filename="lefttreeview.cpp" line="2177"/>
         <source>I Wave</source>
         <translation>电流波形</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2139"/>
+        <location filename="lefttreeview.cpp" line="2182"/>
         <source>U Freqency</source>
         <translation>电压频谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2144"/>
+        <location filename="lefttreeview.cpp" line="2187"/>
         <source>I Freqency</source>
         <translation>电流频谱</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2169"/>
+        <location filename="lefttreeview.cpp" line="2212"/>
         <source>Voltage Positive Sequence</source>
         <translation>电压正序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2174"/>
+        <location filename="lefttreeview.cpp" line="2217"/>
         <source>Voltage Negative Sequence</source>
         <translation>电压负序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2179"/>
+        <location filename="lefttreeview.cpp" line="2222"/>
         <source>Voltage Zero Sequence</source>
         <translation>电压零序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2184"/>
+        <location filename="lefttreeview.cpp" line="2227"/>
         <source>Current Positive Sequence</source>
         <translation>电流正序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2189"/>
+        <location filename="lefttreeview.cpp" line="2232"/>
         <source>Current Negative Sequence</source>
         <translation>电流负序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2194"/>
+        <location filename="lefttreeview.cpp" line="2237"/>
         <source>Current Zero Sequence</source>
         <translation>电流零序</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2461"/>
+        <location filename="lefttreeview.cpp" line="2513"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2461"/>
+        <location filename="lefttreeview.cpp" line="2513"/>
         <source>Txt file(*.csv);;All file(*.*)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2491"/>
+        <location filename="lefttreeview.cpp" line="2543"/>
         <source>Infomation</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="2491"/>
+        <location filename="lefttreeview.cpp" line="2543"/>
         <source>Export Data finished!</source>
         <translation>数据已导出!</translation>
     </message>
@@ -1878,11 +1876,11 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="130"/>
-        <location filename="mainwindow.cpp" line="431"/>
-        <location filename="mainwindow.cpp" line="437"/>
-        <location filename="mainwindow.cpp" line="481"/>
-        <location filename="mainwindow.cpp" line="485"/>
-        <location filename="mainwindow.cpp" line="1626"/>
+        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="455"/>
+        <location filename="mainwindow.cpp" line="499"/>
+        <location filename="mainwindow.cpp" line="503"/>
+        <location filename="mainwindow.cpp" line="1667"/>
         <source>Infomation</source>
         <translation>提示</translation>
     </message>
@@ -1896,22 +1894,22 @@
         <translation type="vanished">振动监测和分析系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="397"/>
+        <location filename="mainwindow.cpp" line="415"/>
         <source>Question</source>
         <translation>问题</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="397"/>
+        <location filename="mainwindow.cpp" line="415"/>
         <source>Import file will cover current data file,Are you sure import the file?</source>
         <translation>导入文件将覆盖原有数据，你确定要导入文件吗？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="431"/>
+        <location filename="mainwindow.cpp" line="449"/>
         <source>Import file finished!</source>
         <translation>导入文件结束！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="437"/>
+        <location filename="mainwindow.cpp" line="455"/>
         <source>Import file failed!</source>
         <translation>导入文件失败！</translation>
     </message>
@@ -1920,44 +1918,44 @@
         <translation type="vanished">文件已加载</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="618"/>
+        <location filename="mainwindow.cpp" line="636"/>
         <source>&amp;%1 %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="461"/>
+        <location filename="mainwindow.cpp" line="479"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
-        <location filename="mainwindow.cpp" line="237"/>
+        <location filename="mainwindow.cpp" line="226"/>
+        <location filename="mainwindow.cpp" line="248"/>
         <source>MDFS</source>
         <translation>MDFS</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="218"/>
+        <location filename="mainwindow.cpp" line="229"/>
         <source>MDFS - Vibrate monitoring and analyse system</source>
         <translation>MDFS-振动监测及分析系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="221"/>
-        <location filename="mainwindow.cpp" line="243"/>
+        <location filename="mainwindow.cpp" line="232"/>
+        <location filename="mainwindow.cpp" line="254"/>
         <source>Vibration Analysis Tool</source>
         <translation>振动分析工具</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="224"/>
+        <location filename="mainwindow.cpp" line="235"/>
         <source>MDFS - Electric monitoring and analyse system</source>
         <translation>MDFS-电量监测及分析系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="227"/>
+        <location filename="mainwindow.cpp" line="238"/>
         <source>MDFS - Temperature monitoring and analyse system</source>
         <translation>MDFS-温度监测及分析系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="240"/>
+        <location filename="mainwindow.cpp" line="251"/>
         <source>MDFS - Vibrate monitoring and diagnosis system</source>
         <translation>MDFS-振动监测及诊断系统</translation>
     </message>
@@ -1966,48 +1964,48 @@
         <translation type="vanished">服务器</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="461"/>
+        <location filename="mainwindow.cpp" line="479"/>
         <source>Txt file(*.db);;All file(*.*)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
+        <location filename="mainwindow.cpp" line="499"/>
         <source>Export file finished!</source>
         <translation>导出文件结束！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="485"/>
+        <location filename="mainwindow.cpp" line="503"/>
         <source>Export file failed!</source>
         <translation>导出文件失败！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="518"/>
+        <location filename="mainwindow.cpp" line="536"/>
         <source>About Application</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="519"/>
+        <location filename="mainwindow.cpp" line="537"/>
         <source>The &lt;b&gt;MFDS&lt;/b&gt; applicatioin is using for sample data and analyse data for check the motor stateinclude electric device,vibrate device and temprature device.
 Version 0.9.5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.cpp" line="639"/>
         <source>%1 %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="649"/>
+        <location filename="mainwindow.cpp" line="667"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="651"/>
+        <location filename="mainwindow.cpp" line="669"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="810"/>
+        <location filename="mainwindow.cpp" line="828"/>
         <source>Parameter setting</source>
         <translation>参数设置</translation>
     </message>
@@ -2040,63 +2038,63 @@ Version 0.9.5</source>
         <translation type="vanished">另存为(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="719"/>
+        <location filename="mainwindow.cpp" line="737"/>
         <source>Switch layout direction</source>
         <translation>切换界面布局方向</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="725"/>
+        <location filename="mainwindow.cpp" line="743"/>
         <source>E&amp;xit</source>
         <translation>退出(&amp;X)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="727"/>
+        <location filename="mainwindow.cpp" line="745"/>
         <source>Exit the application</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="731"/>
+        <location filename="mainwindow.cpp" line="749"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="732"/>
+        <location filename="mainwindow.cpp" line="750"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="767"/>
+        <location filename="mainwindow.cpp" line="785"/>
         <source>Device Model</source>
         <translation>设备型号</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="770"/>
+        <location filename="mainwindow.cpp" line="788"/>
         <source>New Device</source>
         <translation>新建设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="774"/>
+        <location filename="mainwindow.cpp" line="792"/>
         <source>Edit Device</source>
         <translation>编辑设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="781"/>
+        <location filename="mainwindow.cpp" line="799"/>
         <source>Motor Model</source>
         <translation>电机模型</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="784"/>
+        <location filename="mainwindow.cpp" line="802"/>
         <source>Bear Model</source>
         <translation>轴承模型</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="787"/>
+        <location filename="mainwindow.cpp" line="805"/>
         <source>New Monitor Device</source>
         <oldsource>New Motor</oldsource>
         <translation>新建监测设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="790"/>
+        <location filename="mainwindow.cpp" line="808"/>
         <source>Edit Monitor Device</source>
         <oldsource>Edit Motor</oldsource>
         <translation>编辑监测设备</translation>
@@ -2106,153 +2104,164 @@ Version 0.9.5</source>
         <translation type="vanished">视图(&amp;V)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="246"/>
+        <location filename="mainwindow.cpp" line="257"/>
         <source>MDFS - Electric monitoring and diagnosis system</source>
         <translation>MDFS-电量监测及诊断系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="249"/>
+        <location filename="mainwindow.cpp" line="260"/>
         <source>MDFS - Temperature monitoring and diagnosis system</source>
         <translation>MDFS-温度监测及诊断系统</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="274"/>
+        <location filename="mainwindow.cpp" line="285"/>
         <source>S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="664"/>
+        <location filename="mainwindow.cpp" line="291"/>
+        <location filename="mainwindow.cpp" line="2375"/>
+        <source>Diagnose Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="682"/>
         <source>&amp;Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="666"/>
+        <location filename="mainwindow.cpp" line="684"/>
         <source>Import a file</source>
         <translation>从文件导入</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="682"/>
+        <location filename="mainwindow.cpp" line="700"/>
         <source>&amp;Export</source>
         <translation>导出</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="684"/>
+        <location filename="mainwindow.cpp" line="702"/>
         <source>Export data to a file</source>
         <translation>导出数据到文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="690"/>
-        <location filename="mainwindow.cpp" line="691"/>
+        <location filename="mainwindow.cpp" line="708"/>
+        <location filename="mainwindow.cpp" line="709"/>
         <source>Record Waves</source>
         <translation>录制波形</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="696"/>
-        <location filename="mainwindow.cpp" line="697"/>
+        <location filename="mainwindow.cpp" line="714"/>
+        <location filename="mainwindow.cpp" line="715"/>
         <source>Database</source>
         <translation>数据库</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="795"/>
+        <location filename="mainwindow.cpp" line="813"/>
         <source>&amp;Alarm</source>
         <translation>警告(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="799"/>
+        <location filename="mainwindow.cpp" line="817"/>
         <source>A&amp;nalyse</source>
         <translation>分析(&amp;n)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="800"/>
+        <location filename="mainwindow.cpp" line="818"/>
         <source>FFT Parameter setting</source>
         <translation>FFT参数设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="801"/>
+        <location filename="mainwindow.cpp" line="819"/>
         <source>FFT parameter setting</source>
         <translation>FFT参数设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="806"/>
+        <location filename="mainwindow.cpp" line="824"/>
         <source>&amp;Option</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="811"/>
+        <location filename="mainwindow.cpp" line="829"/>
         <source>setting parameters</source>
         <oldsource>setting charts note</oldsource>
         <translation>设置参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="818"/>
-        <location filename="mainwindow.cpp" line="819"/>
+        <location filename="mainwindow.cpp" line="836"/>
+        <location filename="mainwindow.cpp" line="837"/>
         <source>Diagnose setting</source>
         <translation>诊断设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="824"/>
+        <location filename="mainwindow.cpp" line="842"/>
         <source>Server parameters setting</source>
         <translation>服务器参数设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="825"/>
+        <location filename="mainwindow.cpp" line="843"/>
         <source>setting server parameters</source>
         <translation>设置服务器参数</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="829"/>
+        <location filename="mainwindow.cpp" line="847"/>
         <source>&amp;Window</source>
         <translation>窗口(&amp;W)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="830"/>
+        <location filename="mainwindow.cpp" line="848"/>
         <source>Window</source>
         <translation>窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="833"/>
+        <location filename="mainwindow.cpp" line="851"/>
         <source>Cl&amp;ose</source>
         <translation>关闭当前窗口(&amp;o)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="834"/>
+        <location filename="mainwindow.cpp" line="852"/>
         <source>Close the active window</source>
         <translation>关闭当前窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="839"/>
+        <location filename="mainwindow.cpp" line="857"/>
         <source>Close &amp;All</source>
         <translation>关闭所有窗口(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="840"/>
+        <location filename="mainwindow.cpp" line="858"/>
         <source>Close all the windows</source>
         <translation>关闭所有窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
+        <location filename="mainwindow.cpp" line="863"/>
         <source>&amp;Tile</source>
         <translation>平铺(&amp;T)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
+        <location filename="mainwindow.cpp" line="864"/>
         <source>Tile the windows</source>
         <translation>平铺窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="851"/>
+        <location filename="mainwindow.cpp" line="869"/>
         <source>&amp;Cascade</source>
         <translation>层叠放置(&amp;C)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="852"/>
+        <location filename="mainwindow.cpp" line="870"/>
         <source>Cascade the windows</source>
         <translation>层叠方式窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1626"/>
+        <location filename="mainwindow.cpp" line="1667"/>
         <source>Max show window is limit to 4!</source>
         <translation>允许最大子窗口数量为4！</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="3352"/>
+        <source>Study Mode</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ne&amp;xt</source>
@@ -2263,22 +2272,22 @@ Version 0.9.5</source>
         <translation type="vanished">上一个(&amp;v)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="876"/>
+        <location filename="mainwindow.cpp" line="894"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="878"/>
+        <location filename="mainwindow.cpp" line="896"/>
         <source>&amp;About us</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="879"/>
+        <location filename="mainwindow.cpp" line="897"/>
         <source>Show the application&apos;s About box</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="892"/>
+        <location filename="mainwindow.cpp" line="910"/>
         <source>Is Online</source>
         <translation>在线</translation>
     </message>
@@ -2333,7 +2342,7 @@ Do you want to save your changes?</source>
     <name>MotorEdit</name>
     <message>
         <location filename="motoredit.cpp" line="26"/>
-        <location filename="motoredit.cpp" line="254"/>
+        <location filename="motoredit.cpp" line="255"/>
         <source>Motor Edit</source>
         <translation>编辑电机</translation>
     </message>
@@ -2459,43 +2468,43 @@ Do you want to save your changes?</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="258"/>
+        <location filename="motoredit.cpp" line="259"/>
         <source>Motor Add</source>
         <translation>添加电机</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="273"/>
-        <location filename="motoredit.cpp" line="284"/>
-        <location filename="motoredit.cpp" line="291"/>
-        <location filename="motoredit.cpp" line="322"/>
-        <location filename="motoredit.cpp" line="330"/>
-        <location filename="motoredit.cpp" line="471"/>
-        <location filename="motoredit.cpp" line="509"/>
+        <location filename="motoredit.cpp" line="274"/>
+        <location filename="motoredit.cpp" line="285"/>
+        <location filename="motoredit.cpp" line="292"/>
+        <location filename="motoredit.cpp" line="323"/>
+        <location filename="motoredit.cpp" line="331"/>
+        <location filename="motoredit.cpp" line="472"/>
+        <location filename="motoredit.cpp" line="510"/>
         <source>Infomation</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="273"/>
+        <location filename="motoredit.cpp" line="274"/>
         <source>Please enter data 1!</source>
         <translation>请输入数据！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="284"/>
+        <location filename="motoredit.cpp" line="285"/>
         <source>Please enter data 2!</source>
         <translation>请输入数据！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="291"/>
+        <location filename="motoredit.cpp" line="292"/>
         <source>Please enter data 3!</source>
         <translation>请输入数据！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="322"/>
+        <location filename="motoredit.cpp" line="323"/>
         <source>Update data failed 4!</source>
         <translation>更新数据失败！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="471"/>
+        <location filename="motoredit.cpp" line="472"/>
         <source>Insert data failed 5!</source>
         <translation>插入数据失败！</translation>
     </message>
@@ -2504,7 +2513,7 @@ Do you want to save your changes?</source>
         <translation type="vanished">请输入数据！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="330"/>
+        <location filename="motoredit.cpp" line="331"/>
         <source>The device code has existed!</source>
         <translation>该编码已存在，请从新输入！</translation>
     </message>
@@ -2513,7 +2522,7 @@ Do you want to save your changes?</source>
         <translation type="vanished">插入数据失败！</translation>
     </message>
     <message>
-        <location filename="motoredit.cpp" line="509"/>
+        <location filename="motoredit.cpp" line="510"/>
         <source>Update data failed!</source>
         <translation>更新数据失败！</translation>
     </message>
@@ -2871,7 +2880,7 @@ Do you want to save your changes?</source>
     <name>ParkTransformationWidget</name>
     <message>
         <location filename="parktransformationwidget.cpp" line="37"/>
-        <location filename="parktransformationwidget.cpp" line="392"/>
+        <location filename="parktransformationwidget.cpp" line="382"/>
         <source>Sample time:  </source>
         <translation>采样时间： </translation>
     </message>
@@ -2890,8 +2899,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="parktransformationwidget.cpp" line="63"/>
-        <location filename="parktransformationwidget.cpp" line="198"/>
-        <location filename="parktransformationwidget.cpp" line="446"/>
+        <location filename="parktransformationwidget.cpp" line="188"/>
+        <location filename="parktransformationwidget.cpp" line="436"/>
         <source>Park-U</source>
         <translation>Park-U</translation>
     </message>
@@ -2902,8 +2911,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="parktransformationwidget.cpp" line="86"/>
-        <location filename="parktransformationwidget.cpp" line="221"/>
-        <location filename="parktransformationwidget.cpp" line="447"/>
+        <location filename="parktransformationwidget.cpp" line="211"/>
+        <location filename="parktransformationwidget.cpp" line="437"/>
         <source>Park-I</source>
         <translation>Park-I</translation>
     </message>
@@ -2914,8 +2923,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="parktransformationwidget.cpp" line="111"/>
-        <location filename="parktransformationwidget.cpp" line="240"/>
-        <location filename="parktransformationwidget.cpp" line="448"/>
+        <location filename="parktransformationwidget.cpp" line="230"/>
+        <location filename="parktransformationwidget.cpp" line="438"/>
         <source>Park-U-Freqency</source>
         <translation>Park-U-Freqency</translation>
     </message>
@@ -2926,13 +2935,13 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="parktransformationwidget.cpp" line="134"/>
-        <location filename="parktransformationwidget.cpp" line="259"/>
-        <location filename="parktransformationwidget.cpp" line="449"/>
+        <location filename="parktransformationwidget.cpp" line="249"/>
+        <location filename="parktransformationwidget.cpp" line="439"/>
         <source>Park-I-Freqency</source>
         <translation>Park-I-Freqency</translation>
     </message>
     <message>
-        <location filename="parktransformationwidget.cpp" line="313"/>
+        <location filename="parktransformationwidget.cpp" line="303"/>
         <source>reset zoom</source>
         <translation>重置缩放</translation>
     </message>
@@ -2981,12 +2990,12 @@ Do you want to save your changes?</source>
     <message>
         <location filename="devicepipeedit.cpp" line="406"/>
         <location filename="devicepipeedit.cpp" line="447"/>
-        <location filename="lefttreeview.cpp" line="1508"/>
+        <location filename="lefttreeview.cpp" line="1550"/>
         <source>[%1]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="256"/>
+        <location filename="lefttreeview.cpp" line="258"/>
         <source>&lt;font color = red&gt;[%1]&lt;/font&gt;</source>
         <translation></translation>
     </message>
@@ -3131,6 +3140,24 @@ Do you want to save your changes?</source>
         <location filename="surfacechart.cpp" line="268"/>
         <source>reset zoom</source>
         <translation>重置缩放</translation>
+    </message>
+</context>
+<context>
+    <name>SyncDataInfo</name>
+    <message>
+        <location filename="syncdatainfo.cpp" line="18"/>
+        <source>start sync data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="syncdatainfo.cpp" line="29"/>
+        <source>Sync Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="syncdatainfo.cpp" line="32"/>
+        <source>Cancel Sync Data</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

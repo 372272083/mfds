@@ -41,17 +41,6 @@ ServerParameterSetting::ServerParameterSetting(SqliteDB *db, QDialog *parent) : 
     pserverELabel->setText(tr("Is Server Enable:"));
     server_enable = new QCheckBox(this);
     server_enable->setChecked(GlobalVariable::server_enable);
-    /*
-    if(!GlobalVariable::is_sync_done)
-    {
-        GlobalVariable::server_enable = false;
-        server_enable->setChecked(false);
-        server_enable->setEnabled(false);
-        QLabel *msg = new QLabel(this);
-        msg->setText(tr("Motor Configure Info must sync first!"));
-        items_server->addWidget(msg,index,0,1,2,Qt::AlignLeft);
-    }
-    */
 
     index++;
     items_server->addWidget(pserverELabel,index,0,1,1,Qt::AlignRight);

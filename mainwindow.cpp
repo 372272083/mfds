@@ -1380,20 +1380,6 @@ void MainWindow::timeSendInfo()
 
         return;
     }
-
-    /*
-    if(!GlobalVariable::is_sync_done)
-    {
-        if (GlobalVariable::trans_queue.size()>0) {
-            GlobalVariable::trans_queue.clear();
-        }
-        if (GlobalVariable::trans_queue_pri.size()>0) {
-            GlobalVariable::trans_queue_pri.clear();
-        }
-        return;
-    }
-    */
-
     if (!isconnected)
     {
         leftView->updateActionState(0);

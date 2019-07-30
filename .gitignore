@@ -2,6 +2,8 @@ data_mf.db
 chargeinfo.obj
 mfds.pro
 mfds.pro.user
+zh.qm
+en.qm
 debug/
 release/
 mfdslib/
