@@ -80,7 +80,7 @@ QByteArray DeviceInfo::getSendMsg()
 
     expDataLen = cmd.ExpectLen;
 
-    if (cmd.Command == 0x3 || cmd.Command == 0x10)
+    if (cmd.Command == 0x3 || cmd.Command == 0x4 || cmd.Command == 0x10)
     {
         if (cmd.Unit == TIME_SYNC_W)
         {
@@ -185,6 +185,50 @@ bool DeviceInfo::isExpLen()
     return false;
 }
 
+int DeviceInfo::bufferToint(QByteArray value,BYTEORDER4 bo)
+{
+    int result = 0;
+    if(value.size() < 4)
+    {
+        return result;
+    }
+    QByteArray tmp;
+    tmp.resize(4);
+
+    switch (bo) {
+    case LL_LH_HL_HH:
+        tmp[0] = value[0];
+        tmp[1] = value[1];
+        tmp[2] = value[2];
+        tmp[3] = value[3];
+        break;
+    case HH_HL_LH_LL:
+        tmp[0] = value[3];
+        tmp[1] = value[2];
+        tmp[2] = value[1];
+        tmp[3] = value[0];
+        break;
+    case HL_HH_LL_LH:
+        tmp[0] = value[2];
+        tmp[1] = value[3];
+        tmp[2] = value[0];
+        tmp[3] = value[1];
+        break;
+    case LH_LL_HH_HL:
+        tmp[0] = value[1];
+        tmp[1] = value[0];
+        tmp[2] = value[3];
+        tmp[3] = value[2];
+        break;
+    default:
+        break;
+    }
+
+    memcpy(&result,tmp,4);
+
+    return result;
+}
+
 float DeviceInfo::bufferTofloat(QByteArray value,BYTEORDER4 bo)
 {
     float result = 0;
@@ -207,6 +251,18 @@ float DeviceInfo::bufferTofloat(QByteArray value,BYTEORDER4 bo)
         tmp[1] = value[2];
         tmp[2] = value[1];
         tmp[3] = value[0];
+        break;
+    case HL_HH_LL_LH:
+        tmp[0] = value[2];
+        tmp[1] = value[3];
+        tmp[2] = value[0];
+        tmp[3] = value[1];
+        break;
+    case LH_LL_HH_HL:
+        tmp[0] = value[1];
+        tmp[1] = value[0];
+        tmp[2] = value[3];
+        tmp[3] = value[2];
         break;
     default:
         break;
@@ -285,12 +341,12 @@ QByteArray DeviceInfo::ushortToBuffer(ushort value,BYTEORDER2 bo)
 
 QByteArray DeviceInfo::modbusEncomposeMsg(ModbusTCPMapInfo mtInfo)
 {
-    if (mtInfo.Command == 0x3) //modbus read
+    if (mtInfo.Command == 0x3 || mtInfo.Command == 0x4) //modbus read
     {
         QByteArray ba;
         ba.resize(12);
         ba[0] = 0;
-        ba[1] = 0;
+        ba[1] = mtInfo.Num;
         ba[2] = 0;
         ba[3] = 0;
         ba[4] = 0;

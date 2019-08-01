@@ -31,6 +31,14 @@ enum MSGAddr {
     ROTATE_W = 62,
     POWER_W = 63,
 
+    TW888_R_0 = 90,
+    TW888_R_1 = 91,
+    TW888_R_2 = 92,
+    TW888_R_3 = 93,
+    TW888_R_4 = 94,
+    TW888_R_5 = 95,
+    TW888_R_6 = 96,
+
     NI_LINK_STATE = 100,
     NI_WAVE_S = 101,
     NI_WAVE_A = 102,
@@ -64,6 +72,8 @@ enum ChartType {
 enum BYTEORDER4 {
     LL_LH_HL_HH = 1,
     HH_HL_LH_LL = 2,
+    HL_HH_LL_LH = 3,
+    LH_LL_HH_HL = 4,
 };
 
 enum BYTEORDER2 {
@@ -96,6 +106,7 @@ enum TABLENAME {
 
 struct ModbusTCPMapInfo
 {
+    unsigned short Num;
     MSGAddr Unit;
     unsigned short Addr;
     int Length;

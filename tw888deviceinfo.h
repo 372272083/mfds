@@ -2,6 +2,7 @@
 #define TW888DEVICEINFO_H
 
 #include "deviceinfo.h"
+#include "tw888info.h"
 
 class TW888DeviceINfo : public DeviceInfo
 {
@@ -18,6 +19,14 @@ public:
 private:
     int area_id;
     int machine_id;
+
+    int version_main;
+    int version_sub;
+
+    int guid[8];
+    int supportMotorNum;
+
+    TW888Info twinfo;
 };
 
 #endif // TW888DEVICEINFO_H

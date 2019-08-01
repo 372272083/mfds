@@ -25,6 +25,7 @@
 #include "cmieedeviceinfo.h"
 #include "cmievdeviceinfo.h"
 #include "cmietdeviceinfo.h"
+#include "tw888deviceinfo.h"
 
 DeviceEditDialog::DeviceEditDialog(SqliteDB *db,QWidget *parent) : QDialog(parent),m_db(db)
 {
@@ -855,7 +856,7 @@ bool DeviceEditDialog::editdevice()
                     */
                     GlobalVariable::deviceInfos.append(vInfo);
                 }
-                else if (type.compare("CMIE-T") == 0) //e7 vibrate sample device
+                else if (type.compare("CKYB5003TEMQ") == 0) //e7 vibrate sample device
                 {
                     CMIETDeviceInfo *tInfo = new CMIETDeviceInfo();
 
@@ -874,6 +875,26 @@ bool DeviceEditDialog::editdevice()
                     tInfo->wave_interval = w_interval_i;
 
                     GlobalVariable::deviceInfos.append(tInfo);
+                }
+                else if (type.compare("TW888") == 0) //e7 vibrate sample device
+                {
+                    TW888DeviceINfo *twInfo = new TW888DeviceINfo();
+
+                    twInfo->init();
+                    twInfo->tree_id = GlobalVariable::maxDeviceTreeId;;
+                    twInfo->type = DEVICE;
+                    twInfo->pid = 0;
+                    twInfo->deviceCode = device_code;
+                    twInfo->title = title;
+                    twInfo->ipAddress = ip;
+                    twInfo->ipPort = port_i;
+                    twInfo->deviceType = udata;
+                    twInfo->deviceModel = type;
+                    twInfo->measure_interval = m_interval_i;
+                    twInfo->freq_interval = f_interval_i;
+                    twInfo->wave_interval = w_interval_i;
+
+                    GlobalVariable::deviceInfos.append(twInfo);
                 }
                 else
                 {

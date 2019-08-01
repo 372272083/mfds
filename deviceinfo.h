@@ -56,6 +56,7 @@ public:
     QByteArray getSendMsg();
 
     static float bufferTofloat(QByteArray value,BYTEORDER4 bo=LL_LH_HL_HH);
+    static int bufferToint(QByteArray value,BYTEORDER4 bo);
     static ushort bufferToUShort(QByteArray value,BYTEORDER2 bo=LL_HH);
 
     static QByteArray floatToBuffer(float value,BYTEORDER4 bo=LL_LH_HL_HH);
