@@ -551,10 +551,6 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
                 {
                     menu.addAction(newReportAction);
                 }
-                if(GlobalVariable::s_t == 2 || GlobalVariable::s_t == 0)
-                {
-                    menu.addAction(newParkAction);
-                }
 
                 menu.exec(QCursor::pos());  //在当前鼠标位置显示
                 if(1==run_mode)
@@ -631,7 +627,11 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
                     submenu->addAction(newIFreqencyChart);
                     submenu->addSeparator();
                     submenu->addAction(newFreqXChart);
-
+                    submenu->addSeparator();
+                    if(GlobalVariable::s_t == 2 || GlobalVariable::s_t == 0)
+                    {
+                        submenu->addAction(newParkAction);
+                    }
                     submenu->addSeparator();
                     submenu->addAction(waterfallvolAction);
                     submenu->addAction(waterfallcurAction);
@@ -1236,7 +1236,7 @@ void LeftTreeView::setupDeviceTree()
                         }
                         else if (deviceModel.compare("TW888") == 0) //e7 vibrate sample device
                         {
-                            TW888DeviceINfo *twInfo = new TW888DeviceINfo();
+                            TW888DeviceInfo *twInfo = new TW888DeviceInfo();
 
                             twInfo->init();
                             twInfo->tree_id = tmp->id;

@@ -1,6 +1,7 @@
 #include "globalvariable.h"
 
 #include "chargeinfo.h"
+#include "tw888info.h"
 #include "vibrateinfo.h"
 #include "temperatureinfo.h"
 #include "freqinfo.h"
@@ -340,6 +341,8 @@ bool GlobalVariable::isOnline = true;
 
 QMutex GlobalVariable::chargesglobalMutex;
 QMap<QString,QMap<QString,QQueue<ChargeInfo*>>> GlobalVariable::charges;
+QMutex GlobalVariable::tw888chargesglobalMutex;
+QMap<QString,QQueue<TW888Info*>> GlobalVariable::tw888charges; //sample electric measure data
 QMutex GlobalVariable::vibratesglobalMutex;
 QMap<QString,QMap<QString,QQueue<VibrateInfo*>>> GlobalVariable::vibrates;
 QMutex GlobalVariable::temperaturesglobalMutex;

@@ -4,11 +4,11 @@
 #include "deviceinfo.h"
 #include "tw888info.h"
 
-class TW888DeviceINfo : public DeviceInfo
+class TW888DeviceInfo : public DeviceInfo
 {
     Q_OBJECT
 public:
-    TW888DeviceINfo(DeviceInfo *parent = 0);
+    TW888DeviceInfo(DeviceInfo *parent = 0);
     virtual void handlerReceiveMsg();
     virtual void handleSendMsg();
     virtual QString getComAddress();

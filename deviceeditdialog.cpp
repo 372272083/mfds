@@ -878,7 +878,7 @@ bool DeviceEditDialog::editdevice()
                 }
                 else if (type.compare("TW888") == 0) //e7 vibrate sample device
                 {
-                    TW888DeviceINfo *twInfo = new TW888DeviceINfo();
+                    TW888DeviceInfo *twInfo = new TW888DeviceInfo();
 
                     twInfo->init();
                     twInfo->tree_id = GlobalVariable::maxDeviceTreeId;;

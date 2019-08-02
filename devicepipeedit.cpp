@@ -70,7 +70,7 @@ DevicePipeEdit::DevicePipeEdit(SqliteDB *db,QWidget *parent) : QDialog(parent),m
     items->addWidget(pdeviceLabel,1,0,1,1,Qt::AlignRight);
     items->addWidget(deviceCombo,1,1,1,1);
 
-    QLabel *pchannelLabel = new QLabel(this);
+    pchannelLabel = new QLabel(this);
     pchannelLabel->setText(tr("Channel:"));
     channelCombo = new QComboBox(this);
 
@@ -492,6 +492,12 @@ void DevicePipeEdit::deviceSelectChanged(const QString &text)
     {
 
     }
+    else if(d_type.compare("E",Qt::CaseInsensitive) == 0)
+    {
+        channelCombo->setVisible(false);
+        pchannelLabel->setVisible(false);
+    }
+
     if(GlobalVariable::version >=2)
     {
         if(d_type.compare("E",Qt::CaseInsensitive) == 0)

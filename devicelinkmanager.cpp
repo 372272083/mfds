@@ -19,6 +19,7 @@
 DeviceLinkManager::DeviceLinkManager(/*SqliteDB *db, */QObject *parent) : QObject(parent),/*m_db(db),*/baseInterval(BASE_INTERVAL)
 {
     state_s = true;
+    baseInterval = 100;
 }
 
 void DeviceLinkManager::timeUpdate()
@@ -39,6 +40,14 @@ void DeviceLinkManager::timeUpdate()
         //QString devicecode = it.key();
         DeviceInfo* deviceInfo = *cIt;
         QString devicecode = deviceInfo->deviceCode;
+        if(deviceInfo->deviceModel.compare("TW888",Qt::CaseInsensitive) != 0)
+        {
+            int mod = countDisconnect % ((BASE_INTERVAL/2)/baseInterval);
+            if(mod != 0)
+            {
+                continue;
+            }
+        }
         //qDebug() << "cycle msg: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat) << " : " << devicecode;
         if (deviceInfo->linkState)
         {
@@ -73,7 +82,8 @@ void DeviceLinkManager::timeUpdate()
             {
                 qDebug() << "cycle msg: " << "12";
                 deviceInfo->waitingCount++;
-                if((deviceInfo->waitingCount/2) > GlobalVariable::sample_waiting)
+
+                if((deviceInfo->waitingCount/(BASE_INTERVAL/baseInterval)) > GlobalVariable::sample_waiting)
                 {
                     XSocketClient* client = m_sockes[devicecode];
                     if(client != nullptr)
@@ -98,7 +108,7 @@ void DeviceLinkManager::timeUpdate()
                 }
             }
             deviceInfo->reConnectCount++;
-            if ((deviceInfo->reConnectCount/2) > GlobalVariable::sample_waiting)
+            if ((deviceInfo->reConnectCount/(BASE_INTERVAL/baseInterval)) > GlobalVariable::sample_waiting)
             {
                 QString ipAddress = deviceInfo->ipAddress;
                 deviceInfo->init();
@@ -215,7 +225,7 @@ void DeviceLinkManager::connectDevice()
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
-    timer->start(baseInterval/2);
+    timer->start(50);
 }
 
 QMap<QString,DeviceInfo*> DeviceLinkManager::getDevicesInfo()

@@ -8,6 +8,7 @@
 #include "sqlitedb.h"
 
 #include "chargeinfo.h"
+#include "tw888info.h"
 #include "vibrateinfo.h"
 #include "temperatureinfo.h"
 
@@ -114,6 +115,101 @@ void SaveSampleThread::run()
                             {
                                 break;
                             }
+                        }
+                    }
+                }
+                if (GlobalVariable::is_sync_done && dataBuffer.size()>0)
+                {
+                    QByteArray compress_dataBuffer = qCompress(dataBuffer);
+                    int compress_data_len = compress_dataBuffer.size();
+                    sendBuffer[3] = compress_data_len / 0xFF;
+                    sendBuffer[4] = compress_data_len % 0xFF;
+                    sendBuffer.append(compress_dataBuffer);
+                    GlobalVariable::trans_queue.enqueue(sendBuffer);
+                }
+            }
+
+            //if (sqls.size()>0)
+            //{
+            //    mdb->execSql(sqls);
+            //}
+        }
+        catch(QException e)
+        {
+
+        }
+
+        try
+        {
+            maxCount = 0;
+            QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
+            if(GlobalVariable::tw888charges.size() > 0)
+            {
+                //QSqlTableModel* model = mdb->modelNoHeader("electriccharge");
+
+                QList<QString> keyList = GlobalVariable::tw888charges.keys();
+
+                QList<QString>::const_iterator it,iit;
+                QByteArray sendBuffer;
+                sendBuffer.resize(6);
+                sendBuffer[0] = 0;
+                sendBuffer[1] = 0xFF;
+                sendBuffer[2] = 0xFF;
+                sendBuffer[3] = 0;
+                sendBuffer[4] = 0;
+                sendBuffer[5] = 1;
+                QByteArray dataBuffer;
+                for(it=keyList.constBegin();it!=keyList.constEnd();it++)
+                {
+                    QQueue<TW888Info*> deviceData = GlobalVariable::tw888charges[*it];
+
+                    while(GlobalVariable::tw888charges[*it].size() > 1)
+                    {
+                        TW888Info* cinfo = GlobalVariable::tw888charges[*it].dequeue();
+
+                        bool isRwave = false;
+                        if(GlobalVariable::rwaveinterval > 0 && !GlobalVariable::isSaveData)
+                        {
+                            QDateTime dt1 = QDateTime::fromString(cinfo->rksj,GlobalVariable::dtFormat);
+                            QDateTime dt2 = QDateTime::fromString(GlobalVariable::rwavetime,GlobalVariable::dtFormat);
+                            int s_diff = dt2.secsTo(dt1);
+                            if(s_diff > 0 && s_diff < GlobalVariable::rwaveinterval)
+                            {
+                                isRwave = true;
+                            }
+                        }
+
+                        if(GlobalVariable::isSaveData || isRwave)
+                        {
+                            if(GlobalVariable::data_save_days > 0)
+                            {
+                                /*
+                                QString sql = "insert into electriccharge (u,i,f,factor,p,q,s,others,pqs,dcode,mcode,pipe,rksj) values (";
+                                sql += QString::number(cinfo->u) + "," + QString::number(cinfo->i) + "," + QString::number(cinfo->f) + "," + QString::number(cinfo->factor) + "," + QString::number(cinfo->p) + "," + QString::number(cinfo->q) + "," + QString::number(cinfo->s);
+                                sql += ",'" + cinfo->others + "','" + cinfo->pqs + "','" + cinfo->dcode + "','" + cinfo->mcode + "'," + cinfo->pipe + ",'" + cinfo->rksj + "')";
+                                sqls.enqueue(sql);
+                                */
+                            }
+                        }
+
+                        int len_factor = GlobalVariable::channelInfos.size() > 0 ? GlobalVariable::channelInfos.size() : 1;
+                        if(GlobalVariable::server_enable && GlobalVariable::trans_queue.size()<MAX_QUEUE_NUM*len_factor)
+                        {
+                            QString cinfo_str = cinfo->toString() + ";";
+                            //qDebug() << cinfo_str;
+                            dataBuffer.append(cinfo_str.toUtf8());
+                        }
+                        //qDebug() << "trans queue size: " << QString::number(GlobalVariable::trans_queue.size());
+                        if(GlobalVariable::trans_queue.size()>=MAX_QUEUE_NUM*len_factor)
+                        {
+                            GlobalVariable::trans_queue.pop_front();
+                        }
+
+                        delete cinfo;
+                        maxCount++;
+                        if(maxCount>=maxLimit)
+                        {
+                            break;
                         }
                     }
                 }

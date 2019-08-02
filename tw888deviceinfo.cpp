@@ -8,18 +8,18 @@
 #include <QDebug>
 #include <QSqlTableModel>
 
-TW888DeviceINfo::TW888DeviceINfo(DeviceInfo *parent) : DeviceInfo(parent)
+TW888DeviceInfo::TW888DeviceInfo(DeviceInfo *parent) : DeviceInfo(parent)
 {
     area_id = 0;
     machine_id = 0;
 }
 
-void TW888DeviceINfo::init()
+void TW888DeviceInfo::init()
 {
     DeviceInfo::init();
 }
 
-void TW888DeviceINfo::handlerReceiveMsg()
+void TW888DeviceInfo::handlerReceiveMsg()
 {
     int datalen = rec_buffer.size();
     int slen = rec_buffer.size() - MODBUS_HEAD_LEHGHT;
@@ -203,7 +203,11 @@ void TW888DeviceINfo::handlerReceiveMsg()
 
                 second = valuedata;
 
-                twinfo.rksj = QString::number(year) + "-" + QString::number(month) + "-" + QString::number(date) + " " + QString::number(hour) + ":" + QString::number(minute) + ":" + QString::number(second);
+                QDate qd(year,month,date);
+                QTime qt(hour,minute,second);
+                QDateTime rksj_dt(qd,qt);
+
+                twinfo.rksj = rksj_dt.toString(GlobalVariable::dtFormat);
             }
             else if(num == TW888_R_1) //标识数据
             {
@@ -669,6 +673,25 @@ void TW888DeviceINfo::handlerReceiveMsg()
                 int measure_value = DeviceInfo::bufferToint(measure_buffer,LH_LL_HH_HL);
 
                 twinfo.customparams.level_looseness = measure_value;
+
+                TW888Info* ptwinfo = new TW888Info(twinfo);
+
+                QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
+                if(GlobalVariable::tw888charges.contains(deviceCode))
+                {
+                    if(GlobalVariable::tw888charges[deviceCode].size()>=MAX_QUEUE_NUM)
+                    {
+                        GlobalVariable::tw888charges[deviceCode].dequeue();
+                    }
+                    GlobalVariable::tw888charges[deviceCode].enqueue(ptwinfo);
+                }
+                else
+                {
+                    QQueue<TW888Info*> chqueue;
+                    chqueue.enqueue(ptwinfo);
+
+                    GlobalVariable::tw888charges[deviceCode] = chqueue;
+                }
             }
         }
     }
@@ -677,17 +700,17 @@ void TW888DeviceINfo::handlerReceiveMsg()
     DeviceInfo::handlerReceiveMsg();
 }
 
-QString TW888DeviceINfo::getComAddress()
+QString TW888DeviceInfo::getComAddress()
 {
     return "";
 }
 
-void TW888DeviceINfo::close()
+void TW888DeviceInfo::close()
 {
 
 }
 
-void TW888DeviceINfo::handleSendMsg()
+void TW888DeviceInfo::handleSendMsg()
 {
     static int count = 0; //multi-windows
 

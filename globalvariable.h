@@ -14,6 +14,7 @@
 #include "mfdslib/IO_Param.h"
 
 class ChargeInfo;
+class TW888Info;
 class VibrateInfo;
 class FreqInfo;
 class WaveInfo;
@@ -155,6 +156,8 @@ public:
 
     static QMutex chargesglobalMutex;
     static QMap<QString,QMap<QString,QQueue<ChargeInfo*>>> charges; //sample electric measure data
+    static QMutex tw888chargesglobalMutex;
+    static QMap<QString,QQueue<TW888Info*>> tw888charges; //sample electric measure data
     static QMutex vibratesglobalMutex;
     static QMap<QString,QMap<QString,QQueue<VibrateInfo*>>> vibrates; //sample electric vibrate data
     static QMutex temperaturesglobalMutex;

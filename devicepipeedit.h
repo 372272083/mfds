@@ -28,6 +28,8 @@ private:
     QComboBox *deviceCombo;
     QComboBox *channelCombo;
 
+    QLabel *pchannelLabel;
+
     QLineEdit *acc_ampThresholdEdit;
     QLineEdit *acc_rmsThresholdEdit;
     QLineEdit *acc_pkpkThresholdEdit;
