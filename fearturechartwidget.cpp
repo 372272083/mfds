@@ -92,6 +92,9 @@ FeartureChartWidget::FeartureChartWidget(/*SqliteDB *db,*/MDISubWidget *parent) 
     yMax = 5;
     point_size = 0;
 
+    isRuning = false;
+    index_x = 0;
+
     /*
     QPalette palette(msg->palette());
     msg->setAutoFillBackground(true);
@@ -331,8 +334,7 @@ void FeartureChartWidget::timeUpdate()
     {
         return;
     }
-    static bool isRuning = false;
-    static int index_x = 0;
+
     int tmp = 0;
 
     if(isRuning)
@@ -1093,6 +1095,17 @@ void FeartureChartWidget::timeUpdate()
             switch (chart_type) {
             case UMEASURE:
             case IMEASURE:
+            /*case VOL_FREQ_HX:*/
+            case VOL_FREQ_1X:
+            case VOL_FREQ_2X:
+            case VOL_FREQ_3X:
+            case VOL_FREQ_4X:
+            case VOL_FREQ_5X:
+            case VOL_FREQ_6X:
+            case VOL_FREQ_7X:
+            case VOL_FREQ_8X:
+            case VOL_FREQ_9X:
+            case VOL_FREQ_10X:
                 {
                     QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
                     if(GlobalVariable::tw888charges.contains(device_item))
@@ -1118,6 +1131,13 @@ void FeartureChartWidget::timeUpdate()
                                         {
                                             this->addData(legends[key],x,info->vcp.i_rms[0]);
                                         }
+                                        else
+                                        {
+                                            int tmp_cur = (int)chart_type;
+                                            int tmp_base = (int)VOL_FREQ_1X;
+                                            int idx = tmp_cur - tmp_base;
+                                            this->addData(legends[key],x,info->harmonic.v1_nth[idx]);
+                                        }
                                     }
 
                                     key = device_item + "-B";
@@ -1130,6 +1150,13 @@ void FeartureChartWidget::timeUpdate()
                                         else if(chart_type == IMEASURE)
                                         {
                                             this->addData(legends[key],x,info->vcp.i_rms[1]);
+                                        }
+                                        else
+                                        {
+                                            int tmp_cur = (int)chart_type;
+                                            int tmp_base = (int)VOL_FREQ_1X;
+                                            int idx = tmp_cur - tmp_base;
+                                            this->addData(legends[key],x,info->harmonic.v2_nth[idx]);
                                         }
                                     }
 
@@ -1144,6 +1171,13 @@ void FeartureChartWidget::timeUpdate()
                                         {
                                             this->addData(legends[key],x,info->vcp.i_rms[2]);
                                         }
+                                        else
+                                        {
+                                            int tmp_cur = (int)chart_type;
+                                            int tmp_base = (int)VOL_FREQ_1X;
+                                            int idx = tmp_cur - tmp_base;
+                                            this->addData(legends[key],x,info->harmonic.v3_nth[idx]);
+                                        }
                                     }
 
                                     sample_time->setText(info->rksj);
@@ -1153,55 +1187,7 @@ void FeartureChartWidget::timeUpdate()
                     }
                 }
                 break;
-            case VOL_FREQ_HX:
-            case VOL_FREQ_1X:
-            case VOL_FREQ_2X:
-            case VOL_FREQ_3X:
-            case VOL_FREQ_4X:
-            case VOL_FREQ_5X:
-            case VOL_FREQ_6X:
-            case VOL_FREQ_7X:
-            case VOL_FREQ_8X:
-            case VOL_FREQ_9X:
-            case VOL_FREQ_10X:
-                {
-                    QMutexLocker m_diagnose_lock(&GlobalVariable::elcdiagnoseglobalMutex);
-                    if(GlobalVariable::electric_analyse.contains(device_item))
-                    {
-                        if(GlobalVariable::electric_analyse[device_item].contains(channel_item))
-                        {
-                            if (GlobalVariable::electric_analyse[device_item][channel_item].size() > 0)
-                            {
-                                //qDebug() <<"channel " << channel_item << " data: " << QString::number(GlobalVariable::waves[device_item][channel_item].size());
-
-                                ElectricAnyseDataLib* info = GlobalVariable::electric_analyse[device_item][channel_item].head();
-
-                                QString info_t = info->sample_time;
-                                QDateTime dt = QDateTime::fromString(info_t,GlobalVariable::dtFormat);
-                                int x = initTime.secsTo(dt);
-                                if (x > 0 && (index_x != x))
-                                {
-                                    if(index_x < x)
-                                    {
-                                        index_x = x;
-                                        QString key = device_item + "-" + channel_item;
-                                        if(this->containsGraph(legends[key]))
-                                        {
-                                            int tmp_cur = (int)chart_type;
-                                            int tmp_base = (int)VOL_FREQ_HX;
-                                            int idx = tmp_cur - tmp_base;
-                                            this->addData(legends[key],x,info->volFreqFeat.elcMultFrq[idx]);
-
-                                            sample_time->setText(info_t);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                break;
-            case CUR_FREQ_HX:
+            /*case CUR_FREQ_HX:*/
             case CUR_FREQ_1X:
             case CUR_FREQ_2X:
             case CUR_FREQ_3X:
@@ -1213,36 +1199,53 @@ void FeartureChartWidget::timeUpdate()
             case CUR_FREQ_9X:
             case CUR_FREQ_10X:
                 {
-                    QMutexLocker m_diagnose_lock(&GlobalVariable::elcdiagnoseglobalMutex);
-                    if(GlobalVariable::electric_analyse.contains(device_item))
+                    QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
+                    if(GlobalVariable::tw888charges.contains(device_item))
                     {
-                        if(GlobalVariable::electric_analyse[device_item].contains(channel_item))
+                        if(GlobalVariable::tw888charges[device_item].size() > 0)
                         {
-                            if (GlobalVariable::electric_analyse[device_item][channel_item].size() > 0)
+                            TW888Info *info = GlobalVariable::tw888charges[device_item].head();
+                            QDateTime dt = QDateTime::fromString(info->rksj,GlobalVariable::dtFormat);
+                            int x = initTime.secsTo(dt);
+                            if (x > 0 && (index_x != x))
                             {
-                                //qDebug() <<"channel " << channel_item << " data: " << QString::number(GlobalVariable::waves[device_item][channel_item].size());
-
-                                ElectricAnyseDataLib *info = GlobalVariable::electric_analyse[device_item][channel_item].head();
-
-                                QString info_t = info->sample_time;
-                                QDateTime dt = QDateTime::fromString(info_t,GlobalVariable::dtFormat);
-                                int x = initTime.secsTo(dt);
-                                if (x > 0 && (index_x != x))
+                                if(index_x < x)
                                 {
-                                    if(index_x < x)
+                                    index_x = x;
+                                    QString key = device_item + "-A";
+                                    if(this->containsGraph(legends[key]))
                                     {
-                                        index_x = x;
-                                        QString key = device_item + "-" + channel_item;
-                                        if(this->containsGraph(legends[key]))
                                         {
                                             int tmp_cur = (int)chart_type;
-                                            int tmp_base = (int)CUR_FREQ_HX;
+                                            int tmp_base = (int)CUR_FREQ_1X;
                                             int idx = tmp_cur - tmp_base;
-                                            this->addData(legends[key],x,info->curFreqFeat.elcMultFrq[idx]);
-
-                                            sample_time->setText(info_t);
+                                            this->addData(legends[key],x,info->harmonic.i1_nth[idx]);
                                         }
                                     }
+
+                                    key = device_item + "-B";
+                                    if(this->containsGraph(legends[key]))
+                                    {
+                                        {
+                                            int tmp_cur = (int)chart_type;
+                                            int tmp_base = (int)CUR_FREQ_1X;
+                                            int idx = tmp_cur - tmp_base;
+                                            this->addData(legends[key],x,info->harmonic.i2_nth[idx]);
+                                        }
+                                    }
+
+                                    key = device_item + "-C";
+                                    if(this->containsGraph(legends[key]))
+                                    {
+                                        {
+                                            int tmp_cur = (int)chart_type;
+                                            int tmp_base = (int)CUR_FREQ_1X;
+                                            int idx = tmp_cur - tmp_base;
+                                            this->addData(legends[key],x,info->harmonic.i3_nth[idx]);
+                                        }
+                                    }
+
+                                    sample_time->setText(info->rksj);
                                 }
                             }
                         }
@@ -1260,69 +1263,143 @@ void FeartureChartWidget::timeUpdate()
             case I_N_SEQUENCE:
             case I_Z_SEQUENCE:
                 {
-                    QMutexLocker m_diagnose_lock(&GlobalVariable::elcdiagnoseglobalMutex);
-                    if(GlobalVariable::electric_analyse.contains(device_item))
+                    QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
+                    if(GlobalVariable::tw888charges.contains(device_item))
                     {
-                        if(GlobalVariable::electric_analyse[device_item].contains(channel_item))
+                        if(GlobalVariable::tw888charges[device_item].size() > 0)
                         {
-                            if (GlobalVariable::electric_analyse[device_item][channel_item].size() > 0)
+                            TW888Info *info = GlobalVariable::tw888charges[device_item].head();
+                            QDateTime dt = QDateTime::fromString(info->rksj,GlobalVariable::dtFormat);
+                            int x = initTime.secsTo(dt);
+                            if (x > 0 && (index_x != x))
                             {
-                                //qDebug() <<"channel " << channel_item << " data: " << QString::number(GlobalVariable::waves[device_item][channel_item].size());
-
-                                ElectricAnyseDataLib *info = GlobalVariable::electric_analyse[device_item][channel_item].head();
-
-                                QString info_t = info->sample_time;
-
-                                QDateTime dt = QDateTime::fromString(info_t,GlobalVariable::dtFormat);
-                                int x = initTime.secsTo(dt);
-                                if (x > 0 && (index_x != x))
+                                if(index_x < x)
                                 {
-                                    if(index_x < x)
+                                    index_x = x;
+                                    QString key = device_item + "-A";
+                                    if(this->containsGraph(legends[key]))
                                     {
-                                        index_x = x;
-                                        QString key = device_item + "-" + channel_item;
-                                        if(this->containsGraph(legends[key]))
-                                        {
-                                            float yvalue = 0.0;
-                                            switch (chart_type) {
-                                            case ACTPOWER:
-                                                yvalue = info->powerAnsysFeat.actPower;
-                                                break;
-                                            case REACTPOWER:
-                                                yvalue = info->powerAnsysFeat.reactPower;
-                                                break;
-                                            case APPPOWER:
-                                                yvalue = info->powerAnsysFeat.appPower;
-                                                break;
-                                            case COSF:
-                                                yvalue = info->powerAnsysFeat.cosf;
-                                                break;
-                                            case U_P_SEQUENCE:
-                                                yvalue = info->vVolComp[0];
-                                                break;
-                                            case U_N_SEQUENCE:
-                                                yvalue = info->vVolComp[1];
-                                                break;
-                                            case U_Z_SEQUENCE:
-                                                yvalue = info->vVolComp[2];
-                                                break;
-                                            case I_P_SEQUENCE:
-                                                yvalue = info->vCurComp[0];
-                                                break;
-                                            case I_N_SEQUENCE:
-                                                yvalue = info->vCurComp[1];
-                                                break;
-                                            case I_Z_SEQUENCE:
-                                                yvalue = info->vCurComp[2];
-                                                break;
-                                            default:
-                                                break;
-                                            }
-                                            this->addData(legends[key],x,yvalue);
-
-                                            sample_time->setText(info_t);
+                                        float yvalue = 0.0;
+                                        switch (chart_type) {
+                                        case ACTPOWER:
+                                            yvalue = info->vcp.p_act[0];
+                                            break;
+                                        case REACTPOWER:
+                                            //yvalue = info->powerAnsysFeat.reactPower;
+                                            break;
+                                        case APPPOWER:
+                                            //yvalue = info->powerAnsysFeat.appPower;
+                                            break;
+                                        case COSF:
+                                            yvalue = info->vcp.p_pf[0];
+                                            break;
+                                        case U_P_SEQUENCE:
+                                            yvalue = info->harmonic.v_p_vel[0];
+                                            break;
+                                        case U_N_SEQUENCE:
+                                            yvalue = info->harmonic.v_n_vel[0];
+                                            break;
+                                        case U_Z_SEQUENCE:
+                                            yvalue = info->harmonic.v_zero[0];
+                                            break;
+                                        case I_P_SEQUENCE:
+                                            yvalue = info->harmonic.i_p_vel[0];
+                                            break;
+                                        case I_N_SEQUENCE:
+                                            yvalue = info->harmonic.i_n_vel[0];
+                                            break;
+                                        case I_Z_SEQUENCE:
+                                            yvalue = info->harmonic.i_zero[0];
+                                            break;
+                                        default:
+                                            break;
                                         }
+                                        this->addData(legends[key],x,yvalue);
                                     }
+
+                                    key = device_item + "-B";
+                                    if(this->containsGraph(legends[key]))
+                                    {
+                                        float yvalue = 0.0;
+                                        switch (chart_type) {
+                                        case ACTPOWER:
+                                            yvalue = info->vcp.p_act[1];
+                                            break;
+                                        case REACTPOWER:
+                                            //yvalue = info->powerAnsysFeat.reactPower;
+                                            break;
+                                        case APPPOWER:
+                                            //yvalue = info->powerAnsysFeat.appPower;
+                                            break;
+                                        case COSF:
+                                            yvalue = info->vcp.p_pf[1];
+                                            break;
+                                        case U_P_SEQUENCE:
+                                            yvalue = info->harmonic.v_p_vel[1];
+                                            break;
+                                        case U_N_SEQUENCE:
+                                            yvalue = info->harmonic.v_n_vel[1];
+                                            break;
+                                        case U_Z_SEQUENCE:
+                                            yvalue = info->harmonic.v_zero[1];
+                                            break;
+                                        case I_P_SEQUENCE:
+                                            yvalue = info->harmonic.i_p_vel[1];
+                                            break;
+                                        case I_N_SEQUENCE:
+                                            yvalue = info->harmonic.i_n_vel[1];
+                                            break;
+                                        case I_Z_SEQUENCE:
+                                            yvalue = info->harmonic.i_zero[1];
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        this->addData(legends[key],x,yvalue);
+                                    }
+
+                                    key = device_item + "-C";
+                                    if(this->containsGraph(legends[key]))
+                                    {
+                                        float yvalue = 0.0;
+                                        switch (chart_type) {
+                                        case ACTPOWER:
+                                            yvalue = info->vcp.p_act[2];
+                                            break;
+                                        case REACTPOWER:
+                                            //yvalue = info->powerAnsysFeat.reactPower;
+                                            break;
+                                        case APPPOWER:
+                                            //yvalue = info->powerAnsysFeat.appPower;
+                                            break;
+                                        case COSF:
+                                            yvalue = info->vcp.p_pf[2];
+                                            break;
+                                        case U_P_SEQUENCE:
+                                            yvalue = info->harmonic.v_p_vel[2];
+                                            break;
+                                        case U_N_SEQUENCE:
+                                            yvalue = info->harmonic.v_n_vel[2];
+                                            break;
+                                        case U_Z_SEQUENCE:
+                                            yvalue = info->harmonic.v_zero[2];
+                                            break;
+                                        case I_P_SEQUENCE:
+                                            yvalue = info->harmonic.i_p_vel[2];
+                                            break;
+                                        case I_N_SEQUENCE:
+                                            yvalue = info->harmonic.i_n_vel[2];
+                                            break;
+                                        case I_Z_SEQUENCE:
+                                            yvalue = info->harmonic.i_zero[2];
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        this->addData(legends[key],x,yvalue);
+                                    }
+
+                                    sample_time->setText(info->rksj);
                                 }
                             }
                         }
@@ -1527,7 +1604,7 @@ void FeartureChartWidget::setChartType(TREENODETYPE chart_type)
                         break;
                     case 2:
                         phase = "C";
-                        pen = QPen(Qt::blue);
+                        pen = QPen(Qt::yellow);
                         break;
                     default:
                         break;

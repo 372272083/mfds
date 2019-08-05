@@ -42,6 +42,9 @@ public:
     QVector<QString> device_code;
     QVector<QString> channel_code;
 private:
+    bool isRuning;
+    int index_x;
+
     QCustomPlot *myPlot;
     QWidget* chartwidget;
 

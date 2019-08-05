@@ -203,11 +203,15 @@ void TW888DeviceInfo::handlerReceiveMsg()
 
                 second = valuedata;
 
-                QDate qd(year,month,date);
-                QTime qt(hour,minute,second);
-                QDateTime rksj_dt(qd,qt);
+                //QDate qd(year,month,date);
+                //QTime qt(hour,minute,second);
+                //QDateTime rksj_dt(qd,qt);
 
-                twinfo.rksj = rksj_dt.toString(GlobalVariable::dtFormat);
+                //twinfo.rksj = rksj_dt.toString(GlobalVariable::dtFormat);
+
+                QDateTime current_time = QDateTime::currentDateTime();
+                QString StrCurrentTime = current_time.toString(GlobalVariable::dtFormat);
+                twinfo.rksj = StrCurrentTime;
             }
             else if(num == TW888_R_1) //标识数据
             {
