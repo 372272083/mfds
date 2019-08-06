@@ -285,7 +285,7 @@ void TW888DeviceInfo::handlerReceiveMsg()
                     }
                     else if(i<38)
                     {
-                        twinfo.vcp.p_pf[i-36] = measure_value;
+                        twinfo.vcp.p_pf[i-35] = measure_value;
                     }
                     else if(i<41)
                     {
@@ -673,12 +673,13 @@ void TW888DeviceInfo::handlerReceiveMsg()
                 measure_buffer.resize(4);
                 byteStep = 4;
 
-                measure_buffer = rec_buffer.mid(MODBUS_HEAD_LEHGHT + 1*byteStep,4);
+                measure_buffer = rec_buffer.mid(MODBUS_HEAD_LEHGHT + 0*byteStep,4);
                 int measure_value = DeviceInfo::bufferToint(measure_buffer,LH_LL_HH_HL);
 
                 twinfo.customparams.level_looseness = measure_value;
 
                 TW888Info* ptwinfo = new TW888Info(twinfo);
+                ptwinfo->dcode = deviceCode;
 
                 QMutexLocker m_lock(&GlobalVariable::tw888chargesglobalMutex);
                 if(GlobalVariable::tw888charges.contains(deviceCode))

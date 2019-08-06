@@ -2607,6 +2607,35 @@ void MainWindow::timeDiagnose()
         {
             if(GlobalVariable::isOnline) // 在线诊断
             {
+                if(GlobalVariable::tw888charges.size()>0)
+                {
+                    QList<QString> d_codes = GlobalVariable::tw888charges.keys();
+                    QList<QString>::ConstIterator cit;
+                    for(cit=d_codes.constBegin();cit != d_codes.constEnd(); cit++)
+                    {
+                        QString d_code = *cit;
+                        QVector<QString> m_codes = GlobalVariable::findMotorCodeByDeviceCode(d_code);
+                        if(m_codes.size()>0)
+                        {
+                            QString m_code = m_codes[0];
+
+                            FaultInfo fi;
+                            fi.dcode = d_code;
+                            fi.fault_electric_details = *GlobalVariable::tw888charges[d_code].head();
+                            fi.sample_time = fi.fault_electric_details.rksj;
+                            if(GlobalVariable::diagnose_result.contains(m_code))
+                            {
+                                GlobalVariable::diagnose_result[m_code][d_code] = fi;
+                            }
+                            else
+                            {
+                                QMap<QString,FaultInfo> fis;
+                                fis[d_code] = fi;
+                                GlobalVariable::diagnose_result[m_code] = fis;
+                            }
+                        }
+                    }
+                }
                 if(GlobalVariable::vibrate_diagnose.size() > 0 && GlobalVariable::electric_diagnose.size() > 0)
                 {
                     QList<int> keys = GlobalVariable::vibrate_diagnose.keys();

@@ -36,7 +36,14 @@ private:
     QVector<QPushButton*> fault_details_e;
     //QVector<QString> legends;
 
-    QMap<int,int> fault_map;
+    QMap<int,int> fault_map_v;
+    QMap<int,int> fault_map_e;
+
+    QLabel *e_noise_level_label;
+    QLabel *e_estimate_rotor_bar_num_label;
+    QLabel *e_estimate_stator_slot_num_lable;
+
+    void electricBar(int, int);
 private slots:
     void timeUpdate();
     void valueChangedSlot(int value);

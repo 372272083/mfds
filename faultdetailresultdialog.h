@@ -13,7 +13,7 @@ class FaultDetailResultDialog : public QDialog
 public:
     explicit FaultDetailResultDialog(QDialog *parent = 0);
 
-    void setDetailInfo(QString,int);
+    void setDetailInfo(QString,int,int fault_type);
 private:
     QTableView* tableView;
     QStandardItemModel* model;

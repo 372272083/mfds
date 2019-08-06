@@ -6,6 +6,7 @@
 #include <QVector>
 
 #include "mfdslib/IO_Param.h"
+#include "tw888info.h"
 
 class FaultInfo : public QObject
 {
@@ -23,6 +24,7 @@ public:
     SDiaCriterion fault_detail_cof;
     SDiaCriterion fault_detail_trigger;
 
+    TW888Info fault_electric_details;
     QString sample_time;
 
     QString toString();

@@ -255,7 +255,7 @@
     <message>
         <location filename="chartbannerwidget.cpp" line="13"/>
         <source>border:0px solid gray</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="chartbannerwidget.cpp" line="24"/>
@@ -327,78 +327,78 @@
 <context>
     <name>DeviceEditDialog</name>
     <message>
-        <location filename="deviceeditdialog.cpp" line="41"/>
+        <location filename="deviceeditdialog.cpp" line="42"/>
         <source>Device list Edit</source>
         <translation>设备列表编辑</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="62"/>
+        <location filename="deviceeditdialog.cpp" line="63"/>
         <source>code:</source>
         <translation>编码：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="69"/>
+        <location filename="deviceeditdialog.cpp" line="70"/>
         <source>name:</source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="77"/>
+        <location filename="deviceeditdialog.cpp" line="78"/>
         <source>type:</source>
         <translation>类型：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="81"/>
+        <location filename="deviceeditdialog.cpp" line="82"/>
         <source>model</source>
         <translation>型号</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="81"/>
+        <location filename="deviceeditdialog.cpp" line="82"/>
         <source>dtype</source>
         <translation>设备类型</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="81"/>
+        <location filename="deviceeditdialog.cpp" line="82"/>
         <source>pipenum</source>
         <translation>通道数</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="102"/>
+        <location filename="deviceeditdialog.cpp" line="103"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="112"/>
+        <location filename="deviceeditdialog.cpp" line="113"/>
         <source>ip address:</source>
         <translation>IP地址：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="114"/>
+        <location filename="deviceeditdialog.cpp" line="115"/>
         <source>Ip address</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="121"/>
+        <location filename="deviceeditdialog.cpp" line="122"/>
         <source>port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="123"/>
+        <location filename="deviceeditdialog.cpp" line="124"/>
         <source>port</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="129"/>
+        <location filename="deviceeditdialog.cpp" line="130"/>
         <source>basic information</source>
         <translation>基本信息</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="140"/>
+        <location filename="deviceeditdialog.cpp" line="141"/>
         <source>Measure Sample Interval:</source>
         <translation>有效值读取间隔：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="142"/>
-        <location filename="deviceeditdialog.cpp" line="166"/>
+        <location filename="deviceeditdialog.cpp" line="143"/>
+        <location filename="deviceeditdialog.cpp" line="167"/>
         <source>(s)</source>
         <translation></translation>
     </message>
@@ -407,17 +407,17 @@
         <translation type="vanished">频谱读取间隔：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="164"/>
+        <location filename="deviceeditdialog.cpp" line="165"/>
         <source>Wave Sample Interval:</source>
         <translation>波形读取间隔：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="175"/>
+        <location filename="deviceeditdialog.cpp" line="176"/>
         <source>Sample Numbers:</source>
         <translation>采样点数：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="185"/>
+        <location filename="deviceeditdialog.cpp" line="186"/>
         <source>Sample Interval:</source>
         <translation>采样间隔：</translation>
     </message>
@@ -430,158 +430,158 @@
         <translation type="vanished">连续波形</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="213"/>
+        <location filename="deviceeditdialog.cpp" line="214"/>
         <source>sample setting</source>
         <translation>采样设置</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="226"/>
-        <location filename="deviceeditdialog.cpp" line="945"/>
+        <location filename="deviceeditdialog.cpp" line="227"/>
+        <location filename="deviceeditdialog.cpp" line="966"/>
         <source>Channel1:</source>
         <translation>通道1：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="234"/>
-        <location filename="deviceeditdialog.cpp" line="946"/>
+        <location filename="deviceeditdialog.cpp" line="235"/>
+        <location filename="deviceeditdialog.cpp" line="967"/>
         <source>Channel2:</source>
         <translation>通道2：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="242"/>
-        <location filename="deviceeditdialog.cpp" line="947"/>
+        <location filename="deviceeditdialog.cpp" line="243"/>
+        <location filename="deviceeditdialog.cpp" line="968"/>
         <source>Channel3:</source>
         <translation>通道3：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="250"/>
-        <location filename="deviceeditdialog.cpp" line="948"/>
+        <location filename="deviceeditdialog.cpp" line="251"/>
+        <location filename="deviceeditdialog.cpp" line="969"/>
         <source>Channel4:</source>
         <translation>通道4：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="258"/>
-        <location filename="deviceeditdialog.cpp" line="949"/>
+        <location filename="deviceeditdialog.cpp" line="259"/>
+        <location filename="deviceeditdialog.cpp" line="970"/>
         <source>Channel5:</source>
         <translation>通道5：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="266"/>
-        <location filename="deviceeditdialog.cpp" line="950"/>
+        <location filename="deviceeditdialog.cpp" line="267"/>
+        <location filename="deviceeditdialog.cpp" line="971"/>
         <source>Channel6:</source>
         <translation>通道6：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="273"/>
+        <location filename="deviceeditdialog.cpp" line="274"/>
         <source>channel ratio</source>
         <translation>比例系数</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="284"/>
+        <location filename="deviceeditdialog.cpp" line="285"/>
         <source>ok</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="289"/>
+        <location filename="deviceeditdialog.cpp" line="290"/>
         <source>cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="416"/>
+        <location filename="deviceeditdialog.cpp" line="417"/>
         <source>Device Edit</source>
         <translation>编辑设备</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="446"/>
+        <location filename="deviceeditdialog.cpp" line="447"/>
         <source>Device Add</source>
         <translation>添加设备</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="489"/>
-        <location filename="deviceeditdialog.cpp" line="502"/>
-        <location filename="deviceeditdialog.cpp" line="509"/>
-        <location filename="deviceeditdialog.cpp" line="517"/>
-        <location filename="deviceeditdialog.cpp" line="538"/>
-        <location filename="deviceeditdialog.cpp" line="546"/>
-        <location filename="deviceeditdialog.cpp" line="554"/>
-        <location filename="deviceeditdialog.cpp" line="567"/>
-        <location filename="deviceeditdialog.cpp" line="576"/>
-        <location filename="deviceeditdialog.cpp" line="585"/>
-        <location filename="deviceeditdialog.cpp" line="594"/>
-        <location filename="deviceeditdialog.cpp" line="603"/>
-        <location filename="deviceeditdialog.cpp" line="612"/>
-        <location filename="deviceeditdialog.cpp" line="753"/>
-        <location filename="deviceeditdialog.cpp" line="762"/>
-        <location filename="deviceeditdialog.cpp" line="903"/>
+        <location filename="deviceeditdialog.cpp" line="490"/>
+        <location filename="deviceeditdialog.cpp" line="503"/>
+        <location filename="deviceeditdialog.cpp" line="510"/>
+        <location filename="deviceeditdialog.cpp" line="518"/>
+        <location filename="deviceeditdialog.cpp" line="539"/>
+        <location filename="deviceeditdialog.cpp" line="547"/>
+        <location filename="deviceeditdialog.cpp" line="555"/>
+        <location filename="deviceeditdialog.cpp" line="568"/>
+        <location filename="deviceeditdialog.cpp" line="577"/>
+        <location filename="deviceeditdialog.cpp" line="586"/>
+        <location filename="deviceeditdialog.cpp" line="595"/>
+        <location filename="deviceeditdialog.cpp" line="604"/>
+        <location filename="deviceeditdialog.cpp" line="613"/>
+        <location filename="deviceeditdialog.cpp" line="754"/>
+        <location filename="deviceeditdialog.cpp" line="763"/>
+        <location filename="deviceeditdialog.cpp" line="924"/>
         <source>Infomation</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="489"/>
+        <location filename="deviceeditdialog.cpp" line="490"/>
         <source>Please enter data!</source>
         <translation>请输入数据！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="502"/>
-        <location filename="deviceeditdialog.cpp" line="517"/>
-        <location filename="deviceeditdialog.cpp" line="538"/>
-        <location filename="deviceeditdialog.cpp" line="546"/>
-        <location filename="deviceeditdialog.cpp" line="554"/>
-        <location filename="deviceeditdialog.cpp" line="567"/>
-        <location filename="deviceeditdialog.cpp" line="576"/>
-        <location filename="deviceeditdialog.cpp" line="585"/>
-        <location filename="deviceeditdialog.cpp" line="594"/>
-        <location filename="deviceeditdialog.cpp" line="603"/>
-        <location filename="deviceeditdialog.cpp" line="612"/>
+        <location filename="deviceeditdialog.cpp" line="503"/>
+        <location filename="deviceeditdialog.cpp" line="518"/>
+        <location filename="deviceeditdialog.cpp" line="539"/>
+        <location filename="deviceeditdialog.cpp" line="547"/>
+        <location filename="deviceeditdialog.cpp" line="555"/>
+        <location filename="deviceeditdialog.cpp" line="568"/>
+        <location filename="deviceeditdialog.cpp" line="577"/>
+        <location filename="deviceeditdialog.cpp" line="586"/>
+        <location filename="deviceeditdialog.cpp" line="595"/>
+        <location filename="deviceeditdialog.cpp" line="604"/>
+        <location filename="deviceeditdialog.cpp" line="613"/>
         <source>Please enter number!</source>
         <translation>请输入数字！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="509"/>
+        <location filename="deviceeditdialog.cpp" line="510"/>
         <source>Please enter valid ip address!</source>
         <translation>请输入一个合法的IP地址！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="753"/>
+        <location filename="deviceeditdialog.cpp" line="754"/>
         <source>update data failed!</source>
         <translation>更新数据失败！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="762"/>
+        <location filename="deviceeditdialog.cpp" line="763"/>
         <source>The device code has existed!</source>
         <translation>该设备编码已存在，请从新输入！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="903"/>
+        <location filename="deviceeditdialog.cpp" line="924"/>
         <source>Insert data failed!</source>
         <translation>插入数据失败！</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="931"/>
+        <location filename="deviceeditdialog.cpp" line="952"/>
         <source>Uab:</source>
         <translation>通道1电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="932"/>
+        <location filename="deviceeditdialog.cpp" line="953"/>
         <source>Ubc:</source>
         <translation>通道2电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="933"/>
+        <location filename="deviceeditdialog.cpp" line="954"/>
         <source>Uca:</source>
         <translation>通道3电压变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="935"/>
+        <location filename="deviceeditdialog.cpp" line="956"/>
         <source>Ia:</source>
         <translation>通道1电流变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="936"/>
+        <location filename="deviceeditdialog.cpp" line="957"/>
         <source>Ib:</source>
         <translation>通道2电流变比：</translation>
     </message>
     <message>
-        <location filename="deviceeditdialog.cpp" line="937"/>
+        <location filename="deviceeditdialog.cpp" line="958"/>
         <source>Ic:</source>
         <translation>通道3电流变比：</translation>
     </message>
@@ -718,47 +718,21 @@
         <translation>更新数据失败！</translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="499"/>
-        <location filename="devicepipeedit.cpp" line="539"/>
+        <location filename="devicepipeedit.cpp" line="507"/>
+        <location filename="devicepipeedit.cpp" line="547"/>
         <source>Voltage AMP Threshold:</source>
         <translation>电压幅值阈值：</translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="500"/>
+        <location filename="devicepipeedit.cpp" line="508"/>
         <source>Voltage RMS Threshold:</source>
         <translation>电压有效值阈值：</translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="501"/>
-        <location filename="devicepipeedit.cpp" line="541"/>
-        <source>Voltage PKPK Threshold:</source>
-        <translation>电压峰峰值阈值：</translation>
-    </message>
-    <message>
-        <location filename="devicepipeedit.cpp" line="503"/>
-        <location filename="devicepipeedit.cpp" line="504"/>
-        <location filename="devicepipeedit.cpp" line="505"/>
-        <location filename="devicepipeedit.cpp" line="543"/>
-        <location filename="devicepipeedit.cpp" line="545"/>
-        <source>(V)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="devicepipeedit.cpp" line="507"/>
-        <location filename="devicepipeedit.cpp" line="547"/>
-        <source>Current AMP Threshold:</source>
-        <translation>电流幅值阈值：</translation>
-    </message>
-    <message>
-        <location filename="devicepipeedit.cpp" line="508"/>
-        <source>Current RMS Threshold:</source>
-        <translation>电流有效值阈值：</translation>
-    </message>
-    <message>
         <location filename="devicepipeedit.cpp" line="509"/>
         <location filename="devicepipeedit.cpp" line="549"/>
-        <source>Current PKPK Threshold:</source>
-        <translation>电流峰峰值阈值：</translation>
+        <source>Voltage PKPK Threshold:</source>
+        <translation>电压峰峰值阈值：</translation>
     </message>
     <message>
         <location filename="devicepipeedit.cpp" line="511"/>
@@ -766,22 +740,48 @@
         <location filename="devicepipeedit.cpp" line="513"/>
         <location filename="devicepipeedit.cpp" line="551"/>
         <location filename="devicepipeedit.cpp" line="553"/>
+        <source>(V)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="devicepipeedit.cpp" line="515"/>
+        <location filename="devicepipeedit.cpp" line="555"/>
+        <source>Current AMP Threshold:</source>
+        <translation>电流幅值阈值：</translation>
+    </message>
+    <message>
+        <location filename="devicepipeedit.cpp" line="516"/>
+        <source>Current RMS Threshold:</source>
+        <translation>电流有效值阈值：</translation>
+    </message>
+    <message>
+        <location filename="devicepipeedit.cpp" line="517"/>
+        <location filename="devicepipeedit.cpp" line="557"/>
+        <source>Current PKPK Threshold:</source>
+        <translation>电流峰峰值阈值：</translation>
+    </message>
+    <message>
+        <location filename="devicepipeedit.cpp" line="519"/>
+        <location filename="devicepipeedit.cpp" line="520"/>
+        <location filename="devicepipeedit.cpp" line="521"/>
+        <location filename="devicepipeedit.cpp" line="559"/>
+        <location filename="devicepipeedit.cpp" line="561"/>
         <source>(A)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="540"/>
+        <location filename="devicepipeedit.cpp" line="548"/>
         <source>Temperature upper limit:</source>
         <translation>温度上限阈值：</translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="544"/>
         <location filename="devicepipeedit.cpp" line="552"/>
+        <location filename="devicepipeedit.cpp" line="560"/>
         <source>(°C)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="devicepipeedit.cpp" line="548"/>
+        <location filename="devicepipeedit.cpp" line="556"/>
         <source>Temperatur lower limit:</source>
         <translation>温度下限阈值：</translation>
     </message>
@@ -1108,16 +1108,16 @@
         <translation>名称,阈值,值,比例系数,是否触发</translation>
     </message>
     <message>
-        <location filename="faultdetailresultdialog.cpp" line="71"/>
-        <location filename="faultdetailresultdialog.cpp" line="130"/>
-        <location filename="faultdetailresultdialog.cpp" line="216"/>
+        <location filename="faultdetailresultdialog.cpp" line="74"/>
+        <location filename="faultdetailresultdialog.cpp" line="133"/>
+        <location filename="faultdetailresultdialog.cpp" line="219"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="faultdetailresultdialog.cpp" line="75"/>
-        <location filename="faultdetailresultdialog.cpp" line="134"/>
-        <location filename="faultdetailresultdialog.cpp" line="220"/>
+        <location filename="faultdetailresultdialog.cpp" line="78"/>
+        <location filename="faultdetailresultdialog.cpp" line="137"/>
+        <location filename="faultdetailresultdialog.cpp" line="223"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -1175,6 +1175,81 @@
         <translation>共振</translation>
     </message>
     <message>
+        <location filename="faulttypeengine.cpp" line="16"/>
+        <source>Voltage balance</source>
+        <translation>电压不平衡</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="17"/>
+        <source>Voltage nameplate deviation</source>
+        <translation>电压铭牌值偏离</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="18"/>
+        <source>Voltage spike coefficient</source>
+        <translation>电压尖峰系数</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="19"/>
+        <source>Voltage harmonics</source>
+        <translation>电压谐波</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="20"/>
+        <source>Power factor</source>
+        <translation>功率因数</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="21"/>
+        <source>Load</source>
+        <translation>负荷</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="22"/>
+        <source>Current Balance</source>
+        <translation>电流平衡</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="23"/>
+        <source>Current spike coefficient</source>
+        <translation>电流尖峰系数</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="24"/>
+        <source>Current harmonics</source>
+        <translation>电流谐波</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="25"/>
+        <source>Rotor health</source>
+        <translation>转子健康</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="26"/>
+        <source>Stator</source>
+        <translation>定子</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="27"/>
+        <source>Air gap</source>
+        <translation>气隙</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="28"/>
+        <source>Rotor balance or alignment</source>
+        <translation>转子平衡或对中</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="29"/>
+        <source>Loosening</source>
+        <translation>松动</translation>
+    </message>
+    <message>
+        <location filename="faulttypeengine.cpp" line="30"/>
+        <source>Bearing</source>
+        <translation>轴承</translation>
+    </message>
+    <message>
         <source>BearingFault</source>
         <translation type="vanished">滚动轴承故障</translation>
     </message>
@@ -1192,168 +1267,250 @@
         <translation>电量故障</translation>
     </message>
     <message>
-        <location filename="faultwidget.cpp" line="92"/>
+        <location filename="faultwidget.cpp" line="98"/>
+        <location filename="faultwidget.cpp" line="158"/>
         <source>Detail</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="116"/>
+        <source>Power Source</source>
+        <translation>电源</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="118"/>
+        <location filename="faultwidget.cpp" line="124"/>
+        <location filename="faultwidget.cpp" line="130"/>
+        <location filename="faultwidget.cpp" line="141"/>
+        <source>border:1px solid gray</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="122"/>
+        <source>Motor</source>
+        <translation>电机</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="128"/>
+        <source>Machine</source>
+        <translation>机械</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="170"/>
+        <source>Noise level(db): </source>
+        <translation>噪声水平（db）:</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="174"/>
+        <location filename="faultwidget.cpp" line="185"/>
+        <location filename="faultwidget.cpp" line="196"/>
+        <location filename="faultwidget.cpp" line="211"/>
+        <location filename="faultwidget.cpp" line="222"/>
+        <location filename="faultwidget.cpp" line="233"/>
+        <location filename="faultwidget.cpp" line="244"/>
+        <location filename="faultwidget.cpp" line="255"/>
+        <location filename="faultwidget.cpp" line="267"/>
+        <source>    </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="181"/>
+        <source>Estimate rotor bar number: </source>
+        <translation>估算转子条数:</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="192"/>
+        <source>Estimate stator slot number: </source>
+        <translation>估算定子槽数:</translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="217"/>
+        <source> Unknown </source>
+        <translation> 未知 </translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="228"/>
+        <source> Normal </source>
+        <translation> 正常 </translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="239"/>
+        <source> Suspected malfunction </source>
+        <translation> 疑似故障 </translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="250"/>
+        <source> Mild malfunction </source>
+        <translation> 轻度故障 </translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="261"/>
+        <source> General failure </source>
+        <translation> 一般故障 </translation>
+    </message>
+    <message>
+        <location filename="faultwidget.cpp" line="273"/>
+        <source> Serious malfunction </source>
+        <translation> 严重故障</translation>
     </message>
 </context>
 <context>
     <name>FeartureChartWidget</name>
     <message>
-        <location filename="fearturechartwidget.cpp" line="37"/>
+        <location filename="fearturechartwidget.cpp" line="38"/>
         <source>Auto Range</source>
         <translation>自适应坐标</translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="102"/>
+        <location filename="fearturechartwidget.cpp" line="106"/>
         <source>border:1px solid gray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="46"/>
-        <location filename="fearturechartwidget.cpp" line="105"/>
+        <location filename="fearturechartwidget.cpp" line="47"/>
+        <location filename="fearturechartwidget.cpp" line="109"/>
         <source>border:0px solid gray</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="197"/>
+        <location filename="fearturechartwidget.cpp" line="201"/>
         <source>Mouse Position: (%3  %4)</source>
-        <translation type="unfinished">鼠标位置:(%3  %4)</translation>
+        <translation>鼠标位置:(%3  %4)</translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="212"/>
+        <location filename="fearturechartwidget.cpp" line="216"/>
         <source>reset zoom</source>
         <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="440"/>
-        <location filename="fearturechartwidget.cpp" line="476"/>
-        <location filename="fearturechartwidget.cpp" line="670"/>
-        <location filename="fearturechartwidget.cpp" line="678"/>
-        <location filename="fearturechartwidget.cpp" line="1463"/>
-        <location filename="fearturechartwidget.cpp" line="1562"/>
-        <location filename="fearturechartwidget.cpp" line="2012"/>
-        <location filename="fearturechartwidget.cpp" line="2146"/>
+        <location filename="fearturechartwidget.cpp" line="443"/>
+        <location filename="fearturechartwidget.cpp" line="479"/>
+        <location filename="fearturechartwidget.cpp" line="829"/>
+        <location filename="fearturechartwidget.cpp" line="837"/>
+        <location filename="fearturechartwidget.cpp" line="1867"/>
+        <location filename="fearturechartwidget.cpp" line="1966"/>
+        <location filename="fearturechartwidget.cpp" line="2416"/>
+        <location filename="fearturechartwidget.cpp" line="2550"/>
         <source>RMS: </source>
         <translation>有效值：</translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="440"/>
-        <location filename="fearturechartwidget.cpp" line="441"/>
-        <location filename="fearturechartwidget.cpp" line="1562"/>
-        <location filename="fearturechartwidget.cpp" line="1563"/>
+        <location filename="fearturechartwidget.cpp" line="443"/>
+        <location filename="fearturechartwidget.cpp" line="444"/>
+        <location filename="fearturechartwidget.cpp" line="1966"/>
+        <location filename="fearturechartwidget.cpp" line="1967"/>
         <source> mm/s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="441"/>
-        <location filename="fearturechartwidget.cpp" line="477"/>
-        <location filename="fearturechartwidget.cpp" line="671"/>
-        <location filename="fearturechartwidget.cpp" line="679"/>
-        <location filename="fearturechartwidget.cpp" line="1464"/>
-        <location filename="fearturechartwidget.cpp" line="1563"/>
-        <location filename="fearturechartwidget.cpp" line="2013"/>
-        <location filename="fearturechartwidget.cpp" line="2147"/>
+        <location filename="fearturechartwidget.cpp" line="444"/>
+        <location filename="fearturechartwidget.cpp" line="480"/>
+        <location filename="fearturechartwidget.cpp" line="830"/>
+        <location filename="fearturechartwidget.cpp" line="838"/>
+        <location filename="fearturechartwidget.cpp" line="1868"/>
+        <location filename="fearturechartwidget.cpp" line="1967"/>
+        <location filename="fearturechartwidget.cpp" line="2417"/>
+        <location filename="fearturechartwidget.cpp" line="2551"/>
         <source>PKPK: </source>
         <translation>峰峰值：</translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="476"/>
-        <location filename="fearturechartwidget.cpp" line="477"/>
-        <location filename="fearturechartwidget.cpp" line="1463"/>
-        <location filename="fearturechartwidget.cpp" line="1464"/>
+        <location filename="fearturechartwidget.cpp" line="479"/>
+        <location filename="fearturechartwidget.cpp" line="480"/>
+        <location filename="fearturechartwidget.cpp" line="1867"/>
+        <location filename="fearturechartwidget.cpp" line="1868"/>
         <source> m/ss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="670"/>
-        <location filename="fearturechartwidget.cpp" line="671"/>
-        <location filename="fearturechartwidget.cpp" line="2012"/>
-        <location filename="fearturechartwidget.cpp" line="2013"/>
+        <location filename="fearturechartwidget.cpp" line="829"/>
+        <location filename="fearturechartwidget.cpp" line="830"/>
+        <location filename="fearturechartwidget.cpp" line="2416"/>
+        <location filename="fearturechartwidget.cpp" line="2417"/>
         <source> V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="678"/>
-        <location filename="fearturechartwidget.cpp" line="679"/>
-        <location filename="fearturechartwidget.cpp" line="2146"/>
-        <location filename="fearturechartwidget.cpp" line="2147"/>
+        <location filename="fearturechartwidget.cpp" line="837"/>
+        <location filename="fearturechartwidget.cpp" line="838"/>
+        <location filename="fearturechartwidget.cpp" line="2550"/>
+        <location filename="fearturechartwidget.cpp" line="2551"/>
         <source> A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1081"/>
-        <location filename="fearturechartwidget.cpp" line="1084"/>
-        <location filename="fearturechartwidget.cpp" line="1087"/>
-        <location filename="fearturechartwidget.cpp" line="1095"/>
-        <location filename="fearturechartwidget.cpp" line="1103"/>
-        <location filename="fearturechartwidget.cpp" line="1111"/>
-        <location filename="fearturechartwidget.cpp" line="1129"/>
-        <location filename="fearturechartwidget.cpp" line="1132"/>
-        <location filename="fearturechartwidget.cpp" line="1135"/>
-        <location filename="fearturechartwidget.cpp" line="1143"/>
-        <location filename="fearturechartwidget.cpp" line="1171"/>
-        <location filename="fearturechartwidget.cpp" line="1184"/>
-        <location filename="fearturechartwidget.cpp" line="1197"/>
-        <location filename="fearturechartwidget.cpp" line="1210"/>
+        <location filename="fearturechartwidget.cpp" line="1444"/>
+        <location filename="fearturechartwidget.cpp" line="1447"/>
+        <location filename="fearturechartwidget.cpp" line="1450"/>
+        <location filename="fearturechartwidget.cpp" line="1458"/>
+        <location filename="fearturechartwidget.cpp" line="1466"/>
+        <location filename="fearturechartwidget.cpp" line="1474"/>
+        <location filename="fearturechartwidget.cpp" line="1492"/>
+        <location filename="fearturechartwidget.cpp" line="1495"/>
+        <location filename="fearturechartwidget.cpp" line="1498"/>
+        <location filename="fearturechartwidget.cpp" line="1506"/>
+        <location filename="fearturechartwidget.cpp" line="1534"/>
+        <location filename="fearturechartwidget.cpp" line="1547"/>
+        <location filename="fearturechartwidget.cpp" line="1560"/>
+        <location filename="fearturechartwidget.cpp" line="1573"/>
         <source>time(s)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1081"/>
-        <location filename="fearturechartwidget.cpp" line="1090"/>
-        <location filename="fearturechartwidget.cpp" line="1095"/>
-        <location filename="fearturechartwidget.cpp" line="1124"/>
-        <location filename="fearturechartwidget.cpp" line="1171"/>
+        <location filename="fearturechartwidget.cpp" line="1444"/>
+        <location filename="fearturechartwidget.cpp" line="1453"/>
+        <location filename="fearturechartwidget.cpp" line="1458"/>
+        <location filename="fearturechartwidget.cpp" line="1487"/>
+        <location filename="fearturechartwidget.cpp" line="1534"/>
         <source>m/ss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1084"/>
-        <location filename="fearturechartwidget.cpp" line="1103"/>
-        <location filename="fearturechartwidget.cpp" line="1119"/>
-        <location filename="fearturechartwidget.cpp" line="1184"/>
+        <location filename="fearturechartwidget.cpp" line="1447"/>
+        <location filename="fearturechartwidget.cpp" line="1466"/>
+        <location filename="fearturechartwidget.cpp" line="1482"/>
+        <location filename="fearturechartwidget.cpp" line="1547"/>
         <source>mm/s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1087"/>
-        <location filename="fearturechartwidget.cpp" line="1111"/>
+        <location filename="fearturechartwidget.cpp" line="1450"/>
+        <location filename="fearturechartwidget.cpp" line="1474"/>
         <source>um</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1090"/>
-        <location filename="fearturechartwidget.cpp" line="1119"/>
-        <location filename="fearturechartwidget.cpp" line="1124"/>
-        <location filename="fearturechartwidget.cpp" line="1151"/>
-        <location filename="fearturechartwidget.cpp" line="1156"/>
+        <location filename="fearturechartwidget.cpp" line="1453"/>
+        <location filename="fearturechartwidget.cpp" line="1482"/>
+        <location filename="fearturechartwidget.cpp" line="1487"/>
+        <location filename="fearturechartwidget.cpp" line="1514"/>
+        <location filename="fearturechartwidget.cpp" line="1519"/>
         <source>Hz</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1129"/>
-        <location filename="fearturechartwidget.cpp" line="1135"/>
-        <location filename="fearturechartwidget.cpp" line="1151"/>
-        <location filename="fearturechartwidget.cpp" line="1197"/>
+        <location filename="fearturechartwidget.cpp" line="1492"/>
+        <location filename="fearturechartwidget.cpp" line="1498"/>
+        <location filename="fearturechartwidget.cpp" line="1514"/>
+        <location filename="fearturechartwidget.cpp" line="1560"/>
         <source>V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1132"/>
-        <location filename="fearturechartwidget.cpp" line="1143"/>
-        <location filename="fearturechartwidget.cpp" line="1156"/>
-        <location filename="fearturechartwidget.cpp" line="1210"/>
+        <location filename="fearturechartwidget.cpp" line="1495"/>
+        <location filename="fearturechartwidget.cpp" line="1506"/>
+        <location filename="fearturechartwidget.cpp" line="1519"/>
+        <location filename="fearturechartwidget.cpp" line="1573"/>
         <source>A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1213"/>
+        <location filename="fearturechartwidget.cpp" line="1576"/>
         <source>(mm)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="fearturechartwidget.cpp" line="1213"/>
+        <location filename="fearturechartwidget.cpp" line="1576"/>
         <source>mm</source>
         <translation></translation>
     </message>
@@ -1698,8 +1855,8 @@
         <translation>新建通道</translation>
     </message>
     <message>
-        <location filename="lefttreeview.cpp" line="576"/>
-        <location filename="lefttreeview.cpp" line="612"/>
+        <location filename="lefttreeview.cpp" line="572"/>
+        <location filename="lefttreeview.cpp" line="608"/>
         <location filename="lefttreeview.cpp" line="649"/>
         <source>New Chart</source>
         <translation>新项目</translation>
@@ -2122,7 +2279,7 @@ Version 0.9.5</source>
         <location filename="mainwindow.cpp" line="291"/>
         <location filename="mainwindow.cpp" line="2375"/>
         <source>Diagnose Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>诊断模式</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="682"/>
@@ -2259,9 +2416,9 @@ Version 0.9.5</source>
         <translation>允许最大子窗口数量为4！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="3352"/>
+        <location filename="mainwindow.cpp" line="3381"/>
         <source>Study Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>学习模式</translation>
     </message>
     <message>
         <source>Ne&amp;xt</source>
@@ -3147,17 +3304,17 @@ Do you want to save your changes?</source>
     <message>
         <location filename="syncdatainfo.cpp" line="18"/>
         <source>start sync data</source>
-        <translation type="unfinished"></translation>
+        <translation>开始数据同步</translation>
     </message>
     <message>
         <location filename="syncdatainfo.cpp" line="29"/>
         <source>Sync Data</source>
-        <translation type="unfinished"></translation>
+        <translation>同步数据</translation>
     </message>
     <message>
         <location filename="syncdatainfo.cpp" line="32"/>
         <source>Cancel Sync Data</source>
-        <translation type="unfinished"></translation>
+        <translation>取消数据同步</translation>
     </message>
 </context>
 </TS>

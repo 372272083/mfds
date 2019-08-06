@@ -389,7 +389,7 @@ int GlobalVariable::waterfalldepthlimit = 10;
 
 FFTParams GlobalVariable::fft_params;
 
-int GlobalVariable::version = 1;
+int GlobalVariable::version = 2;
 int GlobalVariable::s_t = 0; //0 all; 1 vibrate; 2 electric; 3 temperature; 10 vibrate contg wave
 
 QMap<QString,int> GlobalVariable::recordwave;

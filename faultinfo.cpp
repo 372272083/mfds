@@ -20,6 +20,8 @@ FaultInfo::FaultInfo(const FaultInfo& fi)
     {
         fault_codes.append(*it);
     }
+
+    fault_electric_details = fi.fault_electric_details;
 }
 
 FaultInfo& FaultInfo::operator =(const FaultInfo& fi)
@@ -37,6 +39,9 @@ FaultInfo& FaultInfo::operator =(const FaultInfo& fi)
     {
         this->fault_codes.append(*it);
     }
+
+    fault_electric_details = fi.fault_electric_details;
+
     return *this;
 }
 

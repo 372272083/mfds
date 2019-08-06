@@ -488,6 +488,8 @@ void DevicePipeEdit::deviceSelectChanged(const QString &text)
     }
     delete devicemodel;
 
+    channelCombo->setVisible(true);
+    pchannelLabel->setVisible(true);
     if(d_type.compare("T",Qt::CaseInsensitive) == 0)
     {
 
