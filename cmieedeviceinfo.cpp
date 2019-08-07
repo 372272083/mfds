@@ -1037,6 +1037,7 @@ void CMIEEDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_com;
             cmd_com.Unit = COM_R;
+            cmd_com.Num = 0;
             cmd_com.Addr = 0;
             cmd_com.Command = 0x3;
             cmd_com.Length = 22;
@@ -1052,6 +1053,7 @@ void CMIEEDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_factor;
             cmd_factor.Unit = E_FACTOR_R;
+            cmd_factor.Num = 0;
             cmd_factor.Addr = 188;
             cmd_factor.Command = 0x3;
             cmd_factor.Length = 24;
@@ -1075,6 +1077,7 @@ void CMIEEDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_wave;
             cmd_wave.Unit = FREQ_W;
+            cmd_wave.Num = 0;
             cmd_wave.Addr = 33;
             cmd_wave.Command = 0x10;
             cmd_wave.Length = 2;
@@ -1116,6 +1119,7 @@ void CMIEEDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd;
             cmd.Unit = MEASURE_R;
+            cmd.Num = 0;
             cmd.Addr = 128;
             cmd.Command = 0x3;
             cmd.Length = 56;
@@ -1127,6 +1131,7 @@ void CMIEEDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_state;
             cmd_state.Unit = STATE_R;
+            cmd_state.Num = 0;
             cmd_state.Addr = 50;
             cmd_state.Command = 0x3;
             cmd_state.Length = 5;

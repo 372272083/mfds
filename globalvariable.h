@@ -212,6 +212,8 @@ public:
 
     static int version;
     static int s_t;
+    static int s_t_sub_e;
+    static int s_t_sub_v;
 
     static QMap<QString,int> recordwave;
 

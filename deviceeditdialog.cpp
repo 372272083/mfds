@@ -689,6 +689,7 @@ bool DeviceEditDialog::editdevice()
                             {
                                 struct ModbusTCPMapInfo cmd_sample;
                                 cmd_sample.Unit = COM_W;
+                                cmd_sample.Num = 0;
                                 cmd_sample.Addr = 11;
                                 cmd_sample.Command = 0x10;
                                 cmd_sample.Length = 16;

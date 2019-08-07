@@ -157,6 +157,7 @@ void DeviceLinkManager::close()
             {
                 struct ModbusTCPMapInfo cmd_mode;
                 cmd_mode.Unit = MODE_V_W;
+                cmd_mode.Num = 0;
                 cmd_mode.Addr = 36;
                 cmd_mode.Command = 0x10;
                 cmd_mode.Length = 2;

@@ -48,7 +48,7 @@ void CMIEVDeviceInfo::init()
     syncTomerOk = false;
     comReadOk = false;
     factorReadOk = false;
-    //modelWriteOk = true;
+    modelWriteOk = false;
     modelReadOk = false;
 
     DeviceInfo::init();
@@ -674,7 +674,7 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
         }
         else if(unit == MODE_V_W)
         {
-            //modelWriteOk = true;
+            modelWriteOk = true;
             //run_mode = 1;
 
             struct ModbusTCPMapInfo cmd_com;
@@ -699,12 +699,12 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             if(comdata == 4)
             {
                 run_mode = 1;
-                modelWriteOk = true;
+                //modelWriteOk = true;
             }
             else
             {
                 run_mode = 0;
-                modelWriteOk = false;
+                //modelWriteOk = false;
             }
         }
         else if(unit == MEASURE_R) //read measure data ok
@@ -902,22 +902,26 @@ void CMIEVDeviceInfo::handleSendMsg()
 
     if (isReceiving)
     {
-        if(GlobalVariable::s_t == 10 && !isHaveSomeState(1,NONE))
+        if((GlobalVariable::s_t == 10 || (GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v == 10)) && !isHaveSomeState(1,NONE))
         {
-            struct ModbusTCPMapInfo cmd_wave;
-            cmd_wave.Unit = NONE;
-            cmd_wave.Addr = 0;
-            cmd_wave.Command = 0x0;
-            cmd_wave.Length = 5;
-            cmd_wave.ExpectLen = GlobalVariable::cmie_v_wave_len;
-            cmd_wave.data = new unsigned char[5];
+            if (syncTomerOk && comReadOk && factorReadOk && modelReadOk && modelWriteOk)
+            {
+                struct ModbusTCPMapInfo cmd_wave;
+                cmd_wave.Unit = NONE;
+                cmd_wave.Num = 0;
+                cmd_wave.Addr = 0;
+                cmd_wave.Command = 0x0;
+                cmd_wave.Length = 5;
+                cmd_wave.ExpectLen = GlobalVariable::cmie_v_wave_len;
+                cmd_wave.data = new unsigned char[5];
 
-            cmd_wave.data[0] = 87;
-            cmd_wave.data[1] = 97;
-            cmd_wave.data[2] = 118;
-            cmd_wave.data[3] = 101;
-            cmd_wave.data[4] = 49;
-            msgPriSendQueue.enqueue(cmd_wave);
+                cmd_wave.data[0] = 87;
+                cmd_wave.data[1] = 97;
+                cmd_wave.data[2] = 118;
+                cmd_wave.data[3] = 101;
+                cmd_wave.data[4] = 49;
+                msgPriSendQueue.enqueue(cmd_wave);
+            }
         }
 
         //qDebug()<<"Receiving: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat);
@@ -944,6 +948,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_com;
             cmd_com.Unit = MODE_V_R;
+            cmd_com.Num = 0;
             cmd_com.Addr = 36;
             cmd_com.Command = 0x3;
             cmd_com.Length = 1;
@@ -959,6 +964,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_com;
             cmd_com.Unit = COM_R;
+            cmd_com.Num = 0;
             cmd_com.Addr = 0;
             cmd_com.Command = 0x3;
             cmd_com.Length = 23;
@@ -968,7 +974,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         }
         return;
     }
-    if(GlobalVariable::s_t == 10 && run_mode == 0)
+    if((GlobalVariable::s_t == 10  || (GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v == 10))&& run_mode == 0)
     {
         if (!modelWriteOk)
         {
@@ -976,6 +982,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             {
                 struct ModbusTCPMapInfo cmd_mode;
                 cmd_mode.Unit = MODE_V_W;
+                cmd_mode.Num = 0;
                 cmd_mode.Addr = 36;
                 cmd_mode.Command = 0x10;
                 cmd_mode.Length = 2;
@@ -992,22 +999,28 @@ void CMIEVDeviceInfo::handleSendMsg()
     }
     else if(GlobalVariable::s_t != 10 && run_mode == 1)
     {
-        if(!isHaveSomeState(1,MODE_V_W))
+        if(GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v != 10)
         {
-            struct ModbusTCPMapInfo cmd_mode;
-            cmd_mode.Unit = MODE_V_W;
-            cmd_mode.Addr = 36;
-            cmd_mode.Command = 0x10;
-            cmd_mode.Length = 2;
-            cmd_mode.data = new unsigned char[2];
-            cmd_mode.data[0] = 0x0;
-            cmd_mode.data[1] = 0x0;
-            cmd_mode.ExpectLen = 15;
-            msgPriSendQueue.enqueue(cmd_mode);
+            if (!modelWriteOk)
+            {
+                if(!isHaveSomeState(1,MODE_V_W))
+                {
+                    struct ModbusTCPMapInfo cmd_mode;
+                    cmd_mode.Unit = MODE_V_W;
+                    cmd_mode.Num = 0;
+                    cmd_mode.Addr = 36;
+                    cmd_mode.Command = 0x10;
+                    cmd_mode.Length = 2;
+                    cmd_mode.data = new unsigned char[2];
+                    cmd_mode.data[0] = 0x0;
+                    cmd_mode.data[1] = 0x0;
+                    cmd_mode.ExpectLen = 15;
+                    msgPriSendQueue.enqueue(cmd_mode);
+                }
+                //modelWriteOk = true;
+                return;
+            }
         }
-
-        //modelWriteOk = true;
-        return;
     }
     if (!factorReadOk)
     {
@@ -1015,6 +1028,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_factor;
             cmd_factor.Unit = E_FACTOR_R;
+            cmd_factor.Num = 0;
             if(run_mode == 1)
             {
                 cmd_factor.Addr = 360;
@@ -1032,7 +1046,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         return;
     }
 
-    if (!syncTomerOk || !comReadOk || !factorReadOk)
+    if (!syncTomerOk || !comReadOk || !factorReadOk || !modelWriteOk || !modelReadOk)
     {
         return;
     }
@@ -1047,6 +1061,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             {
                 struct ModbusTCPMapInfo cmd_wave;
                 cmd_wave.Unit = FREQ_W;
+                cmd_wave.Num = 0;
                 cmd_wave.Addr = 33;
                 cmd_wave.Command = 0x10;
                 cmd_wave.Length = 2;
@@ -1093,6 +1108,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             {
                 struct ModbusTCPMapInfo cmd;
                 cmd.Unit = MEASURE_R;
+                cmd.Num = 0;
                 cmd.Addr = 128;
                 cmd.Command = 0x3;
                 cmd.Length = 36;
@@ -1104,6 +1120,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             {
                 struct ModbusTCPMapInfo cmd_state;
                 cmd_state.Unit = STATE_R;
+                cmd_state.Num = 0;
                 cmd_state.Addr = 50;
                 cmd_state.Command = 0x3;
                 cmd_state.Length = 5;
@@ -1115,6 +1132,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             {
                 struct ModbusTCPMapInfo cmd_com;
                 cmd_com.Unit = ROTATE_R;
+                cmd_com.Num = 0;
                 cmd_com.Addr = 23;
                 cmd_com.Command = 0x3;
                 cmd_com.Length = 1;
@@ -1127,6 +1145,7 @@ void CMIEVDeviceInfo::handleSendMsg()
     {
         struct ModbusTCPMapInfo cmd_wave;
         cmd_wave.Unit = NONE;
+        cmd_wave.Num = 0;
         cmd_wave.Addr = 0;
         cmd_wave.Command = 0x0;
         cmd_wave.Length = 5;
@@ -1150,6 +1169,7 @@ void CMIEVDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd_com;
             cmd_com.Unit = ROTATE_R;
+            cmd_com.Num = 0;
             cmd_com.Addr = 23;
             cmd_com.Command = 0x3;
             cmd_com.Length = 1;

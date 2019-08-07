@@ -15,6 +15,8 @@ class ChartBannerWidget;
 class QLabel;
 class QCPCurve;
 class QAction;
+class QCPLegend;
+class QCPAbstractLegendItem;
 
 class FeartureChartWidget : public MDISubWidget
 {
@@ -102,6 +104,11 @@ private slots:
     void autoRangeSlot();
 
     void timeUpdate();
+
+    void legendDoubleClick(QCPLegend *legend, QCPAbstractLegendItem *item);
+    void selectionChanged();
+    void mousePress();
+    void mouseWheel();
 };
 
 #endif // FEARTURECHARTWIDGET_H

@@ -59,8 +59,13 @@ FeartureChartWidget::FeartureChartWidget(/*SqliteDB *db,*/MDISubWidget *parent) 
 
     myPlot = new QCustomPlot(chartwidget);
     connect(myPlot, SIGNAL(mouseMove(QMouseEvent*)), this, SLOT(my_mouseMove(QMouseEvent*)));
+    connect(myPlot, SIGNAL(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*,QMouseEvent*)), this, SLOT(legendDoubleClick(QCPLegend*,QCPAbstractLegendItem*)));
+    connect(myPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress()));
+    connect(myPlot, SIGNAL(mouseWheel(QWheelEvent*)), this, SLOT(mouseWheel()));
+    connect(myPlot, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));
+
     myPlot->legend->setVisible(false);
-    myPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes);
+    myPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes | QCP::iSelectLegend | QCP::iSelectPlottables);
     //myPlot->setMinimumSize(paintArea->size().width()-100,paintArea->size().height()-150);
     myPlot->setFixedWidth(this->size().width());
     myPlot->setFixedHeight(this->size().height()-200);
@@ -184,6 +189,71 @@ void FeartureChartWidget::setTitle(QString title)
 QString FeartureChartWidget::title()
 {
     return this->windowTitle();
+}
+
+void FeartureChartWidget::selectionChanged()
+{
+    // synchronize selection of graphs with selection of corresponding legend items:
+    QList<QString> names = curves.keys();
+    QList<QString>::ConstIterator it;
+    for(it=names.constBegin();it!=names.constEnd();it++)
+    {
+        QString name = *it;
+        QCPCurve* graph = curves[name];
+        QCPPlottableLegendItem *item = myPlot->legend->itemWithPlottable(graph);
+        if (item->selected() || graph->selected())
+        {
+            item->setSelected(true);
+            graph->setSelection(QCPDataSelection(graph->data()->dataRange()));
+        }
+    }
+}
+
+void FeartureChartWidget::mousePress()
+{
+    // if an axis is selected, only allow the direction of that axis to be dragged
+    // if no axis is selected, both directions may be dragged
+
+    if (myPlot->xAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        myPlot->axisRect()->setRangeDrag(myPlot->xAxis->orientation());
+    else if (myPlot->yAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        myPlot->axisRect()->setRangeDrag(myPlot->yAxis->orientation());
+    else
+        myPlot->axisRect()->setRangeDrag(Qt::Horizontal|Qt::Vertical);
+}
+
+void FeartureChartWidget::mouseWheel()
+{
+    // if an axis is selected, only allow the direction of that axis to be zoomed
+    // if no axis is selected, both directions may be zoomed
+
+    if (myPlot->xAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        myPlot->axisRect()->setRangeZoom(myPlot->xAxis->orientation());
+    else if (myPlot->yAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        myPlot->axisRect()->setRangeZoom(myPlot->yAxis->orientation());
+    else
+        myPlot->axisRect()->setRangeZoom(Qt::Horizontal|Qt::Vertical);
+}
+
+void FeartureChartWidget::legendDoubleClick(QCPLegend *legend, QCPAbstractLegendItem *item)
+{
+    QCPPlottableLegendItem *plItem = qobject_cast<QCPPlottableLegendItem*>(item);
+    bool isvisile = plItem->plottable()->visible();
+
+    plItem->plottable()->setVisible(!isvisile);
+
+    QString name = plItem->plottable()->name();
+    if(name.endsWith("-hidden",Qt::CaseInsensitive))
+    {
+        int name_len = name.length();
+        name = name.left(name_len - 7);
+        plItem->plottable()->setName(name);
+    }
+    else
+    {
+        name += "-hidden";
+        plItem->plottable()->setName(name);
+    }
 }
 
 void FeartureChartWidget::my_mouseMove(QMouseEvent* event)

@@ -282,6 +282,7 @@ void CMIETDeviceInfo::handleSendMsg()
     {
         struct ModbusTCPMapInfo cmd_t;
         cmd_t.Unit = TIME_SYNC_W;
+        cmd_t.Num = 0;
         cmd_t.Addr = 39;
         cmd_t.Command = 0x10;
         cmd_t.Length = 4;
@@ -295,6 +296,7 @@ void CMIETDeviceInfo::handleSendMsg()
     {
         struct ModbusTCPMapInfo cmd_com;
         cmd_com.Unit = COM_R;
+        cmd_com.Num = 0;
         cmd_com.Addr = 0;
         cmd_com.Command = 0x3;
         cmd_com.Length = 10;
@@ -316,6 +318,7 @@ void CMIETDeviceInfo::handleSendMsg()
         {
             struct ModbusTCPMapInfo cmd;
             cmd.Unit = MEASURE_R;
+            cmd.Num = 0;
             cmd.Addr = 104;
             cmd.Command = 0x3;
             cmd.Length = 12;
