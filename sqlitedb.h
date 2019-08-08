@@ -54,7 +54,7 @@ public:
     QVector<QString> getVibrateRecordData(QString);
     QVector<QString> getElectricRecordData(QString);
 
-    QString getProjectData();
+    QString getProjectData(int);
 
 private:
     QString dbfile;

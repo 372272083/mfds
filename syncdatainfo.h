@@ -6,6 +6,7 @@
 class QLabel;
 class QProgressBar;
 class QPushButton;
+class QTimer;
 
 class SyncDataInfo : public QDialog
 {
@@ -18,11 +19,13 @@ private:
     QProgressBar* pecentage;
     QPushButton* sync_btn;
     QPushButton* cancel_sync;
+    QTimer *timer;
 
 public slots:
     void ok();
     void cancel();
 
+    void timeUpdate();
 };
 
 #endif // SYNCDATAINFO_H

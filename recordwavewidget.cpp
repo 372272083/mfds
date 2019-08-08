@@ -81,6 +81,8 @@ RecordWaveWidget::RecordWaveWidget(QWidget *parent) : QDialog(parent)
     this->setLayout(playout);
 
     timer = nullptr;
+
+    pnameEdit->setFocus();
 }
 
 void RecordWaveWidget::timeUpdate()

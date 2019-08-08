@@ -21,6 +21,7 @@ public:
     virtual void close();
 private:
     QVector<CMIEVAnalyseThread*> analyse_threads;
+    int seqence_index;
     bool syncTomerOk;
     bool comReadOk;
     bool factorReadOk;

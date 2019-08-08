@@ -483,6 +483,16 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
     {
         QMenu menu(motorTree);
         menu.addAction(newMotor);
+        menu.addSeparator();
+        if(GlobalVariable::is_sync_done)
+        {
+            syncMotorData->setEnabled(false);
+        }
+        else
+        {
+            syncMotorData->setEnabled(true);
+        }
+        menu.addAction(syncMotorData);
         menu.exec(QCursor::pos());  //在当前鼠标位置显示
         return;
     }
@@ -511,6 +521,7 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
             switch (itemType) {
             case MOTORROOT:
                 menu.addAction(newMotor);
+                menu.addAction(syncMotorData);
                 menu.exec(QCursor::pos());  //在当前鼠标位置显示
                 if(1==run_mode)
                 {
@@ -523,6 +534,7 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
                 //menu.addSeparator();
                 menu.addAction(editActoin);
                 menu.addAction(deleteActoin);
+                /*
                 menu.addSeparator();
                 if(GlobalVariable::is_sync_done)
                 {
@@ -533,6 +545,7 @@ void LeftTreeView::itemMotorPressedSlot(QTreeWidgetItem *pressedItem, int column
                     syncMotorData->setEnabled(true);
                 }
                 menu.addAction(syncMotorData);
+                */
                 menu.addSeparator();
                 submenu = menu.addMenu(tr("New Channel"));
                 //menu.addAction(newChannel);

@@ -41,6 +41,7 @@ CMIEVDeviceInfo::CMIEVDeviceInfo(DeviceInfo *parent) : DeviceInfo(parent),syncTo
 
     run_mode = 0;
     rotate = 0;
+    seqence_index = 0;
 }
 
 void CMIEVDeviceInfo::init()
@@ -190,6 +191,41 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             //qDebug() << "wave read: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat);
             int len = (datalen-8)/6;
 
+            QByteArray time_buffer;
+            time_buffer.resize(4);
+            time_buffer[3] = rec_buffer[5];
+            time_buffer[2] = rec_buffer[4];
+            time_buffer[1] = rec_buffer[3];
+            time_buffer[0] = rec_buffer[2];
+
+            int time_index = 0;
+            bool is_con = false;
+            memcpy(&time_index,time_buffer,4);
+            if(seqence_index == 0)
+            {
+                seqence_index = time_index;
+                is_con = true;
+            }
+            else
+            {
+                int s_tmp = seqence_index + 1;
+                if(s_tmp == time_index)
+                {
+                    is_con = true;
+                }
+                else if(s_tmp > time_index)
+                {
+                    isReceiving = false;
+                    DeviceInfo::handlerReceiveMsg();
+                    return;
+                }
+                else
+                {
+                    is_con = false;
+                }
+                seqence_index = time_index;
+            }
+
             //DOUBLE_VCT vAccWave[6];
             QMap<int,std::vector<double>> vAccWave;
             QDateTime current_time = QDateTime::currentDateTime();
@@ -277,6 +313,15 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                     wInfo->rksj = StrCurrentTime;
                     wInfo->pipe = cur_pipe;
                     wInfo->stype = 0;
+
+                    if(is_con)
+                    {
+                        wInfo->is_Continuity = 10;
+                    }
+                    else
+                    {
+                        wInfo->is_Continuity = 0;
+                    }
 
                     if(GlobalVariable::is_sync_done && record_flag)
                     {
@@ -684,6 +729,7 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             cmd_com.Length = 1;
             cmd_com.ExpectLen = cmd_com.Length * 2 + 9;
             msgPriSendQueue.enqueue(cmd_com);
+            modelReadOk = false;
         }
         else if(unit == MODE_V_R)
         {

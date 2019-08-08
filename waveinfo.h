@@ -14,6 +14,8 @@ public:
     QString sample_data;
     int stype;
 
+    int is_Continuity;
+
     virtual QString toString();
 
 signals:

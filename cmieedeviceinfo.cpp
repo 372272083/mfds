@@ -360,6 +360,7 @@ void CMIEEDeviceInfo::handlerReceiveMsg()
                     wInfo->mcode = "";
                     wInfo->rksj = StrCurrentTime;
                     wInfo->pipe = cur_pipe;
+                    wInfo->is_Continuity = 0;
                     if (i<3)
                     {
                         wInfo->stype = 0;

@@ -1379,6 +1379,16 @@ void SaveSampleThread::run()
                                         stypes.append(winfo->stype);
                                         binds[deviceType].insert("stype",stypes);
                                     }
+                                    if(binds[deviceType].contains("wid"))
+                                    {
+                                        binds[deviceType]["wid"].append(winfo->is_Continuity);
+                                    }
+                                    else
+                                    {
+                                        QVariantList stypes;
+                                        stypes.append(winfo->is_Continuity);
+                                        binds[deviceType].insert("wid",stypes);
+                                    }
                                 }
                             }
 
@@ -1416,13 +1426,13 @@ void SaveSampleThread::run()
                 //qDebug() << "V size: " << binds["V"].size();
                 if(binds["E"].size()>0)
                 {
-                    QString sql = "insert into electricchargewave (sample_data,dcode,mcode,pipe,rksj,stype) values (:sample_data,:dcode,:mcode,:pipe,:rksj,:stype)";
+                    QString sql = "insert into electricchargewave (sample_data,dcode,mcode,pipe,rksj,stype,wid) values (:sample_data,:dcode,:mcode,:pipe,:rksj,:stype,:wid)";
                     mdb->execSql(sql,binds["E"]);
                 }
                 //qDebug() << "V size: " << binds["V"].size();
                 if(binds["V"].size()>0)
                 {
-                    QString sql = "insert into vibratewave (sample_data,dcode,mcode,pipe,rksj,stype) values (:sample_data,:dcode,:mcode,:pipe,:rksj,:stype)";
+                    QString sql = "insert into vibratewave (sample_data,dcode,mcode,pipe,rksj,stype,wid) values (:sample_data,:dcode,:mcode,:pipe,:rksj,:stype,:wid)";
                     mdb->execSql(sql,binds["V"]);
                 }
             }

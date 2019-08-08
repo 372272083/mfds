@@ -316,6 +316,8 @@ bool GlobalVariable::desktop_capture_enable = false;
 bool GlobalVariable::modbus_server_enable = false;
 bool GlobalVariable::server_enable = false;
 bool GlobalVariable::is_sync_done = false;
+bool GlobalVariable::is_sync = false;
+int GlobalVariable::sync_process = 0;
 
 int GlobalVariable::freq_sample_interval = 10;
 int GlobalVariable::wave_sample_interval = 1800;
@@ -392,7 +394,7 @@ FFTParams GlobalVariable::fft_params;
 int GlobalVariable::version = 2;
 int GlobalVariable::s_t = 0; //0 all; 1 vibrate; 2 electric; 3 temperature; 10 vibrate contg wave
 int GlobalVariable::s_t_sub_e = 0;
-int GlobalVariable::s_t_sub_v = 1;
+int GlobalVariable::s_t_sub_v = 10;
 
 QMap<QString,int> GlobalVariable::recordwave;
 

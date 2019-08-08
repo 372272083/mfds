@@ -136,6 +136,8 @@ public:
     static bool modbus_server_enable; // id 13
     static bool server_enable; // id 14
     static bool is_sync_done; // id 17
+    static bool is_sync;
+    static int sync_process;
 
     static int wave_sample_interval; // id 5
     static int freq_sample_interval; // id 6

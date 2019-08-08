@@ -512,7 +512,7 @@ QString SqliteDB::getConditionByCodeTime(QString dcode,QString f_t)
     return "";
 }
 
-QString SqliteDB::getProjectData()
+QString SqliteDB::getProjectData(int type)
 {
     QMutexLocker locker(&mutex);
 
@@ -528,187 +528,204 @@ QString SqliteDB::getProjectData()
 
     QString sql = "select mcode,name,motor_type,bearing_type,manufacture_date from motor";
 
-    QString result = "1:";
+    QString result = "";
     QVector<QString> mTypes,bTypes;
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString mcode_str = rec.value("mcode").toString();
-                QString name_str = rec.value("name").toString();
-                QString motor_type_str = rec.value("motor_type").toString();
-                QString bearing_type_str = rec.value("bearing_type").toString();
-                QString manufacture_date_str = rec.value("manufacture_date").toString();
 
-                mTypes.append(motor_type_str);
-                bTypes.append(bearing_type_str);
-                result += mcode_str + "," + name_str + "," + motor_type_str + "," + bearing_type_str + "," + manufacture_date_str + ";";
-                apdata = true;
-            }
-            catch(QException e)
-            {
-
-            }
-        }
-        if(apdata)
+    switch (type) {
+    case 1:
+        result = "1:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
-        }
-    }
-    result += "#";
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString mcode_str = rec.value("mcode").toString();
+                    QString name_str = rec.value("name").toString();
+                    QString motor_type_str = rec.value("motor_type").toString();
+                    QString bearing_type_str = rec.value("bearing_type").toString();
+                    QString manufacture_date_str = rec.value("manufacture_date").toString();
 
-    sql = "select code,name,dmodel,dtype,ipaddress,port from device";
+                    mTypes.append(motor_type_str);
+                    bTypes.append(bearing_type_str);
+                    result += mcode_str + "," + name_str + "," + motor_type_str + "," + bearing_type_str + "," + manufacture_date_str + ";";
+                    apdata = true;
+                }
+                catch(QException e)
+                {
 
-    result += "2:";
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString code_str = rec.value("code").toString();
-                QString name_str = rec.value("name").toString();
-                QString dmodel_str = rec.value("dmodel").toString();
-                QString dtype_str = rec.value("dtype").toString();
-                QString ipaddress_str = rec.value("ipaddress").toString();
-                QString port_str = rec.value("port").toString();
-
-                result += code_str + "," + name_str + "," + dmodel_str + "," + dtype_str + "," + ipaddress_str + "," + port_str + ";";
-                apdata = true;
+                }
             }
-            catch(QException e)
+            if(apdata)
             {
-
+                result = result.left(result.length()-1);
             }
         }
-        if(apdata)
+        result += "#";
+        break;
+    case 2:
+        sql = "select code,name,dmodel,dtype,ipaddress,port from device";
+
+        result += "2:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
-        }
-    }
-    result += "#";
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString code_str = rec.value("code").toString();
+                    QString name_str = rec.value("name").toString();
+                    QString dmodel_str = rec.value("dmodel").toString();
+                    QString dtype_str = rec.value("dtype").toString();
+                    QString ipaddress_str = rec.value("ipaddress").toString();
+                    QString port_str = rec.value("port").toString();
 
-    sql = "select model,work_mode,power_rating,rated_voltage,rated_current,poleNums,center_height,factor,insulate,rotate from motortype";
-    result += "3:";
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString model_str = rec.value("model").toString();
-                QString work_mode_str = rec.value("work_mode").toString();
-                QString power_rating_str = rec.value("power_rating").toString();
-                QString rated_voltage_str = rec.value("rated_voltage").toString();
-                QString rated_current_str = rec.value("rated_current").toString();
-                QString poleNums_str = rec.value("poleNums").toString();
-                QString center_height_str = rec.value("center_height").toString();
-                QString factor_str = rec.value("factor").toString();
-                QString insulate_str = rec.value("insulate").toString();
-                QString rotate_str = rec.value("rotate").toString();
+                    result += code_str + "," + name_str + "," + dmodel_str + "," + dtype_str + "," + ipaddress_str + "," + port_str + ";";
+                    apdata = true;
+                }
+                catch(QException e)
+                {
 
-                result += model_str + "," + work_mode_str + "," + power_rating_str + "," + rated_voltage_str + "," + rated_current_str + "," + poleNums_str + "," + center_height_str + "," + factor_str + "," + insulate_str + "," + rotate_str + ";";
-                apdata = true;
+                }
             }
-            catch(QException ex)
+            if(apdata)
             {
-
+                result = result.left(result.length()-1);
             }
         }
-        if(apdata)
+        result += "#";
+        break;
+    case 3:
+        sql = "select model,work_mode,power_rating,rated_voltage,rated_current,poleNums,center_height,factor,insulate,rotate from motortype";
+        result += "3:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
-        }
-    }
-    result += "#";
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString model_str = rec.value("model").toString();
+                    QString work_mode_str = rec.value("work_mode").toString();
+                    QString power_rating_str = rec.value("power_rating").toString();
+                    QString rated_voltage_str = rec.value("rated_voltage").toString();
+                    QString rated_current_str = rec.value("rated_current").toString();
+                    QString poleNums_str = rec.value("poleNums").toString();
+                    QString center_height_str = rec.value("center_height").toString();
+                    QString factor_str = rec.value("factor").toString();
+                    QString insulate_str = rec.value("insulate").toString();
+                    QString rotate_str = rec.value("rotate").toString();
 
-    sql = "select model,btype,rin,rout,contact_angle from bearingtype";
-    result += "4:";
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString model_str = rec.value("model").toString();
-                QString btype_str = rec.value("btype").toString();
-                QString rin_str = rec.value("rin").toString();
-                QString rout_str = rec.value("rout").toString();
-                QString contact_angle_str = rec.value("contact_angle").toString();
+                    result += model_str + "," + work_mode_str + "," + power_rating_str + "," + rated_voltage_str + "," + rated_current_str + "," + poleNums_str + "," + center_height_str + "," + factor_str + "," + insulate_str + "," + rotate_str + ";";
+                    apdata = true;
+                }
+                catch(QException ex)
+                {
 
-                result += model_str + "," + btype_str + "," + rin_str + "," + rout_str + "," + contact_angle_str + ";";
-                apdata = true;
+                }
             }
-            catch(QException e)
+            if(apdata)
             {
-
+                result = result.left(result.length()-1);
             }
         }
-        if(apdata)
+        result += "#";
+        break;
+    case 4:
+        sql = "select model,btype,rin,rout,contact_angle,bearpitch,rotated,rotaten from bearingtype";
+        result += "4:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
-        }
-    }
-    result += "#";
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString model_str = rec.value("model").toString();
+                    QString btype_str = rec.value("btype").toString();
+                    QString rin_str = rec.value("rin").toString();
+                    QString rout_str = rec.value("rout").toString();
+                    QString contact_angle_str = rec.value("contact_angle").toString();
+                    QString bearpitch_str = rec.value("bearpitch").toString();
+                    QString rotated_str = rec.value("rotated").toString();
+                    QString rotaten_str = rec.value("rotaten").toString();
 
-    sql = "select model,dtype,pipenum,description from devicetype";
-    result += "5:";
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString model_str = rec.value("model").toString();
-                QString dtype_str = rec.value("dtype").toString();
-                QString pipenum_str = rec.value("pipenum").toString();
-                QString description_str = rec.value("description").toString();
+                    result += model_str + "," + btype_str + "," + rin_str + "," + rout_str + "," + contact_angle_str + "," + bearpitch_str + "," + rotated_str + "," + rotaten_str + ";";
+                    apdata = true;
+                }
+                catch(QException e)
+                {
 
-                result += model_str + "," + dtype_str + "," + pipenum_str + "," + description_str + ";";
-                apdata = true;
+                }
             }
-            catch(QException e)
+            if(apdata)
             {
-
+                result = result.left(result.length()-1);
             }
         }
-        if(apdata)
+        result += "#";
+        break;
+    case 5:
+        sql = "select model,dtype,pipenum,description from devicetype";
+        result += "5:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
-        }
-    }
-    result += "#";
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString model_str = rec.value("model").toString();
+                    QString dtype_str = rec.value("dtype").toString();
+                    QString pipenum_str = rec.value("pipenum").toString();
+                    QString description_str = rec.value("description").toString();
 
-    sql = "select dcode,pipeCode,name,motor,isactive from devicepipes";
-    result += "6:";
-    if(sql_query.exec(sql)) //
-    {
-        apdata = false;
-        while (sql_query.next()) {
-            QSqlRecord rec = sql_query.record(); //
-            try{
-                QString dcode_str = rec.value("dcode").toString();
-                QString pipeCode_str = rec.value("pipeCode").toString();
-                QString name_str = rec.value("name").toString();
-                QString motor_str = rec.value("motor").toString();
-                QString isactive_str = rec.value("isactive").toString();
+                    result += model_str + "," + dtype_str + "," + pipenum_str + "," + description_str + ";";
+                    apdata = true;
+                }
+                catch(QException e)
+                {
 
-                result += dcode_str + "," + pipeCode_str + "," + name_str + "," + motor_str + "," + isactive_str + ";";
-                apdata = true;
+                }
             }
-            catch(QException e)
+            if(apdata)
             {
-
+                result = result.left(result.length()-1);
             }
         }
-        if(apdata)
+        result += "#";
+        break;
+    case 6:
+        sql = "select dcode,pipeCode,name,motor,isactive,channel_type from devicepipes";
+        result += "6:";
+        if(sql_query.exec(sql)) //
         {
-            result = result.left(result.length()-1);
+            apdata = false;
+            while (sql_query.next()) {
+                QSqlRecord rec = sql_query.record(); //
+                try{
+                    QString dcode_str = rec.value("dcode").toString();
+                    QString pipeCode_str = rec.value("pipeCode").toString();
+                    QString name_str = rec.value("name").toString();
+                    QString motor_str = rec.value("motor").toString();
+                    QString isactive_str = rec.value("isactive").toString();
+                    //QString channel_type_str = rec.value("channel_type").toString();
+
+                    result += dcode_str + "," + pipeCode_str + "," + name_str + "," + motor_str + "," + isactive_str + ";";
+                    apdata = true;
+                }
+                catch(QException e)
+                {
+
+                }
+            }
+            if(apdata)
+            {
+                result = result.left(result.length()-1);
+            }
         }
+        result += "#";
+        break;
+    default:
+        break;
     }
-    result += "#";
 
     sql_query.clear();
     database.commit();

@@ -1439,6 +1439,29 @@ void MainWindow::timeSendInfo()
         //serverState->setPalette(pal);
     }
 
+    if(GlobalVariable::is_sync && GlobalVariable::sync_process == 0)
+    {
+        QString data = db->getProjectData(1);
+
+        qDebug() << data;
+        QByteArray sendBuffer;
+        sendBuffer.resize(6);
+        sendBuffer[0] = 0;
+        sendBuffer[1] = 0xFF;
+        sendBuffer[2] = 0xFF;
+        sendBuffer[3] = 0;
+        sendBuffer[4] = 0;
+        sendBuffer[5] = 102;
+
+        QByteArray compress_dataBuffer = qCompress(data.toUtf8());
+        int compress_data_len = compress_dataBuffer.size();
+        sendBuffer[3] = compress_data_len / 0xFF;
+        sendBuffer[4] = compress_data_len % 0xFF;
+        sendBuffer.append(compress_dataBuffer);
+        GlobalVariable::trans_queue_pri.enqueue(sendBuffer);
+        GlobalVariable::sync_process = 1;
+    }
+
     if ((GlobalVariable::trans_queue.size()>0 || GlobalVariable::trans_queue_pri.size()>0) && !isWaiting) {
         QByteArray msg;
         if (GlobalVariable::trans_queue_pri.size() > 0)
@@ -1559,6 +1582,104 @@ void MainWindow::dataReceived()
             {
                 QString key = *it;
                 GlobalVariable::recordwave[key] = 1;
+            }
+        }
+        else if(msg.startsWith("102#sync",Qt::CaseInsensitive))
+        {
+            QStringList msgs = msg.split('#');
+            if(msgs.size() >= 3)
+            {
+                bool tok;
+                QString s_type_s = msgs[2];
+                int s_type = s_type_s.toInt(&tok);
+                if(s_type >= 1)
+                    s_type++;
+                else
+                    return;
+
+                QString state_s = msgs[3];
+                int state_i = state_s.toInt(&tok);
+                if(state_i == 1)
+                {
+                    //code is infused
+                    QString code_s = msgs[4];
+                    GlobalVariable::sync_process = GlobalVariable::sync_process | 0x80;
+                    GlobalVariable::is_sync = false;
+
+                    int self_type = s_type - 1;
+                    QString show_msg = "";
+                    switch (self_type) {
+                    case 1:
+                        show_msg = tr("Motor has code :") + code_s + tr(" is existed!");
+                        break;
+                    case 2:
+                        show_msg = tr("Device has code :") + code_s + tr(" is existed!");
+                        break;
+                    case 3:
+                        show_msg = tr("Motor Type has code :") + code_s + tr(" is existed!");
+                        break;
+                    case 4:
+                        show_msg = tr("Bearing Type has code :") + code_s + tr(" is existed!");
+                        break;
+                    case 5:
+                        show_msg = tr("Device Type has code :") + code_s + tr(" is existed!");
+                        break;
+                    case 6:
+                        show_msg = tr("Devicepipes has code :") + code_s + tr(" is existed!");
+                        break;
+                    default:
+                        break;
+                    }
+
+                    QMessageBox::information(this, tr("Infomation"), show_msg);
+                }
+                else
+                {
+                    QString data = db->getProjectData(s_type);
+
+                    qDebug() << data;
+                    QByteArray sendBuffer;
+                    sendBuffer.resize(6);
+                    sendBuffer[0] = 0;
+                    sendBuffer[1] = 0xFF;
+                    sendBuffer[2] = 0xFF;
+                    sendBuffer[3] = 0;
+                    sendBuffer[4] = 0;
+                    sendBuffer[5] = 102;
+
+                    QByteArray compress_dataBuffer = qCompress(data.toUtf8());
+                    int compress_data_len = compress_dataBuffer.size();
+                    sendBuffer[3] = compress_data_len / 0xFF;
+                    sendBuffer[4] = compress_data_len % 0xFF;
+                    sendBuffer.append(compress_dataBuffer);
+                    GlobalVariable::trans_queue_pri.enqueue(sendBuffer);
+
+                    int self_type = s_type - 1;
+                    switch (self_type) {
+                    case 1:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x2;
+                        break;
+                    case 2:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x4;
+                        break;
+                    case 3:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x8;
+                        break;
+                    case 4:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x10;
+                        break;
+                    case 5:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x20;
+                        break;
+                    case 6:
+                        GlobalVariable::sync_process = GlobalVariable::sync_process | 0x40;
+                        break;
+                    default:
+                        break;
+                    }
+                    if(s_type > 6)
+                        GlobalVariable::is_sync = false;
+                }
             }
         }
         //qDebug() << "receive data lenght: " << datalen;
