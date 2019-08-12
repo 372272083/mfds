@@ -69,10 +69,12 @@ void SyncDataInfo::timeUpdate()
     int p32 = s & 0x4;
     int p16 = s & 0x2;
 
-    if(state > 0)
+    /*
+    if(state > 0 && GlobalVariable::is_sync == false)
     {
         return;
     }
+    */
 
     if(p100 > 0)
     {

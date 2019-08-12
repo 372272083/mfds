@@ -1610,28 +1610,77 @@ void MainWindow::dataReceived()
                     QString show_msg = "";
                     switch (self_type) {
                     case 1:
-                        show_msg = tr("Motor has code :") + code_s + tr(" is existed!");
+                        show_msg = tr("Motor has code :") + code_s + tr(" is existed! ") + msgs[5];
                         break;
                     case 2:
-                        show_msg = tr("Device has code :") + code_s + tr(" is existed!");
+                        show_msg = tr("Device has code :") + code_s + tr(" is existed! ") + msgs[5];
                         break;
                     case 3:
-                        show_msg = tr("Motor Type has code :") + code_s + tr(" is existed!");
+                        show_msg = tr("Motor Type has code :") + code_s + tr(" is existed! ") + msgs[5];
                         break;
                     case 4:
-                        show_msg = tr("Bearing Type has code :") + code_s + tr(" is existed!");
+                        show_msg = tr("Bearing Type has code :") + code_s + tr(" is existed!") + msgs[5];
                         break;
                     case 5:
-                        show_msg = tr("Device Type has code :") + code_s + tr(" is existed!");
-                        break;
-                    case 6:
-                        show_msg = tr("Devicepipes has code :") + code_s + tr(" is existed!");
+                        show_msg = tr("Device Type has code :") + code_s + tr(" is existed!") + msgs[5];
                         break;
                     default:
                         break;
                     }
 
-                    QMessageBox::information(this, tr("Infomation"), show_msg);
+                    int state_btn = QMessageBox::information(this, tr("Infomation"), show_msg,QMessageBox::Ok,QMessageBox::Cancel);
+
+                    if(state_btn == QMessageBox::Ok)
+                    {
+                        QString data = db->getProjectData(s_type);
+
+                        qDebug() << data;
+                        QByteArray sendBuffer;
+                        sendBuffer.resize(6);
+                        sendBuffer[0] = 0;
+                        sendBuffer[1] = 0xFF;
+                        sendBuffer[2] = 0xFF;
+                        sendBuffer[3] = 0;
+                        sendBuffer[4] = 0;
+                        sendBuffer[5] = 102;
+
+                        QByteArray compress_dataBuffer = qCompress(data.toUtf8());
+                        int compress_data_len = compress_dataBuffer.size();
+                        sendBuffer[3] = compress_data_len / 0xFF;
+                        sendBuffer[4] = compress_data_len % 0xFF;
+                        sendBuffer.append(compress_dataBuffer);
+                        GlobalVariable::trans_queue_pri.enqueue(sendBuffer);
+
+                        int self_type = s_type - 1;
+                        switch (self_type) {
+                        case 1:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x2;
+                            break;
+                        case 2:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x4;
+                            break;
+                        case 3:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x8;
+                            break;
+                        case 4:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x10;
+                            break;
+                        case 5:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x20;
+                            break;
+                        case 6:
+                            GlobalVariable::sync_process = GlobalVariable::sync_process | 0x40;
+                            break;
+                        default:
+                            break;
+                        }
+                        if(s_type > 6)
+                            GlobalVariable::is_sync = false;
+                    }
+                    else
+                    {
+                        GlobalVariable::is_sync = false;
+                    }
                 }
                 else
                 {
@@ -1655,21 +1704,32 @@ void MainWindow::dataReceived()
                     GlobalVariable::trans_queue_pri.enqueue(sendBuffer);
 
                     int self_type = s_type - 1;
+                    QString sql="";
                     switch (self_type) {
                     case 1:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x2;
+                        sql = "update motor set wid=1";
+                        db->execSql(sql);
                         break;
                     case 2:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x4;
+                        sql = "update device set wid=1";
+                        db->execSql(sql);
                         break;
                     case 3:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x8;
+                        sql = "update motortype set wid=1";
+                        db->execSql(sql);
                         break;
                     case 4:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x10;
+                        sql = "update bearingtype set wid=1";
+                        db->execSql(sql);
                         break;
                     case 5:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x20;
+                        sql = "update devicetype set wid=1";
+                        db->execSql(sql);
                         break;
                     case 6:
                         GlobalVariable::sync_process = GlobalVariable::sync_process | 0x40;
