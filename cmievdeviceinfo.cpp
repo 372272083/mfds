@@ -203,16 +203,16 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                 merge_num = 1;
                 break;
             case 2:
-                merge_num = 2;
+                merge_num = 1;
                 break;
             case 4:
+                merge_num = 2;
+                break;
+            case 8:
                 merge_num = 4;
                 break;
-            case 10:
+            case 16:
                 merge_num = 8;
-                break;
-            case 20:
-                merge_num = 16;
                 break;
             default:
                 break;
@@ -475,6 +475,7 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                 {
                     delete wi;
                 }
+                vAccWaves.clear();
             }
         }
         isReceiving = false;
@@ -811,6 +812,16 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             {
                 run_mode = 0;
                 //modelWriteOk = false;
+            }
+            if(GlobalVariable::s_t == 10  || (GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v == 10))
+            {
+                if( 1 == run_mode)
+                    modelWriteOk = true;
+            }
+            else
+            {
+                if( 0 == run_mode)
+                    modelWriteOk = true;
             }
         }
         else if(unit == MEASURE_R) //read measure data ok

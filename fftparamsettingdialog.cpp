@@ -113,11 +113,11 @@ FFTParamSettingDialog::FFTParamSettingDialog(QDialog *parent) : QDialog(parent)
         fft_resolution_v_CB->addItem(tr("1"),1);
         fft_resolution_v_CB->addItem(tr("0.5"),2);
         fft_resolution_v_CB->addItem(tr("0.25"),4);
-        fft_resolution_v_CB->addItem(tr("0.1"),10);
+        fft_resolution_v_CB->addItem(tr("0.125"),8);
 
-        if(!GlobalVariable::isOnline)
+        //if(!GlobalVariable::isOnline)
         {
-            fft_resolution_v_CB->addItem(tr("0.05"),20);
+            fft_resolution_v_CB->addItem(tr("0.0625"),16);
         }
 
         connect(fft_resolution_v_CB,SIGNAL(currentIndexChanged(int)),this,SLOT(resolutionIndexChanged(int)));
@@ -132,10 +132,10 @@ FFTParamSettingDialog::FFTParamSettingDialog(QDialog *parent) : QDialog(parent)
         case 4:
             fft_resolution_v_CB->setCurrentIndex(2);
             break;
-        case 10:
+        case 8:
             fft_resolution_v_CB->setCurrentIndex(3);
             break;
-        case 20:
+        case 16:
             fft_resolution_v_CB->setCurrentIndex(4);
             break;
         default:
