@@ -97,6 +97,56 @@ FFTParamSettingDialog::FFTParamSettingDialog(QDialog *parent) : QDialog(parent)
         break;
     }
 
+    if(GlobalVariable::s_t == 10 || (GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v == 10))
+    {
+        QLabel* f_resolution_Label = new QLabel(this);
+        if(GlobalVariable::s_t == 10)
+        {
+            f_resolution_Label->setText(tr("FFT Resolution:"));
+        }
+        else
+        {
+            f_resolution_Label->setText(tr("Vibrate FFT Resolution:"));
+        }
+        fft_resolution_v_CB = new QComboBox(this);
+
+        fft_resolution_v_CB->addItem(tr("1"),1);
+        fft_resolution_v_CB->addItem(tr("0.5"),2);
+        fft_resolution_v_CB->addItem(tr("0.25"),4);
+        fft_resolution_v_CB->addItem(tr("0.1"),10);
+
+        if(!GlobalVariable::isOnline)
+        {
+            fft_resolution_v_CB->addItem(tr("0.05"),20);
+        }
+
+        connect(fft_resolution_v_CB,SIGNAL(currentIndexChanged(int)),this,SLOT(resolutionIndexChanged(int)));
+
+        switch (GlobalVariable::resolution_sub_v) {
+        case 1:
+            fft_resolution_v_CB->setCurrentIndex(0);
+            break;
+        case 2:
+            fft_resolution_v_CB->setCurrentIndex(1);
+            break;
+        case 4:
+            fft_resolution_v_CB->setCurrentIndex(2);
+            break;
+        case 10:
+            fft_resolution_v_CB->setCurrentIndex(3);
+            break;
+        case 20:
+            fft_resolution_v_CB->setCurrentIndex(4);
+            break;
+        default:
+            break;
+        }
+
+        index++;
+        layout->addWidget(f_resolution_Label,index,0,1,1,Qt::AlignRight);
+        layout->addWidget(fft_resolution_v_CB,index,1,1,1,Qt::AlignLeft);
+    }
+
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(layout);
 
@@ -116,6 +166,15 @@ FFTParamSettingDialog::FFTParamSettingDialog(QDialog *parent) : QDialog(parent)
     mainLayout->addLayout(btn);
 
     setLayout(mainLayout);
+}
+
+void FFTParamSettingDialog::resolutionIndexChanged(int index)
+{
+    bool tok;
+    QString item_data = fft_resolution_v_CB->itemData(fft_resolution_v_CB->currentIndex()).toString();
+    int item_data_i = item_data.toInt(&tok);
+
+    GlobalVariable::resolution_sub_v = item_data_i;
 }
 
 void FFTParamSettingDialog::okbtn(bool)

@@ -216,6 +216,8 @@ public:
     static int s_t;
     static int s_t_sub_e;
     static int s_t_sub_v;
+    static int resolution_sub_e;
+    static int resolution_sub_v;
 
     static QMap<QString,int> recordwave;
 

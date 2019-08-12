@@ -137,14 +137,14 @@ DeviceEditDialog::DeviceEditDialog(SqliteDB *db,QWidget *parent) : QDialog(paren
     sampleItems->setVerticalSpacing(5);
     sampleItems->setAlignment(Qt::AlignCenter);
 
-    QLabel *pmodelLabel = new QLabel(this);
-    pmodelLabel->setText(tr("Measure Sample Interval:"));
-    QLabel *pmintervalMetricLabel = new QLabel(this);
+    pmeasureLabel = new QLabel(this);
+    pmeasureLabel->setText(tr("Measure Sample Interval:"));
+    pmintervalMetricLabel = new QLabel(this);
     pmintervalMetricLabel->setText(tr("(s)"));
     measureIntervalEdit = new QLineEdit(this);
 
     index++;
-    sampleItems->addWidget(pmodelLabel,index,0,1,1,Qt::AlignRight);
+    sampleItems->addWidget(pmeasureLabel,index,0,1,1,Qt::AlignRight);
     sampleItems->addWidget(measureIntervalEdit,index,1,1,1);
     sampleItems->addWidget(pmintervalMetricLabel,index,2,1,1);
 
@@ -974,6 +974,17 @@ void DeviceEditDialog::deviceSelectChanged(const QString &text)
         //pmodeLabel->setHidden(false);
         //deviceModeCB->setHidden(false);
         deviceType = "V";
+
+        if(GlobalVariable::s_t == 10 || (GlobalVariable::s_t == 0 && GlobalVariable::s_t_sub_v == 10))
+        {
+            pmeasureLabel->setVisible(false);
+            pmintervalMetricLabel->setVisible(false);
+            waveIntervalEdit->setVisible(false);
+
+            measureIntervalEdit->setVisible(false);
+            prinLabel->setVisible(false);
+            pwintervalMetricLabel->setVisible(false);
+        }
     }
     else if (udata.compare("CKYB5003TEMQ") == 0 || udata.compare("TW888") == 0) //e7 temperature sample device
     {

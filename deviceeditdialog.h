@@ -69,6 +69,9 @@ private:
     QLabel *psampleNumLabel;
     QLabel *psampleIntervalLabel;
 
+    QLabel *pmeasureLabel;
+    QLabel *pmintervalMetricLabel;
+
     //QStringList motorList;
     //QStringList deviceModelList;
 

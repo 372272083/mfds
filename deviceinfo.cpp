@@ -51,7 +51,7 @@ QByteArray DeviceInfo::getSendMsg()
 {
     if (isReceiving)
     {
-        qDebug()<<"Send Msg Receiving: " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+        //qDebug()<<"Send Msg Receiving: " << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
         QByteArray ba;
         return ba;
     }

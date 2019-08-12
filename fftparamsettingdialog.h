@@ -19,10 +19,14 @@ private:
     QComboBox *fft_windowCB;
     QComboBox *fft_filterCB;
 
+    QComboBox *fft_resolution_v_CB;
+
 private slots:
 
     void cancelbtn(bool);
     void okbtn(bool);
+
+    void resolutionIndexChanged(int index);
 };
 
 #endif // FFTPARAMSETTINGDIALOG_H

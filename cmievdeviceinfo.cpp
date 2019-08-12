@@ -42,6 +42,7 @@ CMIEVDeviceInfo::CMIEVDeviceInfo(DeviceInfo *parent) : DeviceInfo(parent),syncTo
     run_mode = 0;
     rotate = 0;
     seqence_index = 0;
+    local_fft_resolution = GlobalVariable::resolution_sub_v;
 }
 
 void CMIEVDeviceInfo::init()
@@ -191,6 +192,32 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
             //qDebug() << "wave read: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat);
             int len = (datalen-8)/6;
 
+            int merge_num = 1;
+            if(GlobalVariable::resolution_sub_v != local_fft_resolution)
+            {
+                local_fft_resolution = GlobalVariable::resolution_sub_v;
+                vAccWaves.clear();
+            }
+            switch (GlobalVariable::resolution_sub_v) {
+            case 1:
+                merge_num = 1;
+                break;
+            case 2:
+                merge_num = 2;
+                break;
+            case 4:
+                merge_num = 4;
+                break;
+            case 10:
+                merge_num = 8;
+                break;
+            case 20:
+                merge_num = 16;
+                break;
+            default:
+                break;
+            }
+
             QByteArray time_buffer;
             time_buffer.resize(4);
             time_buffer[3] = rec_buffer[5];
@@ -212,6 +239,10 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                 if(s_tmp == time_index)
                 {
                     is_con = true;
+                    if(vAccWaves.size() >= GlobalVariable::resolution_sub_v)
+                    {
+                        vAccWaves.pop_front();
+                    }
                 }
                 else if(s_tmp > time_index)
                 {
@@ -222,6 +253,7 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                 else
                 {
                     is_con = false;
+                    vAccWaves.clear();
                 }
                 seqence_index = time_index;
             }
@@ -242,6 +274,8 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
 
                 int startIndex = len*i+6;
                 int endIndex = startIndex + len;
+                int count_index = 0;
+                float count_sum = 0.0;
                 for(int n=startIndex;n<endIndex;n+=2)
                 {
                     QByteArray value_buffer;
@@ -282,17 +316,47 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                     }
                     float valuedata_f = (valuedata - fzero)/fratio;
                     //vAccWave[i].push_back(valuedata_f);
-                    if(vAccWave.contains(i))
+                    if(merge_num == 1)
                     {
-                        vAccWave[i].push_back(valuedata_f);
+                        if(vAccWave.contains(i))
+                        {
+                            vAccWave[i].push_back(valuedata_f);
+                        }
+                        else
+                        {
+                            std::vector<double> st;
+                            st.push_back(valuedata_f);
+                            vAccWave[i] = st;
+                        }
                     }
                     else
                     {
-                        std::vector<double> st;
-                        st.push_back(valuedata_f);
-                        vAccWave[i] = st;
+                        if((count_index%merge_num) == 0 || n >= (endIndex - 2))
+                        {
+                            if(count_index != 0)
+                            {
+                                float i_v = count_sum / merge_num;
+                                if(vAccWave.contains(i))
+                                {
+                                    vAccWave[i].push_back(i_v);
+                                }
+                                else
+                                {
+                                    std::vector<double> st;
+                                    st.push_back(i_v);
+                                    vAccWave[i] = st;
+                                }
+                            }
+
+                            count_sum = valuedata_f;
+                        }
+                        else
+                        {
+                            count_sum += valuedata_f;
+                        }
                     }
 
+                    count_index++;
                     buffer += QString::number(valuedata_f,10,4) + ",";
                 }
 
@@ -390,23 +454,27 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
                 GlobalVariable::recordwave[deviceCode] = rw - 1;
             }
 
-            CMIEVWaveInfo* wi = new CMIEVWaveInfo(vAccWave);
-            wi->dcode = deviceCode;
-            wi->sample_interval = intervals[0];
-            wi->sample_num = samples[0];
-            wi->sample_time = StrCurrentTime;
-            wi->run_mode = run_mode;
+            vAccWaves.push_back(vAccWave);
+            if(vAccWaves.size() == GlobalVariable::resolution_sub_v)
+            {
+                CMIEVWaveInfo* wi = new CMIEVWaveInfo(vAccWaves);
+                wi->dcode = deviceCode;
+                wi->sample_interval = intervals[0] * GlobalVariable::resolution_sub_v;
+                wi->sample_num = (samples[0] / merge_num) * GlobalVariable::resolution_sub_v;
+                wi->sample_time = StrCurrentTime;
+                wi->run_mode = run_mode;
 
-            if(wi->sample_num > 0)
-            {
-                CMIEVAnalyseThread *wiat = new CMIEVAnalyseThread();
-                wiat->setData(wi);
-                analyse_threads.push_back(wiat);
-                wiat->start();
-            }
-            else
-            {
-                delete wi;
+                if(wi->sample_num > 0)
+                {
+                    CMIEVAnalyseThread *wiat = new CMIEVAnalyseThread();
+                    wiat->setData(wi);
+                    analyse_threads.push_back(wiat);
+                    wiat->start();
+                }
+                else
+                {
+                    delete wi;
+                }
             }
         }
         isReceiving = false;
@@ -719,17 +787,9 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
         }
         else if(unit == MODE_V_W)
         {
+            modelReadOk = false;
             modelWriteOk = true;
             //run_mode = 1;
-
-            struct ModbusTCPMapInfo cmd_com;
-            cmd_com.Unit = MODE_V_R;
-            cmd_com.Addr = 36;
-            cmd_com.Command = 0x3;
-            cmd_com.Length = 1;
-            cmd_com.ExpectLen = cmd_com.Length * 2 + 9;
-            msgPriSendQueue.enqueue(cmd_com);
-            modelReadOk = false;
         }
         else if(unit == MODE_V_R)
         {
@@ -755,7 +815,7 @@ void CMIEVDeviceInfo::handlerReceiveMsg()
         }
         else if(unit == MEASURE_R) //read measure data ok
         {
-            qDebug() << "measure read!";
+            //qDebug() << "measure read!";
             byteStep = 4;
             for(int i=0; i<6; i++)
             {
@@ -970,7 +1030,7 @@ void CMIEVDeviceInfo::handleSendMsg()
             }
         }
 
-        //qDebug()<<"Receiving: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat);
+        qDebug()<<"Receiving: " << QDateTime::currentDateTime().toString(GlobalVariable::dtFormat);
         return;
     }
     if (!syncTomerOk)

@@ -67,7 +67,7 @@ void DeviceLinkManager::timeUpdate()
 
             if (msg.size() > 0)
             {
-                qDebug() << "cycle msg: " << "11";
+                //qDebug() << "cycle msg: " << "11";
                 if(m_sockes.contains(devicecode))
                 {
                     XSocketClient* client = m_sockes[devicecode];
@@ -80,7 +80,7 @@ void DeviceLinkManager::timeUpdate()
             }
             else
             {
-                qDebug() << "cycle msg: " << "12";
+                //qDebug() << "cycle msg: " << "12";
                 deviceInfo->waitingCount++;
 
                 if((deviceInfo->waitingCount/(BASE_INTERVAL/baseInterval)) > GlobalVariable::sample_waiting)

@@ -3,6 +3,8 @@
 
 #include "deviceinfo.h"
 #include <QVector>
+#include <QQueue>
+#include <QMap>
 
 class CMIEVAnalyseThread;
 
@@ -21,7 +23,10 @@ public:
     virtual void close();
 private:
     QVector<CMIEVAnalyseThread*> analyse_threads;
+
+    QQueue<QMap<int,std::vector<double>>> vAccWaves;
     int seqence_index;
+
     bool syncTomerOk;
     bool comReadOk;
     bool factorReadOk;
@@ -29,6 +34,8 @@ private:
     bool modelReadOk;
 
     int run_mode;
+
+    int local_fft_resolution;
 
     class Ratio
     {

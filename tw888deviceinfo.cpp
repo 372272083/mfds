@@ -85,7 +85,7 @@ void TW888DeviceInfo::handlerReceiveMsg()
 
         if(unit == COM_R) //read measure data ok
         {
-            qDebug() << "measure read!";
+            //qDebug() << "measure read!";
             byteStep = 2;
             if(num == TW888_R_0) //标识数据
             {
